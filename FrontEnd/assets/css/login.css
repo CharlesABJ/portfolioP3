@@ -71,13 +71,13 @@ header {
     margin: 50px 0 120px;
 }
  
-header h1 {
+header h1 a {
     display: flex;
     flex-direction: column;
     font-family: 'Syne';
     font-size: 22px;
     font-weight: 800;
-    color: #B1663C
+    color: #B1663C;
 }
  
 header h1 span {
@@ -110,6 +110,14 @@ header nav ul li a {
 header nav ul li a:hover {
     color: #B1663C;
 }
+
+header nav ul li .active {
+    font-weight: bold;
+}
+
+header nav ul li .active:hover {
+   color: #2b2b2b;
+}
  
 header nav ul li a img {
     width: 20px;
@@ -124,185 +132,60 @@ header nav .bubbleNav {
     cursor: pointer;
     display: none;
 }
- 
- 
-#introduction {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 50px 0
-}
- 
-#introduction figure {
-    margin: 0 30px;
-}
- 
-#introduction figure img {
-    height: 355px;
-}
- 
-#introduction article {
-    width: 404px;
-    margin: 0 30px;
-}
- 
-#introduction article h2 {
-    margin-bottom: 1em;
-    font-family: 'Syne';
-    font-weight: 700;
-    font-size: 30px;
-    color: #1D6154
-}
- 
-#introduction article p {
-    margin: 0 0 20px;
-}
- 
- 
- 
-#portfolio{
-    margin: 100px 0;
-}
- 
-#portfolio h2 {
-    text-align: center;
-    margin-bottom: 45px;
-    font-family: 'Syne';
-    font-weight: 700;
-    font-size: 30px;
-    color: #1D6154
-}
- 
-#portfolio .filters {
-    display: flex;
-    justify-content: center;
-    margin: 0 0 35px;
-}
- 
-#portfolio .filters li{
-    border: 1px solid #1D6154;
-    color: #1D6154;
-    font-family: "Syne";
-    cursor: pointer;
-    border-radius: 60px;
-    padding: 7px 15px;
-    margin: 5px;
-    transition: 0.3s all;
-}
- 
-#portfolio .filters li:hover{
-    background: #339b88;
-    color: #ffffff;
-    transition: 0.3s all;
-}
- 
-#portfolio .filters li:active{
-    background: #1D6154;
-}
- 
-#portfolio .filters .active{
-    background: #1D6154;
-    color: #ffffff;
-}
- 
-#portfolio .filters .active:hover{
-    background: #1D6154;
-    color: #ffffff;
-}
- 
- 
-#portfolio .gallery{
-    display: flex;
-    justify-content: center;
-}
- 
-#portfolio .gallery .galleryGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-    width: 80%;
-}
- 
-#portfolio .gallery .galleryGrid figure {
-    width: 100%;
-	transition:0.3s;
-	cursor: pointer;
-}
 
-#portfolio .gallery .galleryGrid figure:hover {
-    width: 100%;
-	transform: scale(1.02);
-	transition:0.3s;
-}
- 
-#portfolio .gallery .galleryGrid figure img {
-    width: 100%;
-}
- 
-#portfolio .gallery .galleryGrid figure figcaption {
-    padding: 7px 0 0;
-}
- 
- 
- 
-#contact {
-    width: 50%;
-    margin: auto;
-}
- 
-#contact h2 {
-    text-align: center;
-    margin-bottom: 12px;
-    font-family: 'Syne';
-    font-weight: 700;
-    font-size: 30px;
-    color: #1D6154
-}
- 
-#contact p {
-    text-align: center;
-}
- 
-#contact form {
-    text-align: left;
-    margin-top: 30px;
+main{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
+
  
-#contact label {
+main h2 {
+    font-family: 'Syne';
+    font-size: 30px;
+    color: #1D6154;
+}
+
+main form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+main form label {
     margin: 2em 0 1em 0;
     font-weight: bold;
+    align-self: flex-start;
 }
  
-#contact input {
+main form input {
     height: 50px;
+    width: 100%;
     font-size: 1.2em;
     border: none;
     padding: 0 10px;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    outline-color: #e5a580;
 }
- 
-#contact textarea {
-    resize: none;
-    border: none;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
- 
-#contact .submit {
+
+main form button {
     font-family: 'Syne';
     font-weight: 700;
     color: white;
     background-color: #1D6154;
-    margin: 2em auto;
+    margin: 40px 0 25px;
+    padding: 20px;
     width: 180px;
     text-align: center;
     border-radius: 60px;
     cursor: pointer;
 }
- 
+
+main form a {
+    color: #000000;
+}
+
 footer nav {
     margin: 50px 0 0;
     text-align: end;
