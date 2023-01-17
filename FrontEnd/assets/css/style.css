@@ -111,9 +111,6 @@ header nav ul li a:hover {
     color: #B1663C;
 }
 
-header nav ul li .active {
-    font-weight: bold;
-}
 
 header nav ul li .active:hover {
    color: #000000;
@@ -200,13 +197,15 @@ header nav .bubbleNav {
 }
  
 #portfolio .filters li:hover{
-    background: #339b88;
+    background: #8EAFA6;
     color: #ffffff;
+    border: 1px solid #8EAFA6;
     transition: 0.3s all;
 }
  
 #portfolio .filters li:active{
     background: #1D6154;
+    border: 1px solid #1D6154;
 }
  
 #portfolio .filters .active{
@@ -309,6 +308,11 @@ header nav .bubbleNav {
     text-align: center;
     border-radius: 60px;
     cursor: pointer;
+}
+
+#contact .submit:active{
+    background: #B1663C;
+    transition: 0.3s all;
 }
  
 footer nav {
