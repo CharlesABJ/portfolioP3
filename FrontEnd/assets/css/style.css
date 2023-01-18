@@ -208,16 +208,20 @@ header nav .bubbleNav {
     border: 1px solid #1D6154;
 }
  
-#portfolio .filters .active{
+#portfolio .filters #active{
     background: #1D6154;
     color: #ffffff;
 }
  
-#portfolio .filters .active:hover{
+#portfolio .filters #active:hover{
     background: #1D6154;
     color: #ffffff;
 }
  
+#portfolio .filters #inactive{
+    background: #ffffff;
+    color: #1D6154;
+}
  
 #portfolio .gallery{
     display: flex;
