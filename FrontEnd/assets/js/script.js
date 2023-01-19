@@ -35,7 +35,7 @@ fetch("http://localhost:5678/api/works")
             })
 
             objects.addEventListener("click", () => {
-                filterElement.forEach( a=> {
+                filterElement.forEach( a => {
                     a.setAttribute("id", "inactive");
                 });
                 objects.setAttribute("id", "active")

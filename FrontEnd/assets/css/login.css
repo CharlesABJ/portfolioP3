@@ -119,8 +119,8 @@ header nav ul li .active:hover {
    color: #2b2b2b;
 }
  
-header nav ul li a img {
-    width: 20px;
+header nav ul li a i {
+    font-size: 20px;
 }
  
 header nav .bubbleNav {

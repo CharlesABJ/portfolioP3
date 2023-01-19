@@ -2,7 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
- 
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@
     vertical-align: baseline;
     box-sizing: border-box;
 }
- 
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -27,21 +27,21 @@ nav,
 section {
     display: block;
 }
- 
+
 body {
     line-height: 1;
 }
- 
+
 ol,
 ul {
     list-style: none;
 }
- 
+
 blockquote,
 q {
     quotes: none;
 }
- 
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -49,14 +49,14 @@ q:after {
     content: '';
     content: none;
 }
- 
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
- 
+
 /** end reset css**/
- 
+
 body {
     max-width: 1140px;
     margin: auto;
@@ -64,13 +64,13 @@ body {
     font-size: 14px;
     padding: 0 2rem 2rem;
 }
- 
+
 header {
     display: flex;
     justify-content: space-between;
     margin: 50px 0 120px;
 }
- 
+
 header h1 a {
     display: flex;
     flex-direction: column;
@@ -79,47 +79,47 @@ header h1 a {
     font-weight: 800;
     color: #B1663C
 }
- 
+
 header h1 span {
     font-family: 'Work Sans';
     font-size: 10px;
     letter-spacing: 0.1em;
 }
- 
+
 header nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
- 
+
 header nav ul {
     display: flex;
     align-items: center;
     list-style: none;
 }
- 
+
 header nav ul li {
     margin: 0 20px;
 }
- 
+
 header nav ul li a {
     text-decoration: none;
     color: #000000;
 }
- 
+
 header nav ul li a:hover {
     color: #B1663C;
 }
 
 
 header nav ul li .active:hover {
-   color: #000000;
+    color: #000000;
 }
- 
-header nav ul li a img {
-    width: 20px;
+
+header nav ul li a i {
+    font-size: 20px;
 }
- 
+
 header nav .bubbleNav {
     font-size: 16px;
     background: #B1663C;
@@ -129,29 +129,32 @@ header nav .bubbleNav {
     cursor: pointer;
     display: none;
 }
- 
- 
+
+
 #introduction {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 50px 0
+    margin: 50px 0 30px;
 }
- 
+
 #introduction figure {
-    margin: 0 30px;
-}
- 
-#introduction figure img {
+    margin: 0 25px;
     height: 355px;
 }
- 
+
+#introduction figure img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 #introduction article {
     width: 404px;
-    margin: 0 30px;
+    margin: 30px 0 0;
 }
- 
+
 #introduction article h2 {
     margin-bottom: 1em;
     font-family: 'Syne';
@@ -159,17 +162,18 @@ header nav .bubbleNav {
     font-size: 30px;
     color: #1D6154
 }
- 
+
 #introduction article p {
     margin: 0 0 20px;
 }
- 
- 
- 
-#portfolio{
-    margin: 100px 0;
+
+
+
+#portfolio {
+    margin: 40px 0;
+    padding: 50px 0 0;
 }
- 
+
 #portfolio h2 {
     text-align: center;
     margin-bottom: 45px;
@@ -178,14 +182,17 @@ header nav .bubbleNav {
     font-size: 30px;
     color: #1D6154
 }
- 
+
 #portfolio .filters {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin: 0 0 35px;
 }
- 
-#portfolio .filters li{
+
+#portfolio .filters li {
+    display: flex;
+    align-items: center;
     border: 1px solid #1D6154;
     color: #1D6154;
     font-family: "Syne";
@@ -195,39 +202,35 @@ header nav .bubbleNav {
     margin: 5px;
     transition: 0.3s all;
 }
- 
-#portfolio .filters li:hover{
+
+#portfolio .filters li:hover {
     background: #8EAFA6;
     color: #ffffff;
     border: 1px solid #8EAFA6;
     transition: 0.3s all;
 }
- 
-#portfolio .filters li:active{
-    background: #1D6154;
-    border: 1px solid #1D6154;
-}
- 
-#portfolio .filters #active{
+
+
+#portfolio .filters #active {
     background: #1D6154;
     color: #ffffff;
 }
- 
-#portfolio .filters #active:hover{
+
+#portfolio .filters #active:hover {
     background: #1D6154;
     color: #ffffff;
 }
- 
-#portfolio .filters #inactive{
+
+#portfolio .filters #inactive {
     background: #ffffff;
     color: #1D6154;
 }
- 
-#portfolio .gallery{
+
+#portfolio .gallery {
     display: flex;
     justify-content: center;
 }
- 
+
 #portfolio .gallery .galleryGrid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -235,34 +238,35 @@ header nav .bubbleNav {
     grid-row-gap: 20px;
     width: 80%;
 }
- 
+
 #portfolio .gallery .galleryGrid figure {
     width: 100%;
-	transition:0.3s;
-	cursor: pointer;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 #portfolio .gallery .galleryGrid figure:hover {
     width: 100%;
-	transform: scale(1.02);
-	transition:0.3s;
+    transform: scale(1.02);
+    transition: 0.3s;
 }
- 
+
 #portfolio .gallery .galleryGrid figure img {
     width: 100%;
 }
- 
+
 #portfolio .gallery .galleryGrid figure figcaption {
     padding: 7px 0 0;
 }
- 
- 
- 
+
+
+
 #contact {
-    width: 50%;
+    width: 80%;
     margin: auto;
+    padding: 50px 0 0;
 }
- 
+
 #contact h2 {
     text-align: center;
     margin-bottom: 12px;
@@ -271,23 +275,23 @@ header nav .bubbleNav {
     font-size: 30px;
     color: #1D6154
 }
- 
+
 #contact p {
     text-align: center;
 }
- 
+
 #contact form {
     text-align: left;
     margin-top: 30px;
     display: flex;
     flex-direction: column;
 }
- 
+
 #contact label {
     margin: 2em 0 1em 0;
     font-weight: bold;
 }
- 
+
 #contact input {
     height: 50px;
     font-size: 1.2em;
@@ -295,13 +299,14 @@ header nav .bubbleNav {
     padding: 0 10px;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
- 
+
 #contact textarea {
     resize: none;
     border: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    padding: 10px;
 }
- 
+
 #contact .submit {
     font-family: 'Syne';
     font-weight: 700;
@@ -314,23 +319,93 @@ header nav .bubbleNav {
     cursor: pointer;
 }
 
-#contact .submit:active{
+#contact .submit:active {
     background: #B1663C;
     transition: 0.3s all;
 }
- 
+
 footer nav {
     margin: 50px 0 0;
     text-align: end;
 }
- 
-footer nav a{
+
+footer nav a {
     text-decoration: none;
     color: #000000;
     font-weight: lighter;
 }
- 
-footer nav a:hover{
+
+footer nav a:hover {
     color: #B1663C;
 }
 
+
+
+@media screen and (max-width: 739px) {
+    #portfolio .filters {
+        width: 80%;
+        margin: 0 auto 35px;
+    }
+
+    #portfolio .filters li {
+        width: 47%;
+
+    }
+}
+
+
+@media screen and (max-width: 563px) {
+
+    header {
+       margin-bottom: 30px;
+       align-items: baseline;
+    }
+
+    header nav ul {
+        display: none;
+    }
+
+    header nav .bubbleNav {
+        display: block;
+    }
+    
+
+    #introduction {
+        margin-bottom: 0;
+    }
+
+    #portfolio{
+        margin: 0;
+    }
+
+    #portfolio .filters li {
+        width: 45%;
+        font-size: 10px;
+    }
+
+    #portfolio .gallery .galleryGrid figure figcaption {
+        font-size: 10px;
+    }
+
+    #introduction article h2, #contact h2 {
+        font-size: 25px;
+    }
+
+    #portfolio h2{
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+
+    #introduction article p {
+        font-size: 12px;
+    }
+
+    #contact p {
+        font-size: 12px;
+    }
+
+    #contact input,
+    #contact textarea {
+        font-size: 12px;
+    }
+}
