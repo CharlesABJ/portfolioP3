@@ -65,6 +65,8 @@ body {
     padding: 0 2rem 2rem;
 }
  
+
+/* ----------------------HEADER-ON<--------------------------- */
 header {
     display: flex;
     justify-content: space-between;
@@ -133,6 +135,11 @@ header nav .bubbleNav {
     display: none;
 }
 
+
+/* >==================== HEADER OFF ====================> */
+
+
+/* <==================== MAIN ON ====================< */
 main{
     display: flex;
     flex-direction: column;
@@ -184,8 +191,19 @@ main form button {
 
 main form a {
     color: #000000;
+    transition: 0.s all;
 }
 
+main form a:hover {
+    text-decoration: none;
+    transition: 0.3s all;
+}
+
+
+/* >==================== MAIN OFF ====================> */
+
+
+/* <==================== FOOTER ON ====================< */
 footer nav {
     margin: 50px 0 0;
     text-align: end;
@@ -201,3 +219,8 @@ footer nav a:hover{
     color: #B1663C;
 }
 
+
+/* >==================== FOOTER OF ====================> */
+
+
+/* <==================== RESPONSIVE ON ====================< */

@@ -7,12 +7,13 @@ let appartments = document.querySelector(".appartments")
 let restaurants = document.querySelector(".restaurants")
 let filterElement = document.querySelectorAll(".filterElement")
 
+let galleryGrid = document.querySelector(".galleryGrid");
 
 fetch("http://localhost:5678/api/works")
     .then(response => response.json())
     .then(data => {
         for (let i = 0; i < data.length; i++) {
-            let galleryGrid = document.querySelector(".galleryGrid");
+            
             let figure = document.createElement("figure");
             let img = document.createElement("img");
             let figcaption = document.createElement("figcaption")
@@ -26,18 +27,20 @@ fetch("http://localhost:5678/api/works")
             img.setAttribute("crossorigin", "anonymous")
             figcaption.innerHTML = data[i].title;
 
-            all.addEventListener("click", () => {
-                filterElement.forEach( a=> {
-                    a.setAttribute("id", "inactive");
+            function setNotActive() {
+                filterElement.forEach(a => {
+                    a.removeAttribute("id", "active");
                 });
+            }
+
+            all.addEventListener("click", () => {
+                setNotActive();
                 all.setAttribute("id", "active")
                 figure.style.display = "block"
             })
 
             objects.addEventListener("click", () => {
-                filterElement.forEach( a => {
-                    a.setAttribute("id", "inactive");
-                });
+                setNotActive();
                 objects.setAttribute("id", "active")
                 figure.style.display = "block";
                 if (figure.getAttribute("data-category-id") !== "1") {
@@ -47,9 +50,7 @@ fetch("http://localhost:5678/api/works")
             })
 
             appartments.addEventListener("click", () => {
-                filterElement.forEach( a=> {
-                    a.setAttribute("id", "inactive");
-                });
+                setNotActive();
                 appartments.setAttribute("id", "active");
                 figure.style.display = "block";
                 if (figure.getAttribute("data-category-id") !== "2") {
@@ -59,9 +60,7 @@ fetch("http://localhost:5678/api/works")
             })
 
             restaurants.addEventListener("click", () => {
-                filterElement.forEach( a=> {
-                    a.setAttribute("id", "inactive");
-                });
+                setNotActive();
                 restaurants.setAttribute("id", "active")
                 figure.style.display = "block";
                 if (figure.getAttribute("data-category-id") !== "3") {

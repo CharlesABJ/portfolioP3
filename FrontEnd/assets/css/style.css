@@ -131,6 +131,7 @@ header nav .bubbleNav {
 }
 
 
+/* ====== Introduction ====== */
 #introduction {
     display: flex;
     flex-wrap: wrap;
@@ -168,7 +169,7 @@ header nav .bubbleNav {
 }
 
 
-
+/* ====== Portfolio ====== */
 #portfolio {
     margin: 40px 0;
     padding: 50px 0 0;
@@ -190,7 +191,7 @@ header nav .bubbleNav {
     margin: 0 0 35px;
 }
 
-#portfolio .filters li {
+#portfolio .filters .filterElement {
     display: flex;
     align-items: center;
     border: 1px solid #1D6154;
@@ -203,7 +204,7 @@ header nav .bubbleNav {
     transition: 0.3s all;
 }
 
-#portfolio .filters li:hover {
+#portfolio .filters .filterElement:hover {
     background: #8EAFA6;
     color: #ffffff;
     border: 1px solid #8EAFA6;
@@ -219,11 +220,6 @@ header nav .bubbleNav {
 #portfolio .filters #active:hover {
     background: #1D6154;
     color: #ffffff;
-}
-
-#portfolio .filters #inactive {
-    background: #ffffff;
-    color: #1D6154;
 }
 
 #portfolio .gallery {
@@ -259,10 +255,10 @@ header nav .bubbleNav {
     padding: 7px 0 0;
 }
 
-
+/* ====== Contact ====== */
 
 #contact {
-    width: 80%;
+    width: 50%;
     margin: auto;
     padding: 50px 0 0;
 }
@@ -295,9 +291,9 @@ header nav .bubbleNav {
 #contact input {
     height: 50px;
     font-size: 1.2em;
-    border: none;
     padding: 0 10px;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    outline-color: #B1663C;
 }
 
 #contact textarea {
@@ -305,6 +301,7 @@ header nav .bubbleNav {
     border: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
     padding: 10px;
+    outline-color: #B1663C;
 }
 
 #contact .submit {
@@ -324,6 +321,11 @@ header nav .bubbleNav {
     transition: 0.3s all;
 }
 
+
+/* >==================== MAIN OFF ====================> */
+
+
+/* <==================== FOOTER ON ====================< */
 footer nav {
     margin: 50px 0 0;
     text-align: end;
@@ -340,7 +342,10 @@ footer nav a:hover {
 }
 
 
+/* >==================== FOOTER OF ====================> */
 
+
+/* <==================== RESPONSIVE ON ====================< */
 @media screen and (max-width: 739px) {
     #portfolio .filters {
         width: 80%;
@@ -349,7 +354,10 @@ footer nav a:hover {
 
     #portfolio .filters li {
         width: 47%;
+    }
 
+    #contact {
+        width: 80%;
     }
 }
 
@@ -357,8 +365,8 @@ footer nav a:hover {
 @media screen and (max-width: 563px) {
 
     header {
-       margin-bottom: 30px;
-       align-items: baseline;
+        margin-bottom: 30px;
+        align-items: baseline;
     }
 
     header nav ul {
@@ -368,13 +376,13 @@ footer nav a:hover {
     header nav .bubbleNav {
         display: block;
     }
-    
+
 
     #introduction {
         margin-bottom: 0;
     }
 
-    #portfolio{
+    #portfolio {
         margin: 0;
     }
 
@@ -387,11 +395,12 @@ footer nav a:hover {
         font-size: 10px;
     }
 
-    #introduction article h2, #contact h2 {
+    #introduction article h2,
+    #contact h2 {
         font-size: 25px;
     }
 
-    #portfolio h2{
+    #portfolio h2 {
         font-size: 25px;
         margin-bottom: 20px;
     }
@@ -399,6 +408,7 @@ footer nav a:hover {
     #introduction article p {
         font-size: 12px;
     }
+
 
     #contact p {
         font-size: 12px;
