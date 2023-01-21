@@ -13,7 +13,7 @@ fetch("http://localhost:5678/api/works")
     .then(response => response.json())
     .then(data => {
         for (let i = 0; i < data.length; i++) {
-            
+
             let figure = document.createElement("figure");
             let img = document.createElement("img");
             let figcaption = document.createElement("figcaption")
@@ -27,22 +27,21 @@ fetch("http://localhost:5678/api/works")
             img.setAttribute("crossorigin", "anonymous")
             figcaption.innerHTML = data[i].title;
 
-            function setNotActive() {
+            function filterClick() {
                 filterElement.forEach(a => {
                     a.removeAttribute("id", "active");
+                    figure.style.display = "block"
                 });
             }
 
             all.addEventListener("click", () => {
-                setNotActive();
+                filterClick();
                 all.setAttribute("id", "active")
-                figure.style.display = "block"
             })
 
             objects.addEventListener("click", () => {
-                setNotActive();
+                filterClick();
                 objects.setAttribute("id", "active")
-                figure.style.display = "block";
                 if (figure.getAttribute("data-category-id") !== "1") {
                     figure.style.display = "none";
                 }
@@ -50,9 +49,8 @@ fetch("http://localhost:5678/api/works")
             })
 
             appartments.addEventListener("click", () => {
-                setNotActive();
+                filterClick();
                 appartments.setAttribute("id", "active");
-                figure.style.display = "block";
                 if (figure.getAttribute("data-category-id") !== "2") {
                     figure.style.display = "none";
 
@@ -60,9 +58,8 @@ fetch("http://localhost:5678/api/works")
             })
 
             restaurants.addEventListener("click", () => {
-                setNotActive();
+                filterClick();
                 restaurants.setAttribute("id", "active")
-                figure.style.display = "block";
                 if (figure.getAttribute("data-category-id") !== "3") {
                     figure.style.display = "none";
                 }
