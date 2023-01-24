@@ -212,12 +212,12 @@ header nav .bubbleNav {
 }
 
 
-#portfolio .filters #active {
+#portfolio .filters .active {
     background: #1D6154;
     color: #ffffff;
 }
 
-#portfolio .filters #active:hover {
+#portfolio .filters .active:hover {
     background: #1D6154;
     color: #ffffff;
 }
