@@ -30,7 +30,7 @@
     </header>
 
     <main>
-        
+
         <h2>Log In</h2>
 
         <form action="#" method="POST">
@@ -38,8 +38,10 @@
             <input type="email" id="mail" name="mail">
 
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password">
-
+            <div class="password-zone">
+                <input type="password" id="password" name="password">
+                <i class="fa-solid fa-eye eyes eye-open hidden"></i> <i class="fa-solid fa-eye-slash eyes eye-closed"></i>
+            </div>
             <button type="submit">Se connecter</button>
             <a href="#">Mot de passe oublié</a>
         </form>
@@ -53,7 +55,7 @@
 
     </footer>
 
-    <script src="/FrontEnd/assets/js/script.js"></script>
+    <script src="/FrontEnd/assets/js/login.js"></script>
 </body>
 
 </html>

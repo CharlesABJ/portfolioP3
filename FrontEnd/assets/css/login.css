@@ -176,6 +176,30 @@ main form input {
     outline-color: #e5a580;
 }
 
+main form .password-zone {
+  position: relative;
+  width: 100%;
+}
+
+main form .password-zone .eye-closed {
+    position: absolute;
+    top: 50%;
+    right: 7%;
+    transform: translate(-50%, -50%);
+    color: #1D6154;
+}
+main form .password-zone .eye-open {
+    position: absolute;
+    top: 50%;
+    right: 7.5%;
+    transform: translate(-50%, -50%);
+    color: #1D6154;
+}
+
+.hidden{
+    display: none;
+}
+
 main form button {
     font-family: 'Syne';
     font-weight: 700;
@@ -205,7 +229,7 @@ main form a:hover {
 
 /* <==================== FOOTER ON ====================< */
 footer nav {
-    margin: 50px 0 0;
+    margin: 80px 0 0;
     text-align: end;
 }
  
@@ -224,3 +248,37 @@ footer nav a:hover{
 
 
 /* <==================== RESPONSIVE ON ====================< */
+
+
+@media screen and (max-width: 739px) {
+
+    main form {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 563px) {
+
+    header {
+        margin-bottom: 70px;
+        align-items: baseline;
+    }
+
+    header nav ul {
+        display: none;
+    }
+
+    header nav .bubbleNav {
+        display: block;
+    }
+
+    main h2{
+        font-size: 25px;
+    }
+
+   main input,
+   main textarea {
+        font-size: 12px;
+    }
+
+}
