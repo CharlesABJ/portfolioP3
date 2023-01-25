@@ -21,10 +21,10 @@ const showAllWorks = (works) => {
 }
 // Appel des function
 
-const myApi = "http://localhost:5678/api/works";
+const worksApi = "http://localhost:5678/api/works";
 async function getWorks() {
 
-    fetch(myApi)
+    fetch(worksApi)
         .then(response => response.json())
         .then(data => {
             for (let i in data) {
