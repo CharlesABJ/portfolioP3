@@ -7,38 +7,34 @@ let eyes = document.querySelectorAll(".eyes");
 
 let errorConnect = document.querySelector(".errorConnect");
 
-
-// Appel de l'API 
+// Appel de l'API
 
 const loginApi = "http://localhost:5678/api/users/login";
+
+let fetchInit = {
+  method: "POST"
+}
 async function postLogin() {
-  const response = await fetch(loginApi);
+  const response = await fetch(loginApi,fetchInit);
   const data = await response.json();
   for (let i in data) {
-    console.log(data[i].userId); 
+    console.log(data[i].userId);
   }
-// l'APi ne renvoi rien => hypothèse : fetch() renvoit une methode Get de base ? trouver comment changer la méthode
-
+  // l'APi ne renvoi rien => hypothèse : fetch() renvoit une methode Get de base ? trouver comment changer la méthode
 }
 
-postLogin()
-
-
+postLogin();
 
 form.addEventListener("submit", (input) => {
-    input.preventDefault();
+  input.preventDefault();
   if (
     emailInput.value === "sophie.bluel@test.tld" &&
     passwordInput.value === "S0phie"
   ) {
-    console.log("Tout est bon");
-    errorConnect.classList.add("hidden");
-    passwordInput.style.outlineColor = "green";
-    emailInput.style.outlineColor = "green";
-    
+    location.href = "index.html";
   } else {
     errorConnect.classList.remove("hidden");
-    errorConnect.innerHTML = "Mot de passe ou identifiant incorrect";
+    errorConnect.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
     passwordInput.style.outlineColor = "red";
     emailInput.style.outlineColor = "red";
   }
@@ -55,4 +51,3 @@ eyes.forEach((eye) => {
     }
   });
 });
-

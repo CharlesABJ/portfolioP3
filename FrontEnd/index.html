@@ -15,9 +15,17 @@
 </head>
 
 <body>
+    <div class="edition-mode hidden">
 
+        <p><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-white.svg" alt="icone edition">Mode édition
+        </p>
+        <button type="submit">Publier les changements</button>
+    </div>
     <header>
-        <h1><a href="#">Sophie Bluel <span>Architecte d'intérieur</span></a></h1>
+        <div class="logo">
+            <h1><a href="#">Sophie Bluel <span>Architecte d'intérieur</span></a></h1> 
+            <i class="fa-solid fa-bars bubbleNav"></i>
+        </div>
         <nav>
             <ul>
                 <li><a href="#portfolio">projets</a></li>
@@ -25,7 +33,7 @@
                 <li><a href="login.html">login</a></li>
                 <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
             </ul>
-            <i class="fa-solid fa-bars bubbleNav"></i>
+
         </nav>
     </header>
 
@@ -33,10 +41,19 @@
 
         <section id="introduction">
             <figure>
-                <img src="./assets/images/sophie-bluel.png" alt="">
+                <img class="portrait" src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
+                <figcaption>
+                    <p class="p-edit hidden"><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-black.svg"
+                            alt="icone edition"><span>modifier</span></p>
+                </figcaption>
             </figure>
+
             <article>
-                <h2>Designer d'espace</h2>
+
+                <h2>
+                    <p class="p-edit hidden"><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-black.svg"
+                            alt="icone edition"><span>modifier</span></p>Designer d'espace
+                </h2>
                 <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
                     finale du chantier.</p>
                 <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
@@ -48,12 +65,15 @@
         </section>
 
         <section id="portfolio">
-            <h2>Mes Projets</h2>
+            <h2>Mes Projets <p class="p-edit hidden"><img class="edit-icon"
+                        src="/./FrontEnd/assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
+                </p>
+            </h2>
             <ul class="filters">
-                <li class="filterElement all active">Tous</li>
-                <li class="filterElement objects-button">Objets</li>
-                <li class="filterElement appartments-button">Appartements</li>
-                <li class="filterElement restaurants-button">Hôtels & restaurants</li>
+                <li class="filterElements all active">Tous</li>
+                <li class="filterElements objects-button">Objets</li>
+                <li class="filterElements appartments-button">Appartements</li>
+                <li class="filterElements restaurants-button">Hôtels & restaurants</li>
             </ul>
             <div class="gallery">
                 <div class="galleryGrid">

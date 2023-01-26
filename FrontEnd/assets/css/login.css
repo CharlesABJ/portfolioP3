@@ -154,7 +154,7 @@ main h2 {
 }
 
 main .errorConnect {
-    color: rgb(255, 51, 0);
+    color: rgb(255, 30, 0);
     font-weight: bold;
     padding: 40px 0 30px;
 }
