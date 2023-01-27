@@ -1,6 +1,6 @@
 // Variables travaux
 let galleryGrid = document.querySelector(".galleryGrid");
-
+let figures = [];
 // Variables filtres
 let filterElements = document.querySelectorAll(".filterElements");
 let all = document.querySelector(".all");
@@ -12,52 +12,55 @@ let restaurants = document.querySelector(".restaurants-button");
 const worksApi = "http://localhost:5678/api/works";
 
 async function getWorks() {
-  const response = await fetch(worksApi);
-  const data = await response.json();
+  try {
+    const response = await fetch(worksApi);
+    const data = await response.json();
 
-  for (let i in data) {
-    let figure = document.createElement("figure");
-    let img = document.createElement("img");
-    let figcaption = document.createElement("figcaption");
+    for (let i in data) {
+      let figure = document.createElement("figure");
+      let img = document.createElement("img");
+      let figcaption = document.createElement("figcaption");
 
-    figure.setAttribute("data-category-id", data[i].category.id);
-    img.setAttribute("src", data[i].imageUrl);
-    img.setAttribute("alt", data[i].title);
-    img.setAttribute("crossorigin", "anonymous");
-    figcaption.innerHTML = data[i].title;
+      figure.setAttribute("data-category-id", data[i].category.id);
+      img.setAttribute("src", data[i].imageUrl);
+      img.setAttribute("alt", data[i].title);
+      img.setAttribute("crossorigin", "anonymous");
+      figcaption.innerHTML = data[i].title;
 
-    galleryGrid.append(figure);
-    figure.append(img, figcaption);
+      figures.push(figure);
+
+      galleryGrid.append(figure);
+      figure.append(img, figcaption);
+    }
+  } catch (error) {
+    console.error("Warning : " + error);
   }
 }
 
 getWorks();
 
-
 // Filtres
 
-filterElements.forEach((element) =>{
-    element.addEventListener("click", () => {
-            filterElements.forEach((e)=> {
-                e.classList.remove("active")
-            });
-            
-        }
-        element.classList.add("active")
-    });
-})
-
-
-let works = [];
-// function
-const showAllWorks = (works) => {
-  // ici works est seulement un argument
-
-  // tableau works qui regroupe tout les .work prennent la class show-test
-
-  works = document.getElementsByClassName("work");
-  for (let i of works) {
-    works[i].classList.add("show-test");
-  }
-};
-// Appel des function
+for (let element of filterElements) {
+  element.addEventListener("click", function () {
+    for (let e of filterElements) {
+      e.classList.remove("active");
+    }
+    this.classList.add("active");
+    for (let figure of figures) {
+      objects.setAttribute("data-category-id", 1);
+      appartments.setAttribute("data-category-id", 2);
+      restaurants.setAttribute("data-category-id", 3);
+      if (
+        figure.getAttribute("data-category-id") ===
+        element.getAttribute("data-category-id")
+      ) {
+        figure.style.display = "block";
+      } else if (element === all) {
+        figure.style.display = "block";
+      } else {
+        figure.style.display = "none";
+      }
+    }
+  });
+}

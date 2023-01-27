@@ -10,36 +10,46 @@ let errorConnect = document.querySelector(".errorConnect");
 // Appel de l'API
 
 const loginApi = "http://localhost:5678/api/users/login";
-
-let fetchInit = {
-  method: "POST"
-}
 async function postLogin() {
-  const response = await fetch(loginApi,fetchInit);
-  const data = await response.json();
-  for (let i in data) {
-    console.log(data[i].userId);
+  let formData = new FormData();
+  formData.append("email", emailInput.value);
+  formData.append("password", passwordInput.value);
+
+  let fetchInit = {
+    method: "POST",
+    body: formData,
+  };
+  try {
+    const response = await fetch(loginApi, fetchInit);
+    const data = await response.json();
+    console.log(data);
+
+    
+  } catch (error) {
+    console.error("oups " + error);
   }
   // l'APi ne renvoi rien => hypothèse : fetch() renvoit une methode Get de base ? trouver comment changer la méthode
 }
 
-postLogin();
+
+
 
 form.addEventListener("submit", (input) => {
   input.preventDefault();
-  if (
-    emailInput.value === "sophie.bluel@test.tld" &&
-    passwordInput.value === "S0phie"
-  ) {
-    location.href = "index.html";
-  } else {
-    errorConnect.classList.remove("hidden");
-    errorConnect.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
-    passwordInput.style.outlineColor = "red";
-    emailInput.style.outlineColor = "red";
-  }
+  postLogin();
+//  if (formData === data.token) {
+//   location.href = "index.html";
+// } else {
+//   errorConnect.classList.remove("hidden");
+//   errorConnect.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
+//   passwordInput.style.outlineColor = "red";
+//   emailInput.style.outlineColor = "red";
+// }
+
 });
 
+
+// Afficher/Masquer le mot de passe 
 eyes.forEach((eye) => {
   eye.addEventListener("click", () => {
     eyeClosed.classList.toggle("hidden");
