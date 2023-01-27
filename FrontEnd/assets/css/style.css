@@ -59,6 +59,7 @@ table {
 
 body {
     max-width: 1140px;
+    min-width: 360px;
     margin: auto;
     font-family: 'Work Sans';
     font-size: 14px;
@@ -152,6 +153,7 @@ header .logo .bubbleNav {
     color: #ffffff;
     padding: 8px 9.5px;
     border-radius: 50%;
+border: #ffffff solid 1px;
     cursor: pointer;
    display: none;
 }
@@ -496,36 +498,38 @@ footer nav a:hover {
 }
 
 
-@media screen and (max-width: 584px) {
+@media screen and (max-width: 586px) {
 
+.edition-mode{
+    z-index: 2;
+}
     header {
         margin-bottom: 30px;
         align-items: baseline;
         flex-direction: column;
-        background: #B1663C;
         margin-top: 0;
         padding-top: 30px;
     }
-
+    .backgroundResponsive{
+        background: #B1663C;
+    }
+  
     header .logo {
        position: relative;
        z-index: 1;
     }
 
-    header .logo h1 a {
-        color: #ffffff
-    }
+  
+ 
 
     header .logo .bubbleNav {
         display: block;
      }
 
     header nav{
-        display: flex;
         width: 100%;
+        padding-top: 50px;
         text-align: center;
-        position: absolute;
-        left: 0;
         display: none;
     }
     header nav ul {
@@ -533,7 +537,6 @@ footer nav a:hover {
         width: 100%;
         height: 100vh;
         justify-content: space-around;
-        background-color: #B1663C;
 
     }
 
@@ -542,7 +545,9 @@ footer nav a:hover {
         color: #ffffff;
     }
 
-   
+    header nav ul li a:hover {
+        color: #1D6154;
+    }
 
     #introduction {
         margin-bottom: 0;

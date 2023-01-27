@@ -64,3 +64,21 @@ for (let element of filterElements) {
     }
   });
 }
+
+// Menu de navigation responsive
+function responsiveNav() {
+  
+
+let header = document.querySelector("header");
+let headerNav = document.querySelector(".headerNav");
+let h1Responsive = document.querySelector(".h1Responsive");
+let bubbleNav = document.querySelector(".bubbleNav");
+let backgroundResponsive = document.querySelector("backgroundResponsive");
+
+bubbleNav.addEventListener("click", function () {
+  header.classList.add("backgroundResponsive")
+  headerNav.style.display="flex"
+  h1Responsive.style.color = "white";
+});
+}
+responsiveNav()
