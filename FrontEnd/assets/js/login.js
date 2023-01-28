@@ -6,7 +6,6 @@ let bubbleNav = document.querySelector(".bubble-nav");
 let backgroundResponsive = document.querySelector("background-responsive");
 let navElements = document.querySelectorAll("header nav ul li a");
 
-
 // Variables formulaire login
 let form = document.querySelector("form");
 let eyeClosed = document.querySelector(".eye-closed");
@@ -42,17 +41,16 @@ function responsiveNav() {
 }
 responsiveNav();
 
-
 // Appel de l'API
 const loginApi = "http://localhost:5678/api/users/login";
 async function postLogin(email, password) {
   let fetchInit = {
     method: "POST",
-   headers: {
-    "accept": "application/json",
-   "Content-Type": "application/json"
-   },
-    body: JSON.stringify({email, password})
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
   };
   try {
     const response = await fetch(loginApi, fetchInit);
@@ -63,13 +61,12 @@ async function postLogin(email, password) {
   }
 }
 
-
 form.addEventListener("submit", (input) => {
   let emailInput = document.getElementById("mail");
   let passwordInput = document.getElementById("password");
   input.preventDefault();
-  postLogin(emailInput.value, passwordInput.value)
-   if (postLogin == false) {
+  postLogin(emailInput.value, passwordInput.value);
+  if (postLogin == false) {
     location.href = "index.html";
   } else {
     errorConnect.classList.remove("hidden");
@@ -91,5 +88,3 @@ eyes.forEach((eye) => {
     }
   });
 });
-
-

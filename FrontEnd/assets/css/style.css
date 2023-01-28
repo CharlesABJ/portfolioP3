@@ -68,35 +68,36 @@ body {
 
 
 /* ----------------------MODE EDITION-ON<--------------------------- */
-.edition-mode{
+.edition-mode {
     width: 100%;
     height: 50px;
     background: #000000;
     position: sticky;
-    top:0;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #b9b9b9;
 }
 
-.edition-mode p{
+.edition-mode p {
     display: flex;
     margin: 0 7px;
     cursor: pointer;
     transition: 0.3s all;
 }
 
-.edition-mode p:hover{
+.edition-mode p:hover {
     color: #ebebeb;
     transition: 0.3s all;
 }
 
-.edition-mode p .edit-icon{
+.edition-mode p .edit-icon {
     width: 15px;
     margin-right: 5px;
 }
-.edition-mode button{
+
+.edition-mode button {
     background: #f1f1f1;
     color: #000000;
     border-radius: 20px;
@@ -108,7 +109,7 @@ body {
     transition: 0.3s all;
 }
 
-.edition-mode button:hover{
+.edition-mode button:hover {
     background: #ffffff;
     transition: 0.3s all;
 }
@@ -124,9 +125,9 @@ header {
     justify-content: space-between;
     margin: 50px 0 120px;
     padding: 0 2rem;
-  }
+}
 
-header .logo{
+header .logo {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -153,9 +154,9 @@ header .logo .bubble-nav {
     color: #ffffff;
     padding: 8px 9.5px;
     border-radius: 50%;
-border: #ffffff solid 1px;
+    border: #ffffff solid 1px;
     cursor: pointer;
-   display: none;
+    display: none;
 }
 
 header nav {
@@ -225,7 +226,7 @@ main {
     font-family: 'Syne';
     font-weight: 700;
     font-size: 30px;
-    color: #1D6154; 
+    color: #1D6154;
     display: flex;
     flex-direction: column;
 }
@@ -277,7 +278,7 @@ main {
     margin: 0 0 35px;
 }
 
-#portfolio .filters .elements-filter{
+#portfolio .filters .elements-filter {
     display: flex;
     align-items: center;
     border: 1px solid #1D6154;
@@ -412,7 +413,7 @@ main {
 
 
 /* <==================== FOOTER ON ====================< */
-footer{
+footer {
     padding: 0 2rem;
 }
 
@@ -435,18 +436,18 @@ footer nav a:hover {
 /* >==================== FOOTER OF ====================> */
 
 /* Class pour JS */
-.p-edit{
+.p-edit {
     display: block;
     padding: 5px 5px 5px 0;
     margin: 10px 10px 10px 0;
     cursor: pointer;
 }
 
-.p-edit:hover{
-   color: #303030;
+.p-edit:hover {
+    color: #303030;
 }
 
-.p-edit span{
+.p-edit span {
     margin-left: 5px;
 }
 
@@ -456,7 +457,7 @@ footer nav a:hover {
 }
 
 /* <==================== RESPONSIVE ON ====================< */
-@media screen and (max-width: 991px){
+@media screen and (max-width: 991px) {
     #introduction article h2 {
         flex-direction: row-reverse;
         margin: 50px 0 20px;
@@ -472,7 +473,7 @@ footer nav a:hover {
         margin: 0 15px;
     }
 
-    .p-edit span{
+    .p-edit span {
         display: none;
     }
 }
@@ -490,15 +491,16 @@ footer nav a:hover {
     #contact {
         width: 80%;
     }
-    
+
 }
 
 
 @media screen and (max-width: 605px) {
 
-.edition-mode{
-    z-index: 2;
-}
+    .edition-mode {
+        z-index: 2;
+    }
+
     header {
         margin-bottom: 30px;
         align-items: baseline;
@@ -506,32 +508,34 @@ footer nav a:hover {
         margin-top: 0;
         padding-top: 30px;
     }
-    .background-responsive{
+
+    .background-responsive {
         background: #B1663C;
     }
-  
+
     header .logo {
-       position: relative;
-       z-index: 1;
+        position: relative;
+        z-index: 1;
     }
 
-  
- 
+
+
 
     header .logo .bubble-nav {
         display: block;
-     }
+    }
 
-    header nav{
+    header nav {
         width: 100%;
         padding-top: 50px;
         text-align: center;
         display: none;
     }
+
     header nav ul {
         flex-direction: column;
         width: 100%;
-        height:  calc(100vh - 65px);
+        height: calc(100vh - 65px);
         justify-content: space-around;
 
     }
@@ -557,7 +561,7 @@ footer nav a:hover {
         width: 45%;
         font-size: 10px;
         overflow: hidden;
-        
+
     }
 
     #portfolio .gallery .gallery-grid figure figcaption {

@@ -1,10 +1,10 @@
 // Variables navigation
-  let header = document.querySelector("header");
-  let headerNav = document.querySelector(".header-nav");
-  let h1Responsive = document.querySelector(".h1-responsive");
-  let bubbleNav = document.querySelector(".bubble-nav");
-  let backgroundResponsive = document.querySelector("background-responsive");
-  let navElements = document.querySelectorAll("header nav ul li a");
+let header = document.querySelector("header");
+let headerNav = document.querySelector(".header-nav");
+let h1Responsive = document.querySelector(".h1-responsive");
+let bubbleNav = document.querySelector(".bubble-nav");
+let backgroundResponsive = document.querySelector("background-responsive");
+let navElements = document.querySelectorAll("header nav ul li a");
 
 // Variables travaux
 let galleryGrid = document.querySelector(".gallery-grid");
@@ -17,8 +17,7 @@ let objects = document.querySelector(".objects-button");
 let appartments = document.querySelector(".appartments-button");
 let restaurants = document.querySelector(".restaurants-button");
 
-//======================================================================= 
-
+//=======================================================================
 
 // Menu de navigation responsive
 
@@ -46,7 +45,6 @@ function responsiveNav() {
   }
 }
 responsiveNav();
-
 
 // Appel de l'API en GET
 const worksApi = "http://localhost:5678/api/works";
