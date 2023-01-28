@@ -1,12 +1,52 @@
+// Variables navigation
+  let header = document.querySelector("header");
+  let headerNav = document.querySelector(".header-nav");
+  let h1Responsive = document.querySelector(".h1-responsive");
+  let bubbleNav = document.querySelector(".bubble-nav");
+  let backgroundResponsive = document.querySelector("background-responsive");
+  let navElements = document.querySelectorAll("header nav ul li a");
+
 // Variables travaux
-let galleryGrid = document.querySelector(".galleryGrid");
+let galleryGrid = document.querySelector(".gallery-grid");
 let figures = [];
+
 // Variables filtres
-let filterElements = document.querySelectorAll(".filterElements");
+let elementsFilter = document.querySelectorAll(".elements-filter");
 let all = document.querySelector(".all");
 let objects = document.querySelector(".objects-button");
 let appartments = document.querySelector(".appartments-button");
 let restaurants = document.querySelector(".restaurants-button");
+
+//======================================================================= 
+
+
+// Menu de navigation responsive
+
+function responsiveNav() {
+  bubbleNav.addEventListener("click", function () {
+    if (!header.classList.contains("background-responsive")) {
+      header.classList.add("background-responsive");
+      headerNav.style.display = "flex";
+      h1Responsive.style.color = "white";
+    } else {
+      header.classList.remove("background-responsive");
+      headerNav.style.display = "none";
+      h1Responsive.style.color = "#B1663C";
+    }
+  });
+
+  if (window.matchMedia("(max-width: 605px)").matches) {
+    navElements.forEach((element) => {
+      element.addEventListener("click", function () {
+        header.classList.remove("background-responsive");
+        headerNav.style.display = "none";
+        h1Responsive.style.color = "#B1663C";
+      });
+    });
+  }
+}
+responsiveNav();
+
 
 // Appel de l'API en GET
 const worksApi = "http://localhost:5678/api/works";
@@ -41,16 +81,13 @@ getWorks();
 
 // Filtres
 
-for (let element of filterElements) {
+for (let element of elementsFilter) {
   element.addEventListener("click", function () {
-    for (let e of filterElements) {
+    for (let e of elementsFilter) {
       e.classList.remove("active");
     }
     this.classList.add("active");
     for (let figure of figures) {
-      objects.setAttribute("data-category-id", 1);
-      appartments.setAttribute("data-category-id", 2);
-      restaurants.setAttribute("data-category-id", 3);
       if (
         figure.getAttribute("data-category-id") ===
         element.getAttribute("data-category-id")
@@ -64,21 +101,3 @@ for (let element of filterElements) {
     }
   });
 }
-
-// Menu de navigation responsive
-function responsiveNav() {
-  
-
-let header = document.querySelector("header");
-let headerNav = document.querySelector(".headerNav");
-let h1Responsive = document.querySelector(".h1Responsive");
-let bubbleNav = document.querySelector(".bubbleNav");
-let backgroundResponsive = document.querySelector("backgroundResponsive");
-
-bubbleNav.addEventListener("click", function () {
-  header.classList.add("backgroundResponsive")
-  headerNav.style.display="flex"
-  h1Responsive.style.color = "white";
-});
-}
-responsiveNav()

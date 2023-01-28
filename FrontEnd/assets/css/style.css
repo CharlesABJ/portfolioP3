@@ -124,7 +124,7 @@ header {
     justify-content: space-between;
     margin: 50px 0 120px;
     padding: 0 2rem;
-}
+  }
 
 header .logo{
     width: 100%;
@@ -147,7 +147,7 @@ header .logo h1 span {
     letter-spacing: 0.1em;
 }
 
-header .logo .bubbleNav {
+header .logo .bubble-nav {
     font-size: 16px;
     background: #B1663C;
     color: #ffffff;
@@ -183,10 +183,6 @@ header nav ul li a:hover {
     color: #B1663C;
 }
 
-
-header nav ul li .active:hover {
-    color: #000000;
-}
 
 header nav ul li a i {
     font-size: 20px;
@@ -281,7 +277,7 @@ main {
     margin: 0 0 35px;
 }
 
-#portfolio .filters .filterElements {
+#portfolio .filters .elements-filter{
     display: flex;
     align-items: center;
     border: 1px solid #1D6154;
@@ -294,7 +290,7 @@ main {
     transition: 0.3s all;
 }
 
-#portfolio .filters .filterElements:hover {
+#portfolio .filters .elements-filter:hover {
     background: #8EAFA6;
     color: #ffffff;
     border: 1px solid #8EAFA6;
@@ -317,7 +313,7 @@ main {
     justify-content: center;
 }
 
-#portfolio .gallery .galleryGrid {
+#portfolio .gallery .gallery-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 20px;
@@ -325,23 +321,23 @@ main {
     width: 80%;
 }
 
-#portfolio .gallery .galleryGrid figure {
+#portfolio .gallery .gallery-grid figure {
     width: 100%;
     transition: 0.3s;
     cursor: pointer;
 }
 
-#portfolio .gallery .galleryGrid figure:hover {
+#portfolio .gallery .gallery-grid figure:hover {
     width: 100%;
     transform: scale(1.02);
     transition: 0.3s;
 }
 
-#portfolio .gallery .galleryGrid figure img {
+#portfolio .gallery .gallery-grid figure img {
     width: 100%;
 }
 
-#portfolio .gallery .galleryGrid figure figcaption {
+#portfolio .gallery .gallery-grid figure figcaption {
     padding: 7px 0 0;
 }
 
@@ -498,7 +494,7 @@ footer nav a:hover {
 }
 
 
-@media screen and (max-width: 586px) {
+@media screen and (max-width: 605px) {
 
 .edition-mode{
     z-index: 2;
@@ -510,7 +506,7 @@ footer nav a:hover {
         margin-top: 0;
         padding-top: 30px;
     }
-    .backgroundResponsive{
+    .background-responsive{
         background: #B1663C;
     }
   
@@ -522,7 +518,7 @@ footer nav a:hover {
   
  
 
-    header .logo .bubbleNav {
+    header .logo .bubble-nav {
         display: block;
      }
 
@@ -535,7 +531,7 @@ footer nav a:hover {
     header nav ul {
         flex-direction: column;
         width: 100%;
-        height: 100vh;
+        height:  calc(100vh - 65px);
         justify-content: space-around;
 
     }
@@ -564,7 +560,7 @@ footer nav a:hover {
         
     }
 
-    #portfolio .gallery .galleryGrid figure figcaption {
+    #portfolio .gallery .gallery-grid figure figcaption {
         font-size: 10px;
     }
 

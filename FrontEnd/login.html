@@ -16,25 +16,23 @@
 
 <body>
     <header>
-        <h1>
-            <a href="index.html">Sophie Bluel <span>Architecte d'intérieur</span></a>
-        </h1>
-        <nav>
+        <div class="logo">
+            <h1><a class="h1-responsive" href="index.html">Sophie Bluel <span>Architecte d'intérieur</span></a></h1>
+            <i class="fa-solid fa-bars bubble-nav"></i>
+        </div>
+        <nav class="header-nav">
             <ul>
                 <li><a href="index.html#portfolio">projets</a></li>
                 <li><a href="index.html#contact">contact</a></li>
-                <li><a class="active" href="#">login</a></li>
-                <li>
-                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                </li>
+                <li><a class="active" href="login.html">login</a></li>
+                <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
             </ul>
-            <i class="fa-solid fa-bars bubbleNav"></i>
         </nav>
     </header>
 
     <main>
         <h2>Log In</h2>
-        <p class="errorConnect hidden"></p>
+        <p class="error-connect hidden"></p>
         <form action="#" method="POST">
             <label for="mail">E-mail</label>
             <input type="email" id="mail" name="mail" />
@@ -57,8 +55,7 @@
     </footer>
 
 
-    <script src="/FrontEnd/assets/js/login.js"></script>
+    <script src="./assets/js/login.js"></script>
 </body>
 
 </html>
-
