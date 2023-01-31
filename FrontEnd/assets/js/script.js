@@ -22,6 +22,7 @@ let restaurants = document.querySelector(".restaurants-button");
 // Menu de navigation responsive
 
 function responsiveNav() {
+  if (window.matchMedia("(max-width: 605px)").matches) {
   bubbleNav.addEventListener("click", function () {
     if (!header.classList.contains("background-responsive")) {
       header.classList.add("background-responsive");
@@ -34,7 +35,6 @@ function responsiveNav() {
     }
   });
 
-  if (window.matchMedia("(max-width: 605px)").matches) {
     navElements.forEach((element) => {
       element.addEventListener("click", function () {
         header.classList.remove("background-responsive");
@@ -42,7 +42,8 @@ function responsiveNav() {
         h1Responsive.style.color = "#B1663C";
       });
     });
-  }
+
+  } 
 }
 responsiveNav();
 

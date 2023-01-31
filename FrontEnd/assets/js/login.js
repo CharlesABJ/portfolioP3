@@ -57,39 +57,42 @@ eyes.forEach((eye) => {
 
 const loginApi = "http://localhost:5678/api/users/login";
 
-form.addEventListener("submit", async (submitButton)=>{
-  submitButton.preventDefault()
-  let emailInput = document.getElementById("mail")
-  let passwordInput = document.getElementById("password")
+form.addEventListener("submit", async (submitButton) => {
+  submitButton.preventDefault();
+  let emailInput = document.getElementById("mail");
+  let passwordInput = document.getElementById("password");
 
-let fetchInit = {
-  method: "POST",
-  headers: {
-    accept: "application/json",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    email: emailInput.value,
-    password: passwordInput.value,
-  }),
-};
-try {
-  const response = await fetch(loginApi, fetchInit);
-  if (response.ok) {
-    const data = await response.json();
-    passwordInput.style.outlineColor = "green";
-    emailInput.style.outlineColor = "green";
-    localStorage.setItem("token", data.token);
-    location.href = "index.html";
-  } else {
-    errorConnect.classList.remove("hidden");
-    errorConnect.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
-    passwordInput.style.outlineColor = "red";
-    emailInput.style.outlineColor = "red";
+  let fetchInit = {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: emailInput.value,
+      password: passwordInput.value,
+    }),
+  };
+  try {
+    const response = await fetch(loginApi, fetchInit);
+    if (response.ok) {
+      const data = await response.json();
+      passwordInput.style.outlineColor = "green";
+      emailInput.style.outlineColor = "green";
+      sessionStorage.setItem("token", data.token);
+      location.href = "index.html";
+    } else {
+      errorConnect.classList.remove("hidden");
+      passwordInput.style.outlineColor = "red";
+      emailInput.style.outlineColor = "red";
+      if (response.status === 401) {
+        errorConnect.innerHTML = "Mot de passe incorret";
+      } else if (response.status === 404) {
+        errorConnect.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
+      }
+    }
+  } catch (error) {
+    console.error("Warning : " + error);
+    //
   }
-
-} catch (error) {
-  console.error("Warning : " + error);
-}
-
-})
+});

@@ -453,8 +453,9 @@ footer nav a:hover {
 
 
 .hidden {
-    display: none;
+    display: none
 }
+
 
 /* <==================== RESPONSIVE ON ====================< */
 @media screen and (max-width: 991px) {
