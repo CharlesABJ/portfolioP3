@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,52 +9,70 @@
     <script src="https://kit.fontawesome.com/a117eb47ea.js" crossorigin="anonymous"></script>
 
     <style>
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #1d6154b6;
-}
-.logout-modal{
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 30%;
-    border-radius: 10px;
-    padding: 20px;
-}
+        .modal-contain {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1d6154b6;
+            width: 100%;
+            height: 100%;
+        }
 
-.logout-modal i{
-    font-size: 50px;
-    margin: 15%;
-}
+        .overlay-modal {
+            z-index: 2;
+            position: absolute;
+            background: #333333d3;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+        }
 
-.logout-modal button{
-    border: #ffffff solid 1px;
-    padding: 15px;
-    border-radius: 30px;
-    width:80%;
-    margin: 1.5%;
-    background: #1D6154;
-    color: #ffffff;
-}
+        .logout-modal {
+            z-index: 3;
+            position: absolute;
+            background: white;
+            top: 50%;
+            text-align: center;
+            width: 30%;
+            border-radius: 10px;
+            padding: 20px;
+        }
 
-.logout-modal .logout-button{
-    background: #ffffff;
-    color: #D65353;
-}
+        .logout-modal i {
+            font-size: 50px;
+            margin: 15%;
+        }
 
+        .logout-modal button {
+            border: #ffffff solid 1px;
+            padding: 15px;
+            border-radius: 30px;
+            width: 80%;
+            margin: 1.5%;
+            background: #1D6154;
+            color: #ffffff;
+        }
+
+        .logout-modal .logout-button {
+            background: #ffffff;
+            color: #D65353;
+        }
     </style>
 </head>
+
 <body>
-    <div class="logout-modal">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <p>Oh non ! Tu nous quittes... <br>
-        Tu en es sûr(e) ?</p>
-        <button>Non, je plaisante !</button>
-        <button class="logout-button">Oui, deconnecte moi !</button>
+    <div class="modal-contain">
+        <div class="overlay-modal"></div>
+        <div class="logout-modal">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <p>Oh non ! Tu nous quittes... <br>
+                Tu en es sûr(e) ?</p>
+            <button>Non, je plaisante !</button>
+            <button class="logout-button">Oui, deconnecte moi !</button>
+        </div>
     </div>
 </body>
+
 </html>

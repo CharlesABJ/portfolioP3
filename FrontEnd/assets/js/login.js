@@ -83,7 +83,6 @@ form.addEventListener("submit", async (submitButton) => {
       location.href = "index.html";
     } else {
       errorConnect.classList.remove("hidden");
-      passwordInput.style.outlineColor = "red";
       emailInput.classList.add("input-error"); 
       passwordInput.classList.add("input-error");
       if (response.status === 401) {
@@ -94,6 +93,5 @@ form.addEventListener("submit", async (submitButton) => {
     }
   } catch (error) {
     console.error("Warning : " + error);
-    //
   }
 });
