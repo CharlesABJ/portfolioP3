@@ -77,14 +77,15 @@ form.addEventListener("submit", async (submitButton) => {
     const response = await fetch(loginApi, fetchInit);
     if (response.ok) {
       const data = await response.json();
-      passwordInput.style.outlineColor = "green";
-      emailInput.style.outlineColor = "green";
+      emailInput.classList.add("input-success"); 
+      passwordInput.classList.add("input-success");
       sessionStorage.setItem("token", data.token);
       location.href = "index.html";
     } else {
       errorConnect.classList.remove("hidden");
       passwordInput.style.outlineColor = "red";
-      emailInput.style.outlineColor = "red";
+      emailInput.classList.add("input-error"); 
+      passwordInput.classList.add("input-error");
       if (response.status === 401) {
         errorConnect.innerHTML = "Mot de passe incorret";
       } else if (response.status === 404) {

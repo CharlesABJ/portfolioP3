@@ -273,9 +273,15 @@ footer nav a:hover {
 
 /* >==================== FOOTER OF ====================> */
 
+/* Class pour JS */
 
+.input-success{
+    outline-color:green;
+}
 
-
+.input-error{
+    outline-color:red;
+}
 
 
 /* <==================== RESPONSIVE ON ====================< */
