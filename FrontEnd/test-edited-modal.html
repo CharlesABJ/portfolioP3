@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a117eb47ea.js" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .edited-modal-contain {
+            position: relative;
+            width: 100wh;
+            height: 100vh;
+        }
+
+        .edited-modal-contain .overlay-modal {
+            position: absolute;
+            background: #333333d3;
+            width: 100%;
+            height: 100%;
+        }
+
+        .edited-modal-contain .edited-modal {
+            z-index: 2;
+            position: absolute;
+            background: white;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            width: 60%;
+            height: 60%;
+            border-radius: 10px;
+            padding: 20px;
+            transform: translate(-50%, -40%);
+        }
+
+        .edited-modal-contain .edited-modal i {
+            font-size: 50px;
+            margin: 15%;
+        }
+
+        .edited-modal-contain .edited-modal button {
+            border: #ffffff solid 1px;
+            padding: 15px;
+            border-radius: 30px;
+            width: 80%;
+            margin: 5px;
+            background: #1D6154;
+            color: #ffffff;
+            cursor: pointer;
+            transition: 0.3s all;
+        }
+
+        .edited-modal-contain .edited-modal button:hover {
+            background: #288574;
+        }
+
+        .edited-modal-contain .edited-modal .logout-button {
+            background: #ffffff;
+            color: #D65353;
+            width: max-content;
+        }
+
+        .edited-modal-contain .edited-modal .logout-button:hover {
+            background: #ffffff;
+            color: #d33333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="edited-modal-contain">
+
+        <div class="overlay-modal"></div>
+        <div class="edited-modal">
+            <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-x"></i>
+            <p>Oh non ! Tu nous quittes... <br>
+                Tu en es sûr(e) ?</p>
+                <th></th>
+            <button>Ajouter une photo</button>
+            <button class="logout-button">Supprimer la galerie</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

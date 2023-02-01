@@ -60,7 +60,7 @@ table {
 body {
     max-width: 1140px;
     min-width: 320px;
-    margin: auto;
+    margin: 0 auto;
     font-family: 'Work Sans';
     font-size: 14px;
     padding: 0 0 2rem;
@@ -412,6 +412,24 @@ main {
 /* >==================== MAIN OFF ====================> */
 
 
+/* <==================== MODALE ON ====================< */
+.edit-modal-container {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.edit-modal-container .overlay {
+    position: absolute;
+    background: #333333d3;
+    width: 100%;
+    height: 100%;
+}
+
+/* >==================== MODALE OFF ====================> */
+
+
 /* <==================== FOOTER ON ====================< */
 footer {
     padding: 0 2rem;
@@ -433,7 +451,7 @@ footer nav a:hover {
 }
 
 
-/* >==================== FOOTER OF ====================> */
+/* >==================== FOOTER OFF ====================> */
 
 /* Class pour JS */
 .p-edit {
@@ -453,7 +471,7 @@ footer nav a:hover {
 
 
 .hidden {
-    display: none
+    /* display: none */
 }
 
 
