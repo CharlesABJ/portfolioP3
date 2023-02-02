@@ -83,13 +83,6 @@ body {
 .edition-mode p {
     display: flex;
     margin: 0 7px;
-    cursor: pointer;
-    transition: 0.3s all;
-}
-
-.edition-mode p:hover {
-    color: #ebebeb;
-    transition: 0.3s all;
 }
 
 .edition-mode p .edit-icon {
