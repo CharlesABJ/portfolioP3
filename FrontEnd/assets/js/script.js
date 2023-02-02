@@ -23,17 +23,17 @@ let restaurants = document.querySelector(".restaurants-button");
 
 function responsiveNav() {
   if (window.matchMedia("(max-width: 605px)").matches) {
-  bubbleNav.addEventListener("click", function () {
-    if (!header.classList.contains("background-responsive")) {
-      header.classList.add("background-responsive");
-      headerNav.style.display = "flex";
-      h1Responsive.style.color = "white";
-    } else {
-      header.classList.remove("background-responsive");
-      headerNav.style.display = "none";
-      h1Responsive.style.color = "#B1663C";
-    }
-  });
+    bubbleNav.addEventListener("click", function () {
+      if (!header.classList.contains("background-responsive")) {
+        header.classList.add("background-responsive");
+        headerNav.style.display = "flex";
+        h1Responsive.style.color = "white";
+      } else {
+        header.classList.remove("background-responsive");
+        headerNav.style.display = "none";
+        h1Responsive.style.color = "#B1663C";
+      }
+    });
 
     navElements.forEach((element) => {
       element.addEventListener("click", function () {
@@ -42,8 +42,7 @@ function responsiveNav() {
         h1Responsive.style.color = "#B1663C";
       });
     });
-
-  } 
+  }
 }
 responsiveNav();
 

@@ -43,16 +43,18 @@
             <figure>
                 <img class="portrait" src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
                 <figcaption>
-                    <p class="p-edit edit-portrait hidden"><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-black.svg"
-                            alt="icone edition"><span>modifier</span></p>
+                    <p class="modal-trigger hidden" data-modal="edit-portrait"><img class="edit-icon"
+                            src="/./FrontEnd/assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
+                    </p>
                 </figcaption>
             </figure>
 
             <article>
 
                 <h2>
-                    <p class="p-edit edit-presentation hidden"><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-black.svg"
-                            alt="icone edition"><span>modifier</span></p>Designer d'espace
+                    <p class="modal-trigger hidden" data-modal="edit-presentation"><img class="edit-icon"
+                            src="/./FrontEnd/assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
+                    </p>Designer d'espace
                 </h2>
                 <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
                     finale du chantier.</p>
@@ -65,7 +67,7 @@
         </section>
 
         <section id="portfolio">
-            <h2>Mes Projets <p class="p-edit edit-works hidden"><img class="edit-icon"
+            <h2>Mes Projets <p class="modal-trigger hidden" data-modal="edit-works"><img class="edit-icon"
                         src="/./FrontEnd/assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
                 </p>
             </h2>
@@ -98,38 +100,23 @@
 
     </main>
 
-    <div class="edit-modal-container">
+    <div class="modal-container" data-modal="edit-works">
         <div class="overlay modal-trigger"></div>
         <div class="modal">
-            <div>
-            <i class="fa-solid fa-arrow-left"></i>
-            <i class="fa-solid fa-x modal-trigger"></i> </div>
+            <div class="leave-trigger-zone">
+                <i class="fa-solid fa-x modal-trigger"></i>
+            </div>
             <h3>Galerie photo</h3>
             <div class="edit-gallery">
                 <div class="edit-gallery-grid">
+                    grfgrgfk
                     <!-- photo api -->
                 </div>
             </div>
-            <form class="upload-edit-gallery">
-                <div class="upload-image-zone">
-                    <img src="/./FrontEnd/assets/icons/picture-svgrepo-com 1.svg" alt="">
-                    <button>+ Ajouter photo</button>
-                    <p>jpg, png : 4mo max</p>
-                </div>
-                <label for="title">Titre</label>
-                <input type="text" name="title" id="title">
-                <label for="categories">Catégorie</label>
 
-                <select name="categories" id="categories" >
-                    <option value=""disabled selected></option>
-                    <option value="objets">Objets</option>
-                    <option value="appartments">Appartements</option>
-                    <option value="restaurants">Restaurants</option>
-                </select>
-            </form>
             <hr>
-            <button>Ajouter une photo</button>
-            <button class="logout-button">Supprimer la galerie</button>
+            <button class="add-work-button">Ajouter une photo</button>
+            <button class="delete-all-works-button">Supprimer la galerie</button>
         </div>
     </div>
 
@@ -145,3 +132,23 @@
 </body>
 
 </html>
+<!-- 
+     <i class="fa-solid fa-arrow-left"></i>
+
+    <form class="upload-edit-gallery">
+                <div class="upload-image-zone">
+                    <img src="/./FrontEnd/assets/icons/picture-svgrepo-com 1.svg" alt="">
+                    <button>+ Ajouter photo</button>
+                    <p>jpg, png : 4mo max</p>
+                </div>
+                <label for="title">Titre</label>
+                <input type="text" name="title" id="title">
+                <label for="categories">Catégorie</label>
+
+                <select name="categories" id="categories" >
+                    <option value=""disabled selected></option>
+                    <option value="objets">Objets</option>
+                    <option value="appartments">Appartements</option>
+                    <option value="restaurants">Restaurants</option>
+                </select>
+            </form> -->

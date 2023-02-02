@@ -77,13 +77,13 @@ form.addEventListener("submit", async (submitButton) => {
     const response = await fetch(loginApi, fetchInit);
     if (response.ok) {
       const data = await response.json();
-      emailInput.classList.add("input-success"); 
+      emailInput.classList.add("input-success");
       passwordInput.classList.add("input-success");
       sessionStorage.setItem("token", data.token);
       location.href = "index.html";
     } else {
       errorConnect.classList.remove("hidden");
-      emailInput.classList.add("input-error"); 
+      emailInput.classList.add("input-error");
       passwordInput.classList.add("input-error");
       if (response.status === 401) {
         errorConnect.innerHTML = "Mot de passe incorret";

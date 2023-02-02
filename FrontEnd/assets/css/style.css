@@ -225,7 +225,7 @@ main {
     flex-direction: column;
 }
 
-#introduction article h2 .p-edit {
+#introduction article h2 .modal-trigger {
     color: #000000;
     font-size: 14px;
     font-family: 'Work Sans';
@@ -256,7 +256,7 @@ main {
     align-items: center;
 }
 
-#portfolio h2 .p-edit {
+#portfolio h2 .modal-trigger {
     color: #000000;
     font-size: 14px;
     font-family: 'Work Sans';
@@ -407,19 +407,87 @@ main {
 
 
 /* <==================== MODALE ON ====================< */
-.edit-modal-container {
+.modal-container {
     position: fixed;
-    top: 0;
+    top: -10px;
     width: 100vw;
     height: 100vh;
+    max-width: 1140px;
+    min-width: 320px;
+    margin: 0 auto;
     display: none;
 }
 
-.edit-modal-container .overlay {
+.active-modal {
+    display: block;
+}
+
+.modal-container .overlay {
     position: absolute;
     background: #333333d3;
     width: 100%;
     height: 100%;
+    cursor: auto;
+}
+
+.modal-container .modal {
+    position: absolute;
+    width: 95%;
+    max-width: 500px;
+    min-width: 300px;
+    background: #ffffff;
+    border-radius: 5px;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-container .modal .leave-trigger-zone {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+
+.modal-container .modal .leave-trigger-zone i {
+    font-size: 10px;
+    margin: 7px;
+}
+
+.modal-container .modal h3 {
+    font-weight: 800;
+    font-size: 17px;
+    margin: 0 0 20px 0;
+}
+
+.modal-container .modal button {
+    border: #ffffff solid 1px;
+    padding: 15px;
+    border-radius: 30px;
+    width: 40%;
+    margin: 5px;
+    background: #1D6154;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s all;
+    font-family: 'Syne';
+}
+
+.modal-container .modal button:hover {
+    background: #288574;
+}
+
+.modal-container .modal .delete-all-works-button {
+    background: #ffffff;
+    color: #D65353;
+    width: max-content;
+}
+
+.modal-container .modal .delete-all-works-button:hover {
+    background: #ffffff;
+    color: #ff4444;
 }
 
 /* >==================== MODALE OFF ====================> */
@@ -449,18 +517,18 @@ footer nav a:hover {
 /* >==================== FOOTER OFF ====================> */
 
 /* Class pour JS */
-.p-edit {
+.modal-trigger {
     display: block;
     padding: 5px 5px 5px 0;
     margin: 10px 10px 10px 0;
     cursor: pointer;
 }
 
-.p-edit:hover {
+.modal-trigger:hover {
     color: #303030;
 }
 
-.p-edit span {
+.modal-trigger span {
     margin-left: 5px;
 }
 
@@ -479,7 +547,7 @@ footer nav a:hover {
         justify-content: center;
     }
 
-    #introduction article h2 .p-edit {
+    #introduction article h2 .modal-trigger {
         color: #000000;
         font-size: 14px;
         font-family: 'Work Sans';
@@ -487,7 +555,7 @@ footer nav a:hover {
         margin: 0 15px;
     }
 
-    .p-edit span {
+    .modal-trigger span {
         display: none;
     }
 }
