@@ -173,6 +173,7 @@ header nav ul {
 
 header nav ul li {
     margin: 0 20px;
+    cursor: pointer;
 }
 
 header nav ul li a {
@@ -418,6 +419,7 @@ main {
     top: 0;
     width: 100vw;
     height: 100vh;
+    display: none;
 }
 
 .edit-modal-container .overlay {
@@ -471,7 +473,7 @@ footer nav a:hover {
 
 
 .hidden {
-    /* display: none */
+    display: none
 }
 
 
