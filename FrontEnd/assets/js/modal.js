@@ -9,6 +9,8 @@ let modalContainer = document.querySelectorAll(".modal-container");
 let triggerButtons = document.querySelectorAll(".modal-trigger");
 let publishChanges = document.querySelector(".edition-mode button");
 
+let editGalleryGrid = document.querySelector(".edit-gallery-grid")
+
 //=======================================================================
 
 // identification du token
@@ -29,6 +31,41 @@ logout.addEventListener("click", function () {
   location.href = "index.html";
 });
 
+
+// Appel de l'API en GET
+const worksApii = "http://localhost:5678/api/works";
+
+async function getWorks() {
+  try {
+    const response = await fetch(worksApii);
+    const data = await response.json();
+
+    for (let i in data) {
+      let figure = document.createElement("figure");
+      let img = document.createElement("img");
+      let figcaption = document.createElement("figcaption");
+
+      figure.setAttribute("data-category-id", data[i].category.id);
+      img.setAttribute("src", data[i].imageUrl);
+      img.setAttribute("alt", data[i].title);
+      img.setAttribute("crossorigin", "anonymous");
+      figcaption.innerHTML = "éditer";
+
+      figures.push(figure);
+
+      editGalleryGrid.append(figure);
+      figure.append(img, figcaption);
+
+    }
+  } catch (error) {
+    console.error("Warning : " + error);
+  }
+}
+
+getWorks();
+
+
+
 // Modales
 
 for (let button of triggerButtons) {
@@ -41,7 +78,6 @@ for (let button of triggerButtons) {
       ) {
         container.classList.add("active-modal");
       }
-      
     }
   });
 }

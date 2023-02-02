@@ -433,16 +433,18 @@ main {
 .modal-container .modal {
     position: absolute;
     width: 95%;
-    max-width: 500px;
+    max-width: 575px;
     min-width: 300px;
+    height: max-content;
     background: #ffffff;
     border-radius: 5px;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 15px;
 }
 
 .modal-container .modal .leave-trigger-zone {
@@ -452,7 +454,7 @@ main {
 }
 
 .modal-container .modal .leave-trigger-zone i {
-    font-size: 10px;
+    font-size: 14px;
     margin: 7px;
 }
 
@@ -462,11 +464,46 @@ main {
     margin: 0 0 20px 0;
 }
 
+.modal-container .modal .edit-gallery-grid {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 7px;
+    grid-row-gap: 10px;
+    width: 65%;
+}
+
+.modal-container .modal .edit-gallery-grid figure {
+    width: 100%;
+    cursor: pointer;
+}
+
+.modal-container .modal .edit-gallery-grid figure img {
+    width: 100%;
+}
+
+.modal-container .modal .edit-gallery-grid figure img:hover{
+    transform: scale(1.01);
+    transition: 0.3s all;
+}
+
+.modal-container .modal .edit-gallery-grid figure figcaption {
+    padding: 3px 0 5px;
+}
+
+.modal-container .modal hr {
+    background:#B3B3B3;
+    height: 1px;
+    width: 70%;
+    font-size: 10px;
+    margin: 40px 0 25px;
+}
+
 .modal-container .modal button {
     border: #ffffff solid 1px;
-    padding: 15px;
+    padding: 12px 60px;
     border-radius: 30px;
-    width: 40%;
     margin: 5px;
     background: #1D6154;
     color: #ffffff;
