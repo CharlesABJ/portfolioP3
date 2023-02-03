@@ -15,12 +15,13 @@
 </head>
 
 <body>
+
     <div class="edition-mode hidden">
 
-        <p><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-white.svg" alt="icone edition">Mode édition
-        </p>
+        <p><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-white.svg" alt="icone edition">Mode édition</p>
         <button type="submit">Publier les changements</button>
     </div>
+
     <header>
         <div class="logo">
             <h1><a class="h1-responsive" href="index.html">Sophie Bluel <span>Architecte d'intérieur</span></a></h1>
@@ -40,6 +41,7 @@
     <main>
 
         <section id="introduction">
+
             <figure>
                 <img class="portrait" src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
                 <figcaption>
@@ -50,7 +52,6 @@
             </figure>
 
             <article>
-
                 <h2>
                     <p class="modal-trigger hidden" data-modal="edit-presentation"><img class="edit-icon"
                             src="/./FrontEnd/assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
@@ -63,11 +64,13 @@
                     chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
                 <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
                     décorateur(trice)</p>
-                    <p class="textarea-value"></p>
+                <p class="textarea-value"></p>
             </article>
+            
         </section>
 
         <section id="portfolio">
+
             <h2>Mes Projets <p class="modal-trigger hidden" data-modal="edit-works"><img class="edit-icon"
                         src="/./FrontEnd/assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
                 </p>
@@ -83,9 +86,11 @@
                     <!-- Photos issues de l'Api -->
                 </div>
             </div>
+
         </section>
 
         <section id="contact">
+
             <h2>Contact</h2>
             <p>Vous avez un projet ? Discutons-en !</p>
             <form action="#" method="POST">
@@ -97,21 +102,24 @@
                 <textarea name="message" id="message" cols="30" rows="10"></textarea>
                 <input class="submit" type="submit" value="Envoyer">
             </form>
+
         </section>
 
     </main>
 
+    <!-- modale logout -->
     <div class="modal-container" data-modal="alert-disconnect">
         <div class="overlay modal-trigger"></div>
-        <div class="modal">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <p>Oh non ! Tu nous quittes... <br>
+        <div class="modal modal-logout">
+            <i class="fa-solid fa-right-from-bracket i-logout"></i>
+            <p class="p-logout">Oh non ! Tu nous quittes... <br>
                 Tu en es sûr(e) ?</p>
             <button class="btn-submit-1 modal-trigger ">Non, je plaisante</button>
             <button class="btn-submit-2 logout">Oui, deconnecte moi !</button>
         </div>
     </div>
 
+    <!-- modale portrait -->
     <div class="modal-container" data-modal="edit-portrait">
         <div class="overlay modal-trigger"></div>
         <div class="modal">
@@ -119,15 +127,14 @@
                 <i class="fa-solid fa-xmark modal-trigger"></i>
             </div>
             <h3>Modifier le portrait</h3>
-            <div class="edit-galery-grid">
-                <!-- photo api -->
-            </div>
+            <input type="file" name="portrait" id="portrait">
             <hr>
-            <button class="btn-submit-1 submit-portrait">Ajouter une photo</button>
-            <button class="btn-submit-2 modal-trigger">Supprimer la galerie</button>
+            <button class="btn-submit-1 submit-portrait">Valider</button>
+            <button class="btn-submit-2 modal-trigger">Annuler</button>
         </div>
     </div>
 
+    <!-- modale présentation -->
     <div class="modal-container" data-modal="edit-presentation">
         <div class="overlay modal-trigger"></div>
         <div class="modal">
@@ -135,13 +142,14 @@
                 <i class="fa-solid fa-xmark modal-trigger"></i>
             </div>
             <h3>Modifier la présentation</h3>
-         <textarea name="presentation" id="presentation" cols="45" rows="10"></textarea>
+            <textarea name="presentation" id="presentation" cols="45" rows="10"></textarea>
             <hr>
             <button class="btn-submit-1 modal-trigger submit-textarea ">Valider</button>
             <button class="btn-submit-2 modal-trigger">Annuler</button>
         </div>
     </div>
 
+    <!-- modale travaux -->
     <div class="modal-container" data-modal="edit-works">
         <div class="overlay modal-trigger"></div>
         <div class="modal">
@@ -150,7 +158,7 @@
             </div>
             <h3>Galerie photo</h3>
             <div class="edit-gallery-grid">
-                <!-- photo api --> 
+                <!-- photo api -->
             </div>
             <hr>
             <button class="btn-submit-1 add-work">Ajouter une photo</button>

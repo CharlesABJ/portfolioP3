@@ -9,15 +9,19 @@ let modalContainer = document.querySelectorAll(".modal-container");
 let triggerButtons = document.querySelectorAll(".modal-trigger");
 let publishChanges = document.querySelector(".edition-mode button");
 
-// modale Présentation
-
-let presentation = document.getElementById("presentation")
-let paragraphArticle = document.querySelectorAll("article p")
-let textareaValue = document.querySelector(".textarea-value")
-let submitTextarea = document.querySelector(".submit-textarea")
+// portrait
+let inputPortrait = document.getElementById("portrait");
+let imgPortrait = document.querySelector(".portrait");
+let submitPortrait = document.querySelector(".submit-portrait");
 
 
-let editGalleryGrid = document.querySelector(".edit-gallery-grid")
+// présentation
+let inputPresentation = document.getElementById("presentation");
+let paragraphArticle = document.querySelectorAll("article p");
+let textareaValue = document.querySelector(".textarea-value");
+let submitTextarea = document.querySelector(".submit-textarea");
+
+let editGalleryGrid = document.querySelector(".edit-gallery-grid");
 let figuress = [];
 
 //=======================================================================
@@ -29,7 +33,6 @@ if (userToken) {
   }
   login.style.display = "none";
 }
-
 
 // Appel de l'API en GET
 const worksApii = "http://localhost:5678/api/works";
@@ -43,7 +46,7 @@ async function getWorks() {
       let figure = document.createElement("figure");
       let img = document.createElement("img");
       let figcaption = document.createElement("figcaption");
-      let trashZone = document.createElement("div")
+      let trashZone = document.createElement("div");
       let trashIcon = document.createElement("img");
 
       figure.setAttribute("data-category-id", data[i].category.id);
@@ -51,15 +54,15 @@ async function getWorks() {
       img.setAttribute("alt", data[i].title);
       img.setAttribute("crossorigin", "anonymous");
       figcaption.innerHTML = "éditer";
-      trashZone.classList.add("trash-zone")
-      trashIcon.classList.add("trash-icon")
+      trashZone.classList.add("trash-zone");
+      trashIcon.classList.add("trash-icon");
       trashIcon.setAttribute("src", "/./FrontEnd/assets/icons/trash.svg");
 
       figuress.push(figure);
 
       editGalleryGrid.append(figure);
       figure.append(img, figcaption, trashZone);
-      trashZone.append(trashIcon)
+      trashZone.append(trashIcon);
     }
   } catch (error) {
     console.error("Warning : " + error);
@@ -68,9 +71,7 @@ async function getWorks() {
 
 getWorks();
 
-
-
-// Modales
+// MODALES
 
 for (let button of triggerButtons) {
   button.addEventListener("click", function () {
@@ -91,6 +92,7 @@ publishChanges.addEventListener("click", function () {
 });
 
 
+//  Modale déconnexion
 logout.addEventListener("click", function () {
   logout.style.display = "none";
   login.style.display = "block";
@@ -101,16 +103,30 @@ logout.addEventListener("click", function () {
   location.href = "index.html";
 });
 
+//  Modale portrait
+// inputPortrait.addEventListener("change", function(){
+//   let file = inputPortrait.files[0];
+// })
+// let reader = new FileReader()
+// reader.addEventListener("load", function(){
+//   imgPortrait.src = reader.result
+// })
 
-//  modale présentation
+// reader.readAsDataURL(file)
 
-submitTextarea.addEventListener("click", function(){
-  for(let p of paragraphArticle){
-    if (!p.classList.contains("modal-trigger")&& !p.classList.contains("textarea-value"))  {
-      p.style.display="none"
+
+//  Modale présentation
+submitTextarea.addEventListener("click", function () {
+  if(inputPresentation.value.trim() !==""){
+  for (let p of paragraphArticle) {
+    if (
+      !p.classList.contains("modal-trigger") &&
+      !p.classList.contains("textarea-value")) {
+      p.style.display = "none";
     }
-    
   }
-  textareaValue.innerHTML = presentation.value.replace(/\n/g, "<br/>")
+  
+    textareaValue.innerHTML = inputPresentation.value.replace(/\n/g, "<br/>");
+  }
+});
 
-})
