@@ -73,6 +73,7 @@ body {
     height: 50px;
     background: #000000;
     position: sticky;
+    z-index: 5;
     top: 0;
     display: flex;
     justify-content: center;
@@ -432,9 +433,9 @@ main {
 
 .modal-container .modal {
     position: absolute;
-    width: 95%;
-    max-width: 575px;
-    min-width: 300px;
+    width: 575px;
+    max-width: 50vw;
+    min-width: 250px;
     height: max-content;
     background: #ffffff;
     border-radius: 5px;
@@ -450,19 +451,18 @@ main {
 .modal-container .modal .leave-trigger-zone {
     display: flex;
     width: 100%;
-    justify-content: right;
-}
-
-.modal-container .modal .leave-trigger-zone i {
+    justify-content: right; 
     font-size: 14px;
-    margin: 7px;
+    padding: 7px;
 }
 
 .modal-container .modal h3 {
     font-weight: 800;
-    font-size: 17px;
+    font-size: 20px;
     margin: 0 0 20px 0;
 }
+
+
 
 .modal-container .modal .edit-gallery-grid {
     display: grid;
@@ -476,20 +476,49 @@ main {
 
 .modal-container .modal .edit-gallery-grid figure {
     width: 100%;
-    cursor: pointer;
+    position: relative;
 }
 
 .modal-container .modal .edit-gallery-grid figure img {
     width: 100%;
 }
 
-.modal-container .modal .edit-gallery-grid figure img:hover{
-    transform: scale(1.01);
+.modal-container .modal .edit-gallery-grid figure .trash-zone {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #000000;
+    border-radius: 2px;
+    height: 17px;
+    width: 17px;
+}
+
+.modal-container .modal .edit-gallery-grid figure .trash-zone .trash-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    cursor: pointer;
+}
+
+.modal-container .modal .edit-gallery-grid figure .trash-zone .trash-icon:hover {
+    width: 11px;
     transition: 0.3s all;
 }
 
+
 .modal-container .modal .edit-gallery-grid figure figcaption {
     padding: 3px 0 5px;
+    cursor: pointer;
+}
+
+.modal-container .modal textarea{
+    resize: none;
+    padding: 10px;
+    border: #288574 solid 2px;
+    border-radius: 3px;
+    outline-color: #1D6154;
 }
 
 .modal-container .modal hr {
@@ -516,13 +545,13 @@ main {
     background: #288574;
 }
 
-.modal-container .modal .delete-all-works-button {
+.modal-container .modal .btn-submit-2 {
     background: #ffffff;
     color: #D65353;
     width: max-content;
 }
 
-.modal-container .modal .delete-all-works-button:hover {
+.modal-container .modal .btn-submit-2:hover {
     background: #ffffff;
     color: #ff4444;
 }
@@ -559,6 +588,7 @@ footer nav a:hover {
     padding: 5px 5px 5px 0;
     margin: 10px 10px 10px 0;
     cursor: pointer;
+    width: max-content;
 }
 
 .modal-trigger:hover {

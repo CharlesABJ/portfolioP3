@@ -79,7 +79,7 @@ form.addEventListener("submit", async (submitButton) => {
       const data = await response.json();
       emailInput.classList.add("input-success");
       passwordInput.classList.add("input-success");
-      sessionStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.token);
       location.href = "index.html";
     } else {
       errorConnect.classList.remove("hidden");

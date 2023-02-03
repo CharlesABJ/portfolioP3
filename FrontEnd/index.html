@@ -31,7 +31,7 @@
                 <li><a href="#portfolio">projets</a></li>
                 <li><a href="#contact">contact</a></li>
                 <li class="login"><a href="login.html">login</a></li>
-                <li class="logout hidden"><a>logout</a></li>
+                <li class="modal-trigger hidden" data-modal="alert-disconnect"><a>logout</a></li>
                 <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
             </ul>
         </nav>
@@ -63,6 +63,7 @@
                     chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
                 <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
                     décorateur(trice)</p>
+                    <p class="textarea-value"></p>
             </article>
         </section>
 
@@ -100,6 +101,47 @@
 
     </main>
 
+    <div class="modal-container" data-modal="alert-disconnect">
+        <div class="overlay modal-trigger"></div>
+        <div class="modal">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <p>Oh non ! Tu nous quittes... <br>
+                Tu en es sûr(e) ?</p>
+            <button class="btn-submit-1 modal-trigger ">Non, je plaisante</button>
+            <button class="btn-submit-2 logout">Oui, deconnecte moi !</button>
+        </div>
+    </div>
+
+    <div class="modal-container" data-modal="edit-portrait">
+        <div class="overlay modal-trigger"></div>
+        <div class="modal">
+            <div class="leave-trigger-zone">
+                <i class="fa-solid fa-xmark modal-trigger"></i>
+            </div>
+            <h3>Modifier le portrait</h3>
+            <div class="edit-galery-grid">
+                <!-- photo api -->
+            </div>
+            <hr>
+            <button class="btn-submit-1 submit-portrait">Ajouter une photo</button>
+            <button class="btn-submit-2 modal-trigger">Supprimer la galerie</button>
+        </div>
+    </div>
+
+    <div class="modal-container" data-modal="edit-presentation">
+        <div class="overlay modal-trigger"></div>
+        <div class="modal">
+            <div class="leave-trigger-zone">
+                <i class="fa-solid fa-xmark modal-trigger"></i>
+            </div>
+            <h3>Modifier la présentation</h3>
+         <textarea name="presentation" id="presentation" cols="45" rows="10"></textarea>
+            <hr>
+            <button class="btn-submit-1 modal-trigger submit-textarea ">Valider</button>
+            <button class="btn-submit-2 modal-trigger">Annuler</button>
+        </div>
+    </div>
+
     <div class="modal-container" data-modal="edit-works">
         <div class="overlay modal-trigger"></div>
         <div class="modal">
@@ -108,11 +150,11 @@
             </div>
             <h3>Galerie photo</h3>
             <div class="edit-gallery-grid">
-                <!-- photo api -->
+                <!-- photo api --> 
             </div>
             <hr>
-            <button class="add-work-button">Ajouter une photo</button>
-            <button class="delete-all-works-button">Supprimer la galerie</button>
+            <button class="btn-submit-1 add-work">Ajouter une photo</button>
+            <button class="btn-submit-2 delete-all-works">Supprimer la galerie</button>
         </div>
     </div>
 
