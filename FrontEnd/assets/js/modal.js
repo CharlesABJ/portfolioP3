@@ -14,7 +14,6 @@ let inputPortrait = document.getElementById("portrait");
 let imgPortrait = document.querySelector(".portrait");
 let submitPortrait = document.querySelector(".submit-portrait");
 
-
 // présentation
 let inputPresentation = document.getElementById("presentation");
 let paragraphArticle = document.querySelectorAll("article p");
@@ -23,6 +22,7 @@ let submitTextarea = document.querySelector(".submit-textarea");
 
 let editGalleryGrid = document.querySelector(".edit-gallery-grid");
 let figuress = [];
+let trashIcons = [];
 
 //=======================================================================
 
@@ -34,42 +34,33 @@ if (userToken) {
   login.style.display = "none";
 }
 
-// Appel de l'API en GET
-const worksApii = "http://localhost:5678/api/works";
+// Appel de l'API
+let data = JSON.parse(localStorage.getItem("dataWorks"));
+for (let i in data) {
+  let figure = document.createElement("figure");
+  let img = document.createElement("img");
+  let figcaption = document.createElement("figcaption");
+  let trashZone = document.createElement("div");
+  let trashIcon = document.createElement("img");
 
-async function getWorks() {
-  try {
-    const response = await fetch(worksApii);
-    const data = await response.json();
+  figure.setAttribute("data-category-id", data[i].category.id);
+  figure.setAttribute("data-works-id", data[i].id);
+  img.setAttribute("src", data[i].imageUrl);
+  img.setAttribute("alt", data[i].title);
+  img.setAttribute("crossorigin", "anonymous");
+  figcaption.innerHTML = "éditer";
+  trashZone.classList.add("trash-zone");
+  trashIcon.classList.add("trash-icon");
+  trashIcon.setAttribute("src", "/./FrontEnd/assets/icons/trash.svg");
+  trashIcon.setAttribute("data-works-id", data[i].id);
 
-    for (let i in data) {
-      let figure = document.createElement("figure");
-      let img = document.createElement("img");
-      let figcaption = document.createElement("figcaption");
-      let trashZone = document.createElement("div");
-      let trashIcon = document.createElement("img");
+  figuress.push(figure);
+  trashIcons.push(trashIcon);
 
-      figure.setAttribute("data-category-id", data[i].category.id);
-      img.setAttribute("src", data[i].imageUrl);
-      img.setAttribute("alt", data[i].title);
-      img.setAttribute("crossorigin", "anonymous");
-      figcaption.innerHTML = "éditer";
-      trashZone.classList.add("trash-zone");
-      trashIcon.classList.add("trash-icon");
-      trashIcon.setAttribute("src", "/./FrontEnd/assets/icons/trash.svg");
-
-      figuress.push(figure);
-
-      editGalleryGrid.append(figure);
-      figure.append(img, figcaption, trashZone);
-      trashZone.append(trashIcon);
-    }
-  } catch (error) {
-    console.error("Warning : " + error);
-  }
+  editGalleryGrid.append(figure);
+  figure.append(img, figcaption, trashZone);
+  trashZone.append(trashIcon);
 }
-
-getWorks();
 
 // MODALES
 
@@ -87,10 +78,10 @@ for (let button of triggerButtons) {
   });
 }
 
+//  Modale publication
 publishChanges.addEventListener("click", function () {
-  console.log("youhouu");
+  alert("youhouu");
 });
-
 
 //  Modale déconnexion
 logout.addEventListener("click", function () {
@@ -114,19 +105,31 @@ logout.addEventListener("click", function () {
 
 // reader.readAsDataURL(file)
 
-
 //  Modale présentation
 submitTextarea.addEventListener("click", function () {
-  if(inputPresentation.value.trim() !==""){
-  for (let p of paragraphArticle) {
-    if (
-      !p.classList.contains("modal-trigger") &&
-      !p.classList.contains("textarea-value")) {
-      p.style.display = "none";
+  if (inputPresentation.value.trim() !== "") {
+    for (let p of paragraphArticle) {
+      if (
+        !p.classList.contains("modal-trigger") &&
+        !p.classList.contains("textarea-value")
+      ) {
+        p.style.display = "none";
+      }
     }
-  }
-  
+
     textareaValue.innerHTML = inputPresentation.value.replace(/\n/g, "<br/>");
   }
 });
 
+for (let trash of trashIcons) {
+  trash.addEventListener("click", async function () {
+    for (let figure of figuress) {
+      if (
+        trash.getAttribute("data-works-id") ===
+        figure.getAttribute("data-works-id")
+      ) {
+        figure.remove();
+      }
+    }
+  });
+}

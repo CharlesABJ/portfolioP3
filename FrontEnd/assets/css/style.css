@@ -633,7 +633,7 @@ footer nav a:hover {
 }
 
 
-.hidden {
+.modal-trigger.hidden {
     display: none
 }
 

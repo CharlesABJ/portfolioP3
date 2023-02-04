@@ -48,26 +48,25 @@ function responsiveNav() {
 responsiveNav();
 
 // Appel de l'API en GET
-window.apiWorksData = null;
 let worksApi = "http://localhost:5678/api/works";
-
+let dataWorks = []
 
 async function getWorks() {
   try {
     const response = await fetch(worksApi);
-    const data = await response.json();
-    window.apiWorksData = await data;
+    dataWorks = await response.json();
+    localStorage.setItem("dataWorks", JSON.stringify(dataWorks))
 
-    for (let i in data) {
+    for (let i in dataWorks) {
       let figure = document.createElement("figure");
       let img = document.createElement("img");
       let figcaption = document.createElement("figcaption");
 
-      figure.setAttribute("data-category-id", data[i].category.id);
-      img.setAttribute("src", data[i].imageUrl);
-      img.setAttribute("alt", data[i].title);
+      figure.setAttribute("data-category-id", dataWorks[i].category.id);
+      img.setAttribute("src", dataWorks[i].imageUrl);
+      img.setAttribute("alt", dataWorks[i].title);
       img.setAttribute("crossorigin", "anonymous");
-      figcaption.innerHTML = data[i].title;
+      figcaption.innerHTML = dataWorks[i].title;
 
       figures.push(figure);
 
