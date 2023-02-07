@@ -20,9 +20,12 @@ let paragraphArticle = document.querySelectorAll("article p");
 let textareaValue = document.querySelector(".textarea-value");
 let submitTextarea = document.querySelector(".submit-textarea");
 
+// travaux
 let editGalleryGrid = document.querySelector(".edit-gallery-grid");
-let figuress = [];
+let figureArray = [];
 let trashIcons = [];
+let deletAllWorks = document.querySelector(".delete-all-works");
+let addWork = document.querySelector(".add-work");
 
 //=======================================================================
 
@@ -54,7 +57,7 @@ for (let i in data) {
   trashIcon.setAttribute("src", "/./FrontEnd/assets/icons/trash.svg");
   trashIcon.setAttribute("data-works-id", data[i].id);
 
-  figuress.push(figure);
+  figureArray.push(figure);
   trashIcons.push(trashIcon);
 
   editGalleryGrid.append(figure);
@@ -121,15 +124,50 @@ submitTextarea.addEventListener("click", function () {
   }
 });
 
+// modales works
+
+// Ajouter un travail
+addWork.addEventListener("click", function () {
+  let mainModal = document.querySelector(".main-modal");
+  mainModal.remove();
+  let addWorkModal = document.querySelector(".add-work-modal");
+  addWorkModal.style.display="block";
+  
+});
+
+// Supprimer un travail
 for (let trash of trashIcons) {
   trash.addEventListener("click", async function () {
-    for (let figure of figuress) {
-      if (
-        trash.getAttribute("data-works-id") ===
-        figure.getAttribute("data-works-id")
-      ) {
-        figure.remove();
+    let workId = trash.getAttribute("data-works-id");
+    try {
+      let response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Erreur lors de la suppression de l'élément");
       }
+      console.log("L'élément a été supprimé avec succès");
+    } catch (error) {
+      console.error(error);
     }
   });
 }
+
+// Supprmier tous les travaux
+deletAllWorks.addEventListener("click", async function () {
+  try {
+    let workId = 0;
+    for (let i in data) {
+      workId++;
+      let response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+        method: "DELETE",
+      });
+    }
+    if (!response.ok) {
+      throw new Error("Erreur lors de la suppression des éléments");
+    }
+    console.log("Les éléments ont été supprimé avec succès");
+  } catch (error) {
+    console.error(error);
+  }
+});

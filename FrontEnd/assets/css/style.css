@@ -4,7 +4,7 @@
 */
 
 /* HTML5 display-role reset for older browsers */
-/* article,
+article,
 aside,
 details,
 figcaption,
@@ -43,7 +43,7 @@ q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-} */
+}
 
 /* * end reset css* */
 
@@ -205,6 +205,7 @@ main {
 #introduction figure {
     margin: 0 25px;
     height: 355px;
+    align-self: start;
 }
 
 #introduction figure .portrait {
@@ -219,7 +220,7 @@ main {
     align-self: flex-start;
 }
 
-#introduction article h2 {
+#introduction article h2 .title {
     margin-bottom: 1em;
     font-family: 'Syne';
     font-weight: 700;
@@ -229,20 +230,12 @@ main {
     flex-direction: column;
 }
 
-#introduction article h2 .modal-trigger {
-    color: #000000;
-    font-size: 14px;
-    font-family: 'Work Sans';
-    font-weight: normal;
-    margin: 15px 0;
-}
 
 #introduction article p {
     margin: 0 0 20px;
     display: flex;
     flex-wrap: wrap;
 }
-
 
 
 /* ====== Portfolio ====== */
@@ -252,24 +245,19 @@ main {
 }
 
 #portfolio h2 {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 45px;
+}
+
+#portfolio h2 .title {
+    text-align: center;
     font-family: 'Syne';
     font-weight: 700;
     font-size: 30px;
     color: #1D6154;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#portfolio h2 .modal-trigger {
-    color: #000000;
-    font-size: 14px;
-    font-family: 'Work Sans';
-    font-weight: normal;
-    margin: 0 15px;
-
+    margin: 0 15px 0 0;
 }
 
 #portfolio .filters {
@@ -474,10 +462,11 @@ main {
 .modal-container .modal .leave-trigger-zone {
     display: flex;
     width: 100%;
-    justify-content: right;
+    justify-content: space-between;
     font-size: 14px;
-    padding: 7px;
+    padding: 10px 15px;
 }
+
 
 .modal-container .modal h3 {
     font-weight: 800;
@@ -581,13 +570,72 @@ main {
 .modal-container .modal .btn-submit-2 {
     background: #ffffff;
     color: #D65353;
-    width: max-content;
+    padding: 12px 15px;
 }
 
 .modal-container .modal .btn-submit-2:hover {
     background: #ffffff;
     color: #ff4444;
 }
+
+
+/* Ajouter un travail */
+.modal-container .add-modal form {
+    display: flex;
+    flex-direction: column;
+    width: 67%;
+}
+
+.modal-container .add-modal form .upload-image-zone {
+    background-color: #E8F1F6;
+    width: 100%;
+    height: max-content;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.modal-container .add-modal form .upload-image-zone img {
+    width: 70px;
+}
+
+.modal-container .add-modal form .upload-image-zone button {
+    background-color: #CBD6DC;
+    color: #306685;
+    border: none;
+    padding: 10px 30px;
+}
+
+.modal-container .add-modal form label {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.modal-container .add-modal form input {
+    background: #ffffff;
+    height: 10%;
+    width: 100%;
+    padding: 10px;
+    outline-color:#8EAFA6;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modal-container .add-modal form select {
+    outline-color:#8EAFA6;
+    padding: 12px;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modal-container .add-modal button {
+    background: #a7a7a7;
+    padding: 10px 100px;
+}
+
+
 
 /* >==================== MODALE OFF ====================> */
 
@@ -622,6 +670,10 @@ footer nav a:hover {
     margin: 10px 10px 10px 0;
     cursor: pointer;
     width: max-content;
+    color: #000000;
+    font-size: 14px;
+    font-family: 'Work Sans';
+    font-weight: normal;
 }
 
 .modal-trigger:hover {
@@ -633,8 +685,8 @@ footer nav a:hover {
 }
 
 
-.modal-trigger.hidden {
-    display: none
+.hidden {
+    display: none !important;
 }
 
 
