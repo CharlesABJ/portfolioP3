@@ -24,8 +24,11 @@ let submitTextarea = document.querySelector(".submit-textarea");
 let editGalleryGrid = document.querySelector(".edit-gallery-grid");
 let figureArray = [];
 let trashIcons = [];
-let deletAllWorks = document.querySelector(".delete-all-works");
-let addWork = document.querySelector(".add-work");
+let mainModal = document.querySelector(".main-modal");
+let deletAllWorksButton = document.querySelector(".delete-all-works");
+let select = document.querySelector("select")
+let addWorkButton = document.querySelector(".add-work");
+let addWorkModal = document.querySelector(".add-work-modal");
 
 //=======================================================================
 
@@ -127,12 +130,28 @@ submitTextarea.addEventListener("click", function () {
 // modales works
 
 // Ajouter un travail
-addWork.addEventListener("click", function () {
-  let mainModal = document.querySelector(".main-modal");
-  mainModal.remove();
-  let addWorkModal = document.querySelector(".add-work-modal");
-  addWorkModal.style.display="block";
-  
+addWorkButton.addEventListener("click", async function () {
+  try {
+    let response = await fetch("http://localhost:5678/api/categories");
+    let data = await response.json();
+
+    for (let i in data) {
+      let option = document.createElement("option");
+
+      option.setAttribute("value", data[i].id);
+      option.innerHTML = data[i].name;
+
+      select.append(option)
+    }
+  } catch (error) {
+    console.error(error);
+  }
+  addWorkModal.style.display = "block";
+});
+
+document.querySelector(".back").addEventListener("click", function () {
+  addWorkModal.style.display = "none";
+  mainModal.classList.add("active-modal");
 });
 
 // Supprimer un travail
@@ -153,8 +172,8 @@ for (let trash of trashIcons) {
   });
 }
 
-// Supprmier tous les travaux
-deletAllWorks.addEventListener("click", async function () {
+// Supprimer tous les travaux
+deletAllWorksButton.addEventListener("click", async function () {
   try {
     let workId = 0;
     for (let i in data) {

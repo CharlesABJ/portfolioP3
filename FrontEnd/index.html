@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/a117eb47ea.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" 
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
         rel="stylesheet">
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -18,7 +18,8 @@
 
     <div class="edition-mode hidden">
 
-        <p><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-white.svg" alt="icone edition">Mode édition</p>
+        <p><img class="edit-icon" src="/./FrontEnd/assets/icons/icon-edit-white.svg" alt="icone edition">Mode édition
+        </p>
         <button type="submit">Publier les changements</button>
     </div>
 
@@ -55,7 +56,7 @@
                 <h2>
                     <p class="modal-trigger hidden" data-modal="edit-presentation"><img class="edit-icon"
                             src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
-                    </p><span class="title">Designer d'espace</span> 
+                    </p><span class="title">Designer d'espace</span>
                 </h2>
                 <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
                     finale du chantier.</p>
@@ -66,12 +67,13 @@
                     décorateur(trice)</p>
                 <p class="textarea-value"></p>
             </article>
-            
+
         </section>
 
         <section id="portfolio">
 
-            <h2><span class="title">Mes Projets</span><p class="modal-trigger hidden" data-modal="edit-works"><img class="edit-icon"
+            <h2><span class="title">Mes Projets</span>
+                <p class="modal-trigger hidden" data-modal="edit-works"><img class="edit-icon"
                         src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
                 </p>
             </h2>
@@ -154,7 +156,7 @@
         <div class="overlay modal-trigger"></div>
         <div class="modal">
             <div class="leave-trigger-zone">
-                <i class="fa-solid fa-rotate-left"></i>
+                <i style="visibility: hidden;" class="fa-solid fa-rotate-left"></i>
                 <i class="modal-trigger fa-solid fa-xmark"></i>
             </div>
             <h3>Galerie photo</h3>
@@ -162,34 +164,31 @@
                 <!-- photo api -->
             </div>
             <hr>
-            <button class="btn-submit-1 add-work">Ajouter une photo</button>
+            <button class="btn-submit-1 modal-trigger add-work">Ajouter une photo</button>
             <button class="btn-submit-2 delete-all-works">Supprimer la galerie</button>
         </div>
     </div>
 
-     <!-- modale ajouter un travail -->
+    <!-- modale ajouter un travail -->
     <div class="modal-container add-work-modal" data-modal="edit-works-add-work">
         <div class="overlay modal-trigger"></div>
         <div class="modal add-modal">
             <div class="leave-trigger-zone">
-                <i class="fa-solid fa-arrow-left"></i>
+                <i class="fa-solid fa-arrow-left back"></i>
                 <i class="fa-solid fa-xmark modal-trigger"></i>
             </div>
             <form class="upload-edit-gallery">
                 <div class="upload-image-zone">
                     <img src="./assets/icons/picture-svgrepo-com 1.svg">
-                    <button>+ Ajouter photo</button>
+                    <button type="button">+ Ajouter photo</button>
                     <p>jpg, png : 4mo max</p>
                 </div>
                 <label for="title">Titre</label>
                 <input type="text" name="title" id="title">
                 <label for="categories">Catégorie</label>
 
-                <select name="categories" id="categories" > kk
-                    <option value=""disabled selected>Sélectionner une catégorie</option>
-                    <option value=id>Objets</option>
-                    <option value=id>Appartements</option>
-                    <option value="id">Restaurants</option>
+                <select name="categories" id="categories">
+                    <option value="" disabled selected>Sélectionner une catégorie</option>
                 </select>
             </form>
             <hr>

@@ -15,9 +15,14 @@ fetch("http://localhost:5678/api/works")
       img.setAttribute("src", data[i].imageUrl); //On donne à img l'attribut src ayant comme valeur data[i].imageUrl
       img.setAttribute("alt", data[i].title); //On donne à figure l'attribut alt ayant comme valeur data[i].title
       img.setAttribute("crossorigin", "anonymous");
-      figcaption.innerHTML = data[i].title; //On écrit dans figcaption la valeur data[i].title
+      figcaption.innerHTML = data[i].title; //On écrit dans figcaption la valeur data[i].title 
+      
+      figures.push(figure);//On met les figure dans le tabelau figures
+
       gallery.append(figure); //gallery prend figure comme enfant
       figure.append(img, figcaption); //figure prend img et figcaption comme enfant
+
+     
     }
   })
   .catch((error) => {
@@ -69,17 +74,17 @@ for (let filter of filters) {
     //   });
 
     // });
-    for (let e of elementsFilter) {
-      e.classList.remove("active");
+    for (let btn of filters) {
+      btn.classList.remove("active-filter");
     }
-    this.classList.add("active");
+    this.classList.add("actactive-filterive");
     for (let figure of figures) {
       if (
-        figure.getAttribute("data-category-id") ===
-        element.getAttribute("data-category-id")
+        figure.getAttribute("categories-id") ===
+        filter.getAttribute("categories-id")
       ) {
         figure.style.display = "block";
-      } else if (element === all) {
+      } else if (filter[0]) {
         figure.style.display = "block";
       } else {
         figure.style.display = "none";
