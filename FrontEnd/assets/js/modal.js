@@ -26,9 +26,12 @@ let figureArray = [];
 let trashIcons = [];
 let mainModal = document.querySelector(".main-modal");
 let deletAllWorksButton = document.querySelector(".delete-all-works");
-let select = document.querySelector("select")
+let titleInput = document.querySelector("#title");
+let select = document.querySelector("select");
+let option = document.querySelectorAll("option");
 let addWorkButton = document.querySelector(".add-work");
 let addWorkModal = document.querySelector(".add-work-modal");
+let confirmAddWorkButton = document.querySelector(".confirm-add-work");
 
 //=======================================================================
 
@@ -141,12 +144,51 @@ addWorkButton.addEventListener("click", async function () {
       option.setAttribute("value", data[i].id);
       option.innerHTML = data[i].name;
 
-      select.append(option)
+      select.append(option);
     }
   } catch (error) {
     console.error(error);
   }
   addWorkModal.style.display = "block";
+});
+
+// if () {
+//   confirmAddWorkButton.classList.add("completed")
+// }else{confirmAddWorkButton.classList.remove("completed")}
+
+confirmAddWorkButton.addEventListener("click", async function () {
+  let postApi = "http://localhost:5678/api/works"
+  let fetchInit = {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-Type": "Content-Type: multipart/form-data",
+    },
+    body: JSON.stringify({
+      title: titleInput.value,
+      category: option.value,
+    }),
+  };
+  try {
+    let response = await fetch(postApi, fetchInit);
+    if(response.ok){
+      let data = await response.json()
+      let figure = document.createElement("figure");
+      // let img = document.createElement("img");
+      let figcaption = document.createElement("figcaption");
+
+      figure.setAttribute("data-category-id", option.value);
+      img.setAttribute("src", dataWorks[i].imageUrl);
+      img.setAttribute("alt", titleInput.value);
+      // img.setAttribute("crossorigin", "anonymous");
+      figcaption.innerHTML = titleInput.value;
+
+      galleryGrid.append(figure);
+      figure.append(figcaption);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 document.querySelector(".back").addEventListener("click", function () {

@@ -635,7 +635,18 @@ main {
     padding: 10px 100px;
 }
 
+.modal-container .add-modal button:hover {
+    background: #CBD6DC;
+}
 
+.modal-container .add-modal button.completed {
+    background: #1D6154;
+    padding: 10px 100px;
+}
+
+.modal-container .add-modal button.completed:hover {
+    background: #288574;
+}
 
 /* >==================== MODALE OFF ====================> */
 
