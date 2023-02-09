@@ -26,6 +26,7 @@ let figureArray = [];
 let trashIcons = [];
 let mainModal = document.querySelector(".main-modal");
 let deletAllWorksButton = document.querySelector(".delete-all-works");
+let imgAddWork;
 let titleInput = document.querySelector("#title");
 let select = document.querySelector("select");
 let option = document.querySelectorAll("option");
@@ -41,6 +42,7 @@ if (userToken) {
     element.classList.remove("hidden");
   }
   login.style.display = "none";
+  logout.sty;
 }
 
 // Appel de l'API
@@ -152,12 +154,14 @@ addWorkButton.addEventListener("click", async function () {
   addWorkModal.style.display = "block";
 });
 
-// if () {
-//   confirmAddWorkButton.classList.add("completed")
-// }else{confirmAddWorkButton.classList.remove("completed")}
+if (titleInput !== "" && option !== "" && imgAddWork !== "") {
+  confirmAddWorkButton.classList.add("completed");
+} else {
+  confirmAddWorkButton.classList.remove("completed");
+}
 
 confirmAddWorkButton.addEventListener("click", async function () {
-  let postApi = "http://localhost:5678/api/works"
+  let postApi = "http://localhost:5678/api/works";
   let fetchInit = {
     method: "POST",
     headers: {
@@ -171,8 +175,8 @@ confirmAddWorkButton.addEventListener("click", async function () {
   };
   try {
     let response = await fetch(postApi, fetchInit);
-    if(response.ok){
-      let data = await response.json()
+    if (response.ok) {
+      let data = await response.json();
       let figure = document.createElement("figure");
       // let img = document.createElement("img");
       let figcaption = document.createElement("figcaption");
@@ -197,32 +201,34 @@ document.querySelector(".back").addEventListener("click", function () {
 });
 
 // Supprimer un travail
-for (let trash of trashIcons) {
-  trash.addEventListener("click", async function () {
-    let workId = trash.getAttribute("data-works-id");
-    try {
-      let response = await fetch(`http://localhost:5678/api/works/${workId}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) {
-        throw new Error("Erreur lors de la suppression de l'élément");
-      }
-      console.log("L'élément a été supprimé avec succès");
-    } catch (error) {
-      console.error(error);
+async function deleteWork(workId) {
+  try {
+    let response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("Erreur lors de la suppression de l'élément");
     }
+    console.log("L'élément a été supprimé avec succès");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Pour un travail
+for (let trash of trashIcons) {
+  trash.addEventListener("click", function () {
+    let workId = trash.getAttribute("data-works-id");
+    deleteWork(workId);
   });
 }
 
-// Supprimer tous les travaux
+// Pour tous les travaux
 deletAllWorksButton.addEventListener("click", async function () {
   try {
-    let workId = 0;
     for (let i in data) {
-      workId++;
-      let response = await fetch(`http://localhost:5678/api/works/${workId}`, {
-        method: "DELETE",
-      });
+      let workId = data[i].id;
+      deleteWork(workId);
     }
     if (!response.ok) {
       throw new Error("Erreur lors de la suppression des éléments");
