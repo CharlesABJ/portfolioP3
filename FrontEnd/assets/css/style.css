@@ -125,6 +125,8 @@ header .logo {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 0;
 }
 
 header .logo h1 a {
@@ -476,11 +478,7 @@ main {
 
 
 /* Portrait */
-.modal-container .modal input {
-    padding: 100px;
-    border-radius: 3px;
-    background: #77aca1;
-    cursor: pointer;
+.modal-container .modal form .portrait {
 }
 
 
@@ -598,7 +596,7 @@ main {
     padding: 10px 15px;
 }
 
-.modal-container .add-modal form .upload-image-zone {
+.upload-image-zone {
     background-color: #E8F1F6;
     width: 100%;
     height: max-content;
@@ -612,24 +610,23 @@ main {
     position: relative;
 }
 
-.modal-container .add-modal form .upload-image-zone img {
+.upload-image-zone img {
     width: 70px;
 }
 
-.modal-container .add-modal form .upload-image-zone input {
-  display: none;
-}
-.hidden-to-preview{opacity: 0.5;}
-.special{z-index: 5;
+.upload-image-zone input {
+    display: none;
 }
 
-.modal-container .add-modal form .upload-image-zone .preview-image { 
+
+.upload-image-zone .preview-image {
     position: absolute;
     object-fit: cover;
     width: 50%;
+    display: none;
 }
 
-.modal-container .add-modal form .upload-image-zone label {
+.upload-image-zone label {
     background-color: #CBD6DC;
     color: #306685;
     border: none;
@@ -639,12 +636,12 @@ main {
 }
 
 
-
-.preview-image{
+.preview-image {
 
     height: 100%;
     object-fit: cover;
- }
+}
+
 .modal-container .add-modal form label {
     font-weight: bold;
     margin: 10px 0;
@@ -710,6 +707,7 @@ footer nav a:hover {
 /* ----------------------FOOTER-OFF<--------------------------- */
 
 /* >==================== CLASS JS ====================> */
+
 .modal-trigger {
     display: block;
     padding: 5px 5px 5px 0;
@@ -735,6 +733,9 @@ footer nav a:hover {
     display: none !important;
 }
 
+.image-input-value{
+    display: none;
+}
 
 /* ----------------------RESPONSIVE-ON<--------------------------- */
 @media screen and (max-width: 991px) {

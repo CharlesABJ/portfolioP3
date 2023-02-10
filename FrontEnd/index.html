@@ -45,6 +45,7 @@
 
             <figure>
                 <img class="portrait" src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
+                <img class="image-input-value">
                 <figcaption>
                     <p class="modal-trigger hidden" data-modal="edit-portrait"><img class="edit-icon"
                             src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
@@ -129,7 +130,15 @@
                 <i class="fa-solid fa-xmark modal-trigger"></i>
             </div>
             <h3>Modifier le portrait</h3>
-            <input type="file" name="portrait" id="portrait" class="image-input"> <img class="preview-image">
+            <form method="POST" class="upload-edit-portrait">
+                <div class="upload-image-zone">
+                    <img class="hidden-to-preview" src="./assets/icons/picture-svgrepo-com 1.svg">
+                    <label class="hidden-to-preview special" for="portrait">+ Ajouter photo</label>
+                    <input type="file" name="portrait" id="portrait" class="image-input">
+                    <p class="hidden-to-preview">jpg, png : 4mo max</p>
+                    <img class="preview-image portrait">
+                </div>
+            </form>
             <hr>
             <button class="btn-submit-1 submit-portrait">Valider</button>
             <button class="btn-submit-2 modal-trigger">Annuler</button>

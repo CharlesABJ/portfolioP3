@@ -1,26 +1,28 @@
+// VARIABLES :
+
 // Variables identifiant login
-let userToken = localStorage.getItem("token");
-let login = document.querySelector(".login");
-let logout = document.querySelector(".logout");
-let hiddenElements = document.querySelectorAll(".hidden");
+const userToken = localStorage.getItem("token");
+const login = document.querySelector(".login");
+const logout = document.querySelector(".logout");
+const hiddenElements = document.querySelectorAll(".hidden");
 
-// Variables modales
-let modalContainer = document.querySelectorAll(".modal-container");
-let triggerButtons = document.querySelectorAll(".modal-trigger");
-let publishChanges = document.querySelector(".edition-mode button");
+// Variables pour les modales :
+const modalContainer = document.querySelectorAll(".modal-container");
+const triggerButtons = document.querySelectorAll(".modal-trigger");
+const publishChanges = document.querySelector(".edition-mode button");
 
-// portrait
-let inputPortrait = document.getElementById("portrait");
-let imgPortrait = document.querySelector(".portrait");
-let submitPortrait = document.querySelector(".submit-portrait");
+// modale portrait
+const inputPortrait = document.getElementById("portrait");
+const imgPortrait = document.querySelector(".portrait");
+const submitPortrait = document.querySelector(".submit-portrait");
 
-// présentation
+// modale présentation
 let inputPresentation = document.getElementById("presentation");
 let paragraphArticle = document.querySelectorAll("article p");
 let textareaValue = document.querySelector(".textarea-value");
 let submitTextarea = document.querySelector(".submit-textarea");
 
-// travaux
+// modale gestion de travaux
 let editGalleryGrid = document.querySelector(".edit-gallery-grid");
 let figureArray = [];
 let trashIcons = [];
@@ -35,6 +37,7 @@ let addWorkModal = document.querySelector(".add-work-modal");
 let confirmAddWorkButton = document.querySelector(".confirm-add-work");
 let inputImages = document.querySelectorAll(".image-input");
 let previewImages = document.querySelectorAll(".preview-image");
+
 //=======================================================================
 
 // identification du token
@@ -77,6 +80,11 @@ for (let i in data) {
 
 for (let button of triggerButtons) {
   button.addEventListener("click", function () {
+    if (header.classList.contains("background-responsive")) {
+      header.classList.remove("background-responsive");
+      headerNav.style.display = "none";
+      h1Responsive.style.color = "#B1663C";
+    }
     for (let container of modalContainer) {
       container.classList.remove("active-modal");
       if (
@@ -105,30 +113,35 @@ logout.addEventListener("click", function () {
   location.href = "index.html";
 });
 
+// Affichage des images
 for (let inputImage of inputImages) {
   inputImage.addEventListener("change", function () {
-    console.log("yes");
     let reader = new FileReader();
     reader.onload = function () {
       for (let image of previewImages) {
         image.src = reader.result;
       }
     };
-    console.log("mui");
+    document.querySelectorAll(".hidden-to-preview").forEach((e) => {
+      e.style.opacity = "0";
+    });
+
     reader.readAsDataURL(inputImage.files[0]);
+    for (let image of previewImages) {
+      image.style.display = "block";
+    }
   });
 }
 
 //  Modale portrait
-// inputPortrait.addEventListener("change", function(){
-//   let file = inputPortrait.files[0];
-// })
-// let reader = new FileReader()
-// reader.addEventListener("load", function(){
-//   imgPortrait.src = reader.result
-// })
-
-// reader.readAsDataURL(file)
+submitPortrait.addEventListener("click", function () {
+  console.log("yes");
+  document.querySelector(".portrait").style.display="none"
+  let img = document.querySelector(".image-input-value")
+  img.setAttribute("src", inputPortrait.value)
+  console.log(inputPortrait.value);
+  img.style.display="block"
+});
 
 //  Modale présentation
 submitTextarea.addEventListener("click", function () {
@@ -146,9 +159,9 @@ submitTextarea.addEventListener("click", function () {
   }
 });
 
-// modales works
+// Modales gestion de travaux
 
-// Ajouter un travail
+// modale ajouter un travail
 addWorkButton.addEventListener("click", async function () {
   try {
     let response = await fetch("http://localhost:5678/api/categories");
@@ -171,6 +184,7 @@ addWorkButton.addEventListener("click", async function () {
 let modalInputs = document.querySelectorAll(".add-modal input");
 let modalSelects = document.querySelectorAll(".add-modal select");
 
+// Changer le boutton de confirmation lorsque les champs sont remplis
 function updateConfirmButton() {
   if (
     titleInput.value.trim() !== "" &&
@@ -187,10 +201,11 @@ for (let input of modalInputs) {
   input.addEventListener("input", updateConfirmButton);
 }
 
-for (let input of modalSelects) {
-  input.addEventListener("change", updateConfirmButton);
+for (let option of modalSelects) {
+  option.addEventListener("change", updateConfirmButton);
 }
 
+// Création d'un projet lorsqu'on clique sur le bouton de validation
 confirmAddWorkButton.addEventListener("click", async function () {
   if (confirmAddWorkButton.classList.contains("completed")) {
     let postApi = "http://localhost:5678/api/works";
@@ -214,9 +229,9 @@ confirmAddWorkButton.addEventListener("click", async function () {
         let figcaption = document.createElement("figcaption");
 
         figure.setAttribute("data-category-id", option.value);
-        // img.setAttribute("src", imgInput.value);
+        img.setAttribute("src", imgInput.value);
         img.setAttribute("alt", titleInput.value);
-        // img.setAttribute("crossorigin", "anonymous");
+
         figcaption.innerHTML = titleInput.value;
 
         galleryGrid.append(figure);
