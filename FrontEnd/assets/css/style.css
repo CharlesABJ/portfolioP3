@@ -462,7 +462,7 @@ main {
 .modal-container .modal .leave-trigger-zone {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: right;
     font-size: 14px;
     padding: 10px 15px;
 }
@@ -580,10 +580,22 @@ main {
 
 
 /* Ajouter un travail */
+.modal-container .add-modal {
+    transform: translate(-50%, -45%);
+}
+
 .modal-container .add-modal form {
     display: flex;
     flex-direction: column;
     width: 67%;
+}
+
+.modal-container .add-modal .leave-trigger-zone {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 10px 15px;
 }
 
 .modal-container .add-modal form .upload-image-zone {
@@ -597,19 +609,42 @@ main {
     align-items: center;
     padding: 20px;
     margin: 10px 0;
+    position: relative;
 }
 
 .modal-container .add-modal form .upload-image-zone img {
     width: 70px;
 }
 
-.modal-container .add-modal form .upload-image-zone button {
+.modal-container .add-modal form .upload-image-zone input {
+  display: none;
+}
+.hidden-to-preview{opacity: 0.5;}
+.special{z-index: 5;
+}
+
+.modal-container .add-modal form .upload-image-zone .preview-image { 
+    position: absolute;
+    object-fit: cover;
+    width: 50%;
+}
+
+.modal-container .add-modal form .upload-image-zone label {
     background-color: #CBD6DC;
     color: #306685;
     border: none;
     padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
 }
 
+
+
+.preview-image{
+
+    height: 100%;
+    object-fit: cover;
+ }
 .modal-container .add-modal form label {
     font-weight: bold;
     margin: 10px 0;
@@ -636,7 +671,7 @@ main {
 }
 
 .modal-container .add-modal button:hover {
-    background: #CBD6DC;
+    background: #a8a8a8;
 }
 
 .modal-container .add-modal button.completed {

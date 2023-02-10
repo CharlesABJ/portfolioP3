@@ -26,14 +26,15 @@ let figureArray = [];
 let trashIcons = [];
 let mainModal = document.querySelector(".main-modal");
 let deletAllWorksButton = document.querySelector(".delete-all-works");
-let imgAddWork;
-let titleInput = document.querySelector("#title");
+let imgInput = document.querySelector("#file-input");
+let titleInput = document.querySelector("#title-input");
 let select = document.querySelector("select");
 let option = document.querySelectorAll("option");
 let addWorkButton = document.querySelector(".add-work");
 let addWorkModal = document.querySelector(".add-work-modal");
 let confirmAddWorkButton = document.querySelector(".confirm-add-work");
-
+let inputImages = document.querySelectorAll(".image-input");
+let previewImages = document.querySelectorAll(".preview-image");
 //=======================================================================
 
 // identification du token
@@ -42,7 +43,6 @@ if (userToken) {
     element.classList.remove("hidden");
   }
   login.style.display = "none";
-  logout.sty;
 }
 
 // Appel de l'API
@@ -105,6 +105,20 @@ logout.addEventListener("click", function () {
   location.href = "index.html";
 });
 
+for (let inputImage of inputImages) {
+  inputImage.addEventListener("change", function () {
+    console.log("yes");
+    let reader = new FileReader();
+    reader.onload = function () {
+      for (let image of previewImages) {
+        image.src = reader.result;
+      }
+    };
+    console.log("mui");
+    reader.readAsDataURL(inputImage.files[0]);
+  });
+}
+
 //  Modale portrait
 // inputPortrait.addEventListener("change", function(){
 //   let file = inputPortrait.files[0];
@@ -139,7 +153,6 @@ addWorkButton.addEventListener("click", async function () {
   try {
     let response = await fetch("http://localhost:5678/api/categories");
     let data = await response.json();
-
     for (let i in data) {
       let option = document.createElement("option");
 
@@ -151,47 +164,72 @@ addWorkButton.addEventListener("click", async function () {
   } catch (error) {
     console.error(error);
   }
+
   addWorkModal.style.display = "block";
 });
 
-if (titleInput !== "" && option !== "" && imgAddWork !== "") {
-  confirmAddWorkButton.classList.add("completed");
-} else {
-  confirmAddWorkButton.classList.remove("completed");
+let modalInputs = document.querySelectorAll(".add-modal input");
+let modalSelects = document.querySelectorAll(".add-modal select");
+
+function updateConfirmButton() {
+  if (
+    titleInput.value.trim() !== "" &&
+    select.value !== "no-value" &&
+    imgInput.value !== ""
+  ) {
+    confirmAddWorkButton.classList.add("completed");
+  } else {
+    confirmAddWorkButton.classList.remove("completed");
+  }
+}
+
+for (let input of modalInputs) {
+  input.addEventListener("input", updateConfirmButton);
+}
+
+for (let input of modalSelects) {
+  input.addEventListener("change", updateConfirmButton);
 }
 
 confirmAddWorkButton.addEventListener("click", async function () {
-  let postApi = "http://localhost:5678/api/works";
-  let fetchInit = {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-      "Content-Type": "Content-Type: multipart/form-data",
-    },
-    body: JSON.stringify({
-      title: titleInput.value,
-      category: option.value,
-    }),
-  };
-  try {
-    let response = await fetch(postApi, fetchInit);
-    if (response.ok) {
-      let data = await response.json();
-      let figure = document.createElement("figure");
-      // let img = document.createElement("img");
-      let figcaption = document.createElement("figcaption");
+  if (confirmAddWorkButton.classList.contains("completed")) {
+    let postApi = "http://localhost:5678/api/works";
+    let fetchInit = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "Content-Type: multipart/form-data",
+      },
+      body: JSON.stringify({
+        title: titleInput.value,
+        category: option.value,
+      }),
+    };
+    try {
+      let response = await fetch(postApi, fetchInit);
+      if (response.ok) {
+        let data = await response.json();
+        let figure = document.createElement("figure");
+        let img = document.createElement("img");
+        let figcaption = document.createElement("figcaption");
 
-      figure.setAttribute("data-category-id", option.value);
-      img.setAttribute("src", dataWorks[i].imageUrl);
-      img.setAttribute("alt", titleInput.value);
-      // img.setAttribute("crossorigin", "anonymous");
-      figcaption.innerHTML = titleInput.value;
+        figure.setAttribute("data-category-id", option.value);
+        // img.setAttribute("src", imgInput.value);
+        img.setAttribute("alt", titleInput.value);
+        // img.setAttribute("crossorigin", "anonymous");
+        figcaption.innerHTML = titleInput.value;
 
-      galleryGrid.append(figure);
-      figure.append(figcaption);
+        galleryGrid.append(figure);
+        figure.append(figcaption);
+
+        addWorkModal.style.display = "none";
+        mainModal.classList.add("active-modal");
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
+  } else {
+    console.log("Veuillez remplir tous les champs");
   }
 });
 
