@@ -65,7 +65,7 @@ for (let i in data) {
   figcaption.innerHTML = "éditer";
   trashZone.classList.add("trash-zone");
   trashIcon.classList.add("trash-icon");
-  trashIcon.setAttribute("src", "/./FrontEnd/assets/icons/trash.svg");
+  trashIcon.setAttribute("src", "./assets/icons/trash.svg");
   trashIcon.setAttribute("data-works-id", data[i].id);
 
   figureArray.push(figure);
@@ -133,7 +133,7 @@ for (let inputImage of inputImages) {
   });
 }
 
-//  Modale portrait
+//  Modale portrait 
 submitPortrait.addEventListener("click", function () {
   console.log("yes");
   document.querySelector(".portrait").style.display="none"
