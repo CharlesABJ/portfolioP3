@@ -59,14 +59,15 @@
                             src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
                     </p><span class="title">Designer d'espace</span>
                 </h2>
-                <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
-                    finale du chantier.</p>
-                <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
+                <p class="old-text-presentation">Je raconte votre histoire, je valorise vos idées. Je vous accompagne de
+                    la conception à la livraison
+                    finale du chantier.<br><br>
+                    Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
                     couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-                    chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-                <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
+                    chantier sera assuré dans le souci du détail, le respect du planning et du budget.<br><br>
+                    En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
                     décorateur(trice)</p>
-                <p class="textarea-value"></p>
+                <p class="new-text-presentation"></p>
             </article>
 
         </section>
@@ -74,7 +75,7 @@
         <section id="portfolio">
 
             <h2><span class="title">Mes Projets</span>
-                <p class="modal-trigger hidden" data-modal="edit-works"><img class="edit-icon"
+                <p class="modal-trigger hidden edit-works" data-modal="edit-works"><img class="edit-icon"
                         src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
                 </p>
             </h2>
@@ -155,32 +156,18 @@
             <h3>Modifier la présentation</h3>
             <textarea name="presentation" id="presentation" cols="45" rows="10"></textarea>
             <hr>
-            <button class="btn-submit-1 modal-trigger submit-textarea ">Valider</button>
+            <button type="submit" class="btn-submit-1 modal-trigger submit-textarea ">Valider</button>
             <button class="btn-submit-2 modal-trigger">Annuler</button>
         </div>
     </div>
 
-    <!-- modales travaux -->
-    <div class="modal-container main-modal" data-modal="edit-works">
-        <div class="overlay modal-trigger"></div>
-        <div class="modal">
-            <div class="leave-trigger-zone">
-                <i class="modal-trigger fa-solid fa-xmark"></i>
-            </div>
-            <h3>Galerie photo</h3>
-            <div class="edit-gallery-grid">
-                <!-- photo api -->
-            </div>
-            <hr>
-            <button type="submit" class="btn-submit-1 modal-trigger add-work">Ajouter une photo</button>
-            <button type="submit" class="btn-submit-2 delete-all-works">Supprimer la galerie</button>
-        </div>
-    </div>
 
-    <!-- modale ajouter un travail -->
-    <div class="modal-container add-work-modal" data-modal="edit-works-add-work">
-        <div class="overlay modal-trigger"></div>
-        <div class="modal add-modal">
+    <!-- modales travaux -->
+    <div data-modal="edit-works" class="modal-container edit-works-modal">
+        <div class="overlay modal-trigger edit-works"></div>
+
+        <!-- Ajouter des travaux -->
+        <div class="modal add-works-modal modal-hidden">
             <div class="leave-trigger-zone">
                 <i class="fa-solid fa-arrow-left back"></i>
                 <i class="fa-solid fa-xmark modal-trigger"></i>
@@ -203,9 +190,25 @@
                 </select>
             </form>
             <hr>
-            <button type="submit" class="btn-submit-1 confirm-add-work">Valider</button>
+            <button type="submit" class="btn-submit-1 confirm-add-work-button">Valider</button>
         </div>
+
+        <!-- supprimer des travaux -->
+        <div class="modal delete-works-modal">
+            <div class="leave-trigger-zone">
+                <i class="modal-trigger fa-solid fa-xmark"></i>
+            </div>
+            <h3>Galerie photo</h3>
+            <div class="edit-gallery-grid">
+                <!-- photo api -->
+            </div>
+            <hr>
+            <button type="submit" class="btn-submit-1 add-work-button">Ajouter une photo</button>
+            <button type="submit" class="btn-submit-2 delete-all-works-button">Supprimer la galerie</button>
+        </div>
+
     </div>
+
 
 
     <footer>
@@ -215,7 +218,7 @@
         </nav>
 
     </footer>
-    
+
     <script src="./assets/js/hamburger-menu-responsive.js"></script>
     <script src="./assets/js/modal.js"></script>
     <script src="./assets/js/script.js"></script>

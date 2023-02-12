@@ -1,13 +1,13 @@
-// Variables identifiant login
+// Variables login, logout & mode edition
 const userToken = sessionStorage.getItem("token");
 const login = document.querySelector(".login");
 const logout = document.querySelector(".logout");
 const hiddenElements = document.querySelectorAll(".hidden");
+const publishChanges = document.querySelector(".edition-mode button");
 
 // Variables pour les modales :
 const modalContainer = document.querySelectorAll(".modal-container");
 const triggerButtons = document.querySelectorAll(".modal-trigger");
-const publishChanges = document.querySelector(".edition-mode button");
 
 // modale portrait
 const inputPortrait = document.getElementById("portrait");
@@ -15,24 +15,22 @@ const imgPortrait = document.querySelector(".portrait");
 const submitPortrait = document.querySelector(".submit-portrait");
 
 // modale présentation
-let inputPresentation = document.getElementById("presentation");
-let paragraphArticle = document.querySelectorAll("article p");
-let textareaValue = document.querySelector(".textarea-value");
-let submitTextarea = document.querySelector(".submit-textarea");
+let inputModalPresentation = document.getElementById("presentation");
+let oldTextPresentation = document.querySelector(".old-text-presentation");
+let newTextPresentation = document.querySelector(".new-text-presentation");
+let submitTextPresentation = document.querySelector(".submit-textarea");
 
 // modale gestion de travaux
 let editGalleryGrid = document.querySelector(".edit-gallery-grid");
-let figureArray = [];
 let trashIcons = [];
 let mainModal = document.querySelector(".main-modal");
-let deletAllWorksButton = document.querySelector(".delete-all-works");
+let deletAllWorksButton = document.querySelector(".delete-all-works-button");
 let imgInput = document.querySelector("#file-input");
 let titleInput = document.querySelector("#title-input");
 let select = document.querySelector("select");
 let option = document.querySelectorAll("option");
-let addWorkButton = document.querySelector(".add-work");
-let addWorkModal = document.querySelector(".add-work-modal");
-let confirmAddWorkButton = document.querySelector(".confirm-add-work");
+let addWorkButton = document.querySelector(".add-work-button");
+let confirmAddWorkButton = document.querySelector(".confirm-add-work-button");
 let inputImages = document.querySelectorAll(".image-input");
 let previewImages = document.querySelectorAll(".preview-image");
 
@@ -66,35 +64,33 @@ for (let i in data) {
   trashIcon.setAttribute("src", "./assets/icons/trash.svg");
   trashIcon.setAttribute("data-works-id", data[i].id);
 
-  figureArray.push(figure);
   trashIcons.push(trashIcon);
 
   trashZone.append(trashIcon);
   figure.append(img, figcaption, trashZone);
   editGalleryGrid.append(figure);
-
 }
 
 // MODALES
 
-for (let button of triggerButtons) {
-  button.addEventListener("click", function () {
-    if (header.classList.contains("background-responsive")) {
-      header.classList.remove("background-responsive");
-      headerNav.style.display = "none";
-      h1Responsive.style.color = "#B1663C";
-    }
-    for (let container of modalContainer) {
-      container.classList.remove("active-modal");
-      if (
-        container.getAttribute("data-modal") ===
-        button.getAttribute("data-modal")
-      ) {
-        container.classList.add("active-modal");
-      }
-    }
-  });
-}
+// for (let button of triggerButtons) {
+//   button.addEventListener("click", function () {
+//     if (header.classList.contains("background-responsive")) {
+//       header.classList.remove("background-responsive");
+//       headerNav.style.display = "none";
+//       h1Responsive.style.color = "#B1663C";
+//     }
+//     for (let container of modalContainer) {
+//       container.classList.remove("active-modal");
+//       if (
+//         container.getAttribute("data-modal") ===
+//         button.getAttribute("data-modal")
+//       ) {
+//         container.classList.add("active-modal");
+//       }
+//     }
+//   });
+// }
 
 //  Modale publication
 publishChanges.addEventListener("click", function () {
@@ -143,22 +139,40 @@ submitPortrait.addEventListener("click", function () {
 });
 
 //  Modale présentation
-submitTextarea.addEventListener("click", function () {
-  if (inputPresentation.value.trim() !== "") {
-    for (let p of paragraphArticle) {
-      if (
-        !p.classList.contains("modal-trigger") &&
-        !p.classList.contains("textarea-value")
-      ) {
-        p.style.display = "none";
-      }
-    }
-
-    textareaValue.innerHTML = inputPresentation.value.replace(/\n/g, "<br/>");
+submitTextPresentation.addEventListener("click", function () {
+  if (inputModalPresentation.value.trim() !== "") {
+    oldTextPresentation.style.display = "none";
   }
+  newTextPresentation.innerHTML = inputModalPresentation.value.replace(
+    /\n/g,
+    "<br/>"
+  );
 });
 
 // Modales gestion de travaux
+let modalTrigger = document.querySelectorAll(".modal-trigger")
+
+for (let trigger of modalTrigger){
+trigger.addEventListener("click", function(){
+  if ( document.querySelector(".edit-works-modal").classList.contains("active-modal")) {
+      document.querySelector(".edit-works-modal").classList.remove("active-modal");
+  } else{
+    document.querySelector(".edit-works-modal").classList.add("active-modal");
+  }
+ 
+})
+}
+
+addWorkButton.addEventListener("click", function(){
+  console.log("yessss");
+  document.querySelector(".delete-works-modal").classList.add("modal-hidden")
+  document.querySelector(".add-works-modal").classList.remove("modal-hidden")
+})
+
+document.querySelector(".back").addEventListener("click", function () {
+  document.querySelector(".add-works-modal").classList.add("modal-hidden")
+  document.querySelector(".delete-works-modal").classList.remove("modal-hidden")
+});
 
 // modale ajouter un travail
 addWorkButton.addEventListener("click", async function () {
@@ -177,7 +191,7 @@ addWorkButton.addEventListener("click", async function () {
     console.error(error);
   }
 
-  addWorkModal.style.display = "block";
+  addWorkButton.style.display = "block";
 });
 
 let modalInputs = document.querySelectorAll(".add-modal input");
@@ -238,7 +252,7 @@ confirmAddWorkButton.addEventListener("click", async function () {
         galleryGrid.append(figure);
         figure.append(figcaption);
 
-        addWorkModal.style.display = "none";
+        addWorkButton.style.display = "none";
         mainModal.classList.add("active-modal");
       }
     } catch (error) {
@@ -249,10 +263,6 @@ confirmAddWorkButton.addEventListener("click", async function () {
   }
 });
 
-document.querySelector(".back").addEventListener("click", function () {
-  addWorkModal.style.display = "none";
-  mainModal.classList.add("active-modal");
-});
 
 // Supprimer un travail
 async function deleteWork(workId) {
