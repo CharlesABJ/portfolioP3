@@ -1,7 +1,5 @@
-// VARIABLES :
-
 // Variables identifiant login
-const userToken = localStorage.getItem("token");
+const userToken = sessionStorage.getItem("token");
 const login = document.querySelector(".login");
 const logout = document.querySelector(".logout");
 const hiddenElements = document.querySelectorAll(".hidden");
