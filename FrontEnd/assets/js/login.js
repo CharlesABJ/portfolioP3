@@ -1,14 +1,14 @@
-
 // Variables formulaire login
-let form = document.querySelector("form");
-let eyeClosed = document.querySelector(".eye-closed");
-let eyeOpen = document.querySelector(".eye-open");
-let eyes = document.querySelectorAll(".eyes");
-let errorConnect = document.querySelector(".error-connect");
+const form = document.querySelector("form");
+const eyeClosed = document.querySelector(".eye-closed");
+const eyeOpen = document.querySelector(".eye-open");
+const eyes = document.querySelectorAll(".eyes");
+const errorConnect = document.querySelector(".error-connect");
 
+let emailInput = document.getElementById("mail");
+let passwordInput = document.getElementById("password");
 
-
-// Afficher/Masquer le mot de passe
+// Afficher & Masquer le mot de passe
 eyes.forEach((eye) => {
   eye.addEventListener("click", () => {
     eyeClosed.classList.toggle("hidden");
@@ -22,13 +22,10 @@ eyes.forEach((eye) => {
 });
 
 // Appel de l'API en POST
-
-const loginApi = "http://localhost:5678/api/users/login";
+let loginApi = "http://localhost:5678/api/users/login";
 
 form.addEventListener("submit", async (submitButton) => {
   submitButton.preventDefault();
-  let emailInput = document.getElementById("mail");
-  let passwordInput = document.getElementById("password");
 
   let fetchInit = {
     method: "POST",
@@ -39,7 +36,7 @@ form.addEventListener("submit", async (submitButton) => {
     body: JSON.stringify({
       email: emailInput.value,
       password: passwordInput.value,
-    })
+    }),
   };
   try {
     const response = await fetch(loginApi, fetchInit);

@@ -58,7 +58,7 @@ for (let i in data) {
   let trashIcon = document.createElement("img");
 
   figure.setAttribute("data-category-id", data[i].category.id);
-  figure.setAttribute("data-works-id", data[i].id);
+  figure.setAttribute("data-id", data[i].id);
   img.setAttribute("src", data[i].imageUrl);
   img.setAttribute("alt", data[i].title);
   img.setAttribute("crossorigin", "anonymous");
@@ -71,9 +71,10 @@ for (let i in data) {
   figureArray.push(figure);
   trashIcons.push(trashIcon);
 
-  editGalleryGrid.append(figure);
-  figure.append(img, figcaption, trashZone);
   trashZone.append(trashIcon);
+  figure.append(img, figcaption, trashZone);
+  editGalleryGrid.append(figure);
+
 }
 
 // MODALES
@@ -133,14 +134,14 @@ for (let inputImage of inputImages) {
   });
 }
 
-//  Modale portrait 
+//  Modale portrait
 submitPortrait.addEventListener("click", function () {
   console.log("yes");
-  document.querySelector(".portrait").style.display="none"
-  let img = document.querySelector(".image-input-value")
-  img.setAttribute("src", inputPortrait.value)
+  document.querySelector(".portrait").style.display = "none";
+  let img = document.querySelector(".image-input-value");
+  img.setAttribute("src", inputPortrait.value);
   console.log(inputPortrait.value);
-  img.style.display="block"
+  img.style.display = "block";
 });
 
 //  Modale présentation
@@ -213,9 +214,11 @@ confirmAddWorkButton.addEventListener("click", async function () {
       method: "POST",
       headers: {
         accept: "application/json",
-        "Content-Type": "Content-Type: multipart/form-data",
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "multipart/form-data",
       },
       body: JSON.stringify({
+        image: imgInput.value,
         title: titleInput.value,
         category: option.value,
       }),
@@ -256,9 +259,17 @@ document.querySelector(".back").addEventListener("click", function () {
 // Supprimer un travail
 async function deleteWork(workId) {
   try {
-    let response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+    let fetchInit = {
       method: "DELETE",
-    });
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+
+    let response = await fetch(
+      `http://localhost:5678/api/works/${workId}`,
+      fetchInit
+    );
     if (!response.ok) {
       throw new Error("Erreur lors de la suppression de l'élément");
     }

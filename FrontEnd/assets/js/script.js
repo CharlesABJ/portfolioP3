@@ -11,15 +11,14 @@ let restaurants = document.querySelector(".restaurants-button");
 
 //=======================================================================
 
-// Appel de l'API en GET
+// Appel des travaux via l'API en GET
 let worksApi = "http://localhost:5678/api/works";
-let dataWorks = []
 
 async function getWorks() {
   try {
     const response = await fetch(worksApi);
     dataWorks = await response.json();
-    localStorage.setItem("dataWorks", JSON.stringify(dataWorks))
+    // localStorage.setItem("dataWorks", JSON.stringify(dataWorks)) //Création d'un item dataWorks permettant d'eviter de relancer l'appel fetch pour l'affichage des travaux en GET
 
     for (let i in dataWorks) {
       let figure = document.createElement("figure");
@@ -27,15 +26,16 @@ async function getWorks() {
       let figcaption = document.createElement("figcaption");
 
       figure.setAttribute("data-category-id", dataWorks[i].category.id);
+      figure.setAttribute("data-id", dataWorks[i].id);
       img.setAttribute("src", dataWorks[i].imageUrl);
       img.setAttribute("alt", dataWorks[i].title);
       img.setAttribute("crossorigin", "anonymous");
       figcaption.innerHTML = dataWorks[i].title;
 
-      figures.push(figure);
-
-      galleryGrid.append(figure);
       figure.append(img, figcaption);
+      galleryGrid.append(figure);
+
+      figures.push(figure); //On push chaque figure dans le tableau figures de manière à pouvoir utiliser chaque figure à l'exterieur de la boucle
     }
   } catch (error) {
     console.error("Warning : " + error);
@@ -44,25 +44,15 @@ async function getWorks() {
 
 getWorks();
 
-// Filtres
-
+// Filtrer les travaux
 for (let element of elementsFilter) {
   element.addEventListener("click", function () {
     for (let e of elementsFilter) {
       e.classList.remove("active");
     }
-    this.classList.add("active");
+    element.classList.add("active");
     for (let figure of figures) {
-      if (
-        figure.getAttribute("data-category-id") ===
-        element.getAttribute("data-category-id")
-      ) {
-        figure.style.display = "block";
-      } else if (element === all) {
-        figure.style.display = "block";
-      } else {
-        figure.style.display = "none";
-      }
+      figure.style.display = figure.getAttribute("data-category-id") === element.getAttribute("data-category-id") ? "block" : element === all ? "block" : "none";
     }
   });
 }

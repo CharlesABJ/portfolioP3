@@ -6,29 +6,29 @@ let bubbleNav = document.querySelector(".bubble-nav");
 let backgroundResponsive = document.querySelector("background-responsive");
 let navElements = document.querySelectorAll("header nav ul li a");
 
-
 // Menu de navigation responsive
-function responsiveNav() {
-    bubbleNav.addEventListener("click", function () {
-      if (!header.classList.contains("background-responsive")) {
-        header.classList.add("background-responsive");
-        headerNav.style.display = "flex";
-        h1Responsive.style.color = "white";
-      } else {
-        header.classList.remove("background-responsive");
-        headerNav.style.display = "none";
-        h1Responsive.style.color = "#B1663C";
-      }
+
+function toggleNav() {
+  header.classList.toggle("background-responsive");
+  headerNav.style.display = header.classList.contains("background-responsive") ? "flex" : "none";
+  h1Responsive.style.color = header.classList.contains("background-responsive") ? "white" : "#B1663C";
+}
+
+bubbleNav.addEventListener("click", toggleNav);
+ 
+// window.addEventListener("resize", function(){
+// if (window.innerWidth > 605 && window.innerWidth < 655) {
+ 
+//   location.reload()} 
+//   console.log("yess");
+// })
+
+if (window.innerWidth < 605) {
+  navElements.forEach((element) => {
+    element.addEventListener("click", function () {
+      header.classList.remove("background-responsive");
+      headerNav.style.display = "none";
+      h1Responsive.style.color = "#B1663C";
     });
-  
-    if (window.matchMedia("(max-width: 605px)").matches) {
-      navElements.forEach((element) => {
-        element.addEventListener("click", function () {
-          header.classList.remove("background-responsive");
-          headerNav.style.display = "none";
-          h1Responsive.style.color = "#B1663C";
-        });
-      });
-    }
-  }
-  responsiveNav();
+  });
+}
