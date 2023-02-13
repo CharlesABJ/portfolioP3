@@ -19,12 +19,6 @@ function toggleNav() {
 
 bubbleNav.addEventListener("click", toggleNav);
 
-// window.addEventListener("resize", function(){
-// if (window.innerWidth > 605 && window.innerWidth < 655) {
-
-//   location.reload()}
-// })
-
 if (window.innerWidth < 605) {
   for (let element of navElements) {
     element.addEventListener("click", function () {

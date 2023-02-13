@@ -5,9 +5,6 @@ let figures = [];
 // Variables filtres
 let elementsFilter = document.querySelectorAll(".elements-filter");
 let all = document.querySelector(".all");
-let objects = document.querySelector(".objects-button");
-let appartments = document.querySelector(".appartments-button");
-let restaurants = document.querySelector(".restaurants-button");
 
 //=======================================================================
 

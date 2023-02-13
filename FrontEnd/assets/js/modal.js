@@ -15,6 +15,7 @@ let overlayModal = document.querySelectorAll(".overlay");
 // modale portrait
 const inputPortrait = document.getElementById("portrait");
 const imgPortrait = document.querySelector(".portrait");
+let newPortrait = document.querySelector(".new-portrait");
 const submitPortrait = document.querySelector(".submit-portrait");
 
 // modale présentation
@@ -80,6 +81,7 @@ async function getWorksInModal() {
 
       trashIcons.push(trashIcon); //On push chaque trashIcone dans le tableau trashIcons de manière à pouvoir utiliser chaque icone à l'exterieur de la boucle
     }
+    initDeleteWorks();
   } catch (error) {
     console.error("Warning : " + error);
   }
@@ -130,8 +132,9 @@ for (let inputImage of inputImages) {
     let reader = new FileReader();
     reader.onload = function () {
       for (let image of previewImages) {
-        image.src = reader.result;
-      }
+        if (image.size <= 4*1024){
+        image.src = reader.result;}else{console.log("nooo");}
+      } 
     };
     document.querySelectorAll(".hidden-to-preview").forEach((e) => {
       e.style.opacity = "0";
@@ -145,15 +148,26 @@ for (let inputImage of inputImages) {
 }
 
 //  Modale portrait
+if(inputPortrait.value !== ""){
+  submitPortrait.classList.add("modal-trigger")}
 submitPortrait.addEventListener("click", function () {
-  console.log("yes");
-  document.querySelector(".portrait").style.display = "none";
-  let img = document.querySelector(".image-input-value");
-  img.setAttribute("src", inputPortrait.value);
-  console.log(inputPortrait.value);
-  img.style.display = "block";
-});
+  let reader = new FileReader();
+  reader.onload = function () {
+    newPortrait.src = reader.result;
+  };
 
+  reader.readAsDataURL(inputPortrait.files[0]);
+  imgPortrait.style.display = "none";
+  newPortrait.style.display = "block";
+  document.querySelectorAll(".hidden-to-preview").forEach((e) => {
+    e.style.opacity = "1";
+  });
+  for (let image of previewImages) {
+    image.src = "";
+    image.style.display="none"
+  }
+});
+ 
 //  Modale présentation
 submitTextPresentation.addEventListener("click", function () {
   if (inputModalPresentation.value.trim() !== "") {
@@ -247,7 +261,6 @@ confirmAddWorkButton.addEventListener("click", async function () {
     try {
       let response = await fetch(postApi, fetchInit);
       if (response.ok) {
-        let data = await response.json();
         let figure = document.createElement("figure");
         let img = document.createElement("img");
         let figcaption = document.createElement("figcaption");
@@ -294,31 +307,30 @@ async function deleteWork(workId) {
     console.error(error);
   }
 }
+function initDeleteWorks() {
+  // pour un travail
+  for (let trash of trashIcons) {
+    trash.addEventListener("click", function () {
+      let workId = trash.getAttribute("data-id");
+      deleteWork(workId);
+    });
+  }
 
-// pour un travail
-for (let trash of trashIcons) {
-  trash.addEventListener("click", function () {
-    console.log("test");
-    let workId = trash.getAttribute("data-id");
-    deleteWork(workId);
+  // pour tous les travaux
+  deletAllWorksButton.addEventListener("click", async function () {
+    if (confirm("Êtes-vous sûr de vouloir supprimer tout les travaux ?")) {
+      try {
+        for (let i in data) {
+          let workId = data[i].id;
+
+          deleteWork(workId);
+        }
+        if (!response.ok) {
+          throw new Error("Erreur lors de la suppression des éléments");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
   });
 }
-
-// pour tous les travaux
-deletAllWorksButton.addEventListener("click", async function () {
-  if (confirm("Êtes-vous sûr de vouloir supprimer tout les travaux ?")) {
-    try {
-      for (let i in data) {
-        let workId = data[i].id;
-
-        deleteWork(workId);
-      }
-      if (!response.ok) {
-        throw new Error("Erreur lors de la suppression des éléments");
-      }
-      console.log("Les éléments ont été supprimé avec succès");
-    } catch (error) {
-      console.error(error);
-    }
-  }
-});

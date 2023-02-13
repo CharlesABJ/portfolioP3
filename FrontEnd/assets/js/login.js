@@ -48,7 +48,7 @@ form.addEventListener("submit", async (submitButton) => {
       emailInput.classList.add("input-error");
       passwordInput.classList.add("input-error");
       if (response.status === 401) {
-        errorConnect.innerHTML = "Mot de passe incorret";
+        errorConnect.innerHTML = "Mot de passe incorrect";
       } else if (response.status === 404) {
         errorConnect.innerHTML = "Erreur dans l’identifiant ou le mot de passe";
       }

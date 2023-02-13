@@ -210,11 +210,19 @@ main {
     align-self: start;
 }
 
-#introduction figure .portrait {
+
+#introduction figure .img-portrait{
     height: 100%;
     width: 100%;
+    max-width: 475px;
     object-fit: cover;
+    display: none;
 }
+
+#introduction figure .portrait{
+    display: block;
+}
+
 
 #introduction article {
     width: 404px;
@@ -327,6 +335,8 @@ main {
 
 #portfolio .gallery .gallery-grid figure img {
     width: 100%;
+    height: 407px;
+    object-fit: cover;
 }
 
 #portfolio .gallery .gallery-grid figure figcaption {
@@ -483,9 +493,15 @@ main {
 
 
 /* Portrait */
-/* .modal-container .modal form .portrait {
+.modal-container .modal form {
+    width: 67%;
 }
- */
+
+.modal-container .modal form label {
+    margin: 10px;
+}
+
+
 
 /* Présentation */
 .modal-container .modal textarea {
@@ -626,7 +642,8 @@ main {
 
 .upload-image-zone .preview-image {
     position: absolute;
-    object-fit: cover;
+    object-fit: contain;
+    height: 175px;
     width: 50%;
     display: none;
 }
