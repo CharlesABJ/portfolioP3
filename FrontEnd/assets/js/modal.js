@@ -6,8 +6,11 @@ const hiddenElements = document.querySelectorAll(".hidden");
 const publishChanges = document.querySelector(".edition-mode button");
 
 // Variables pour les modales :
-const modalContainer = document.querySelectorAll(".modal-container");
-const triggerButtons = document.querySelectorAll(".modal-trigger");
+let modalContainer = document.querySelectorAll(".modal-container");
+let triggerButtons = document.querySelectorAll(".modal-trigger");
+let deleteWorksModal = document.querySelector(".delete-works-modal");
+let addWorksModal = document.querySelector(".add-works-modal");
+let overlayModal = document.querySelectorAll(".overlay");
 
 // modale portrait
 const inputPortrait = document.getElementById("portrait");
@@ -23,10 +26,12 @@ let submitTextPresentation = document.querySelector(".submit-textarea");
 // modale gestion de travaux
 let editGalleryGrid = document.querySelector(".edit-gallery-grid");
 let trashIcons = [];
-let mainModal = document.querySelector(".main-modal");
+let backButton = document.querySelector(".back-button");
 let deletAllWorksButton = document.querySelector(".delete-all-works-button");
-let imgInput = document.querySelector("#file-input");
-let titleInput = document.querySelector("#title-input");
+let modalInputs = document.querySelectorAll(".add-works-modal input");
+let modalSelects = document.querySelectorAll(".add-works-modal select");
+let imgInput = document.getElementById("file-input");
+let titleInput = document.getElementById("title-input");
 let select = document.querySelector("select");
 let option = document.querySelectorAll("option");
 let addWorkButton = document.querySelector(".add-work-button");
@@ -45,63 +50,74 @@ if (userToken) {
 }
 
 // Appel de l'API
-let data = JSON.parse(localStorage.getItem("dataWorks"));
-for (let i in data) {
-  let figure = document.createElement("figure");
-  let img = document.createElement("img");
-  let figcaption = document.createElement("figcaption");
-  let trashZone = document.createElement("div");
-  let trashIcon = document.createElement("img");
+const worksModalApi = "http://localhost:5678/api/works";
+async function getWorksInModal() {
+  try {
+    response = await fetch(worksModalApi);
+    data = await response.json();
 
-  figure.setAttribute("data-category-id", data[i].category.id);
-  figure.setAttribute("data-id", data[i].id);
-  img.setAttribute("src", data[i].imageUrl);
-  img.setAttribute("alt", data[i].title);
-  img.setAttribute("crossorigin", "anonymous");
-  figcaption.innerHTML = "éditer";
-  trashZone.classList.add("trash-zone");
-  trashIcon.classList.add("trash-icon");
-  trashIcon.setAttribute("src", "./assets/icons/trash.svg");
-  trashIcon.setAttribute("data-works-id", data[i].id);
+    for (let i in data) {
+      let figure = document.createElement("figure");
+      let img = document.createElement("img");
+      let figcaption = document.createElement("figcaption");
+      let trashZone = document.createElement("div");
+      let trashIcon = document.createElement("img");
 
-  trashIcons.push(trashIcon);
+      figure.setAttribute("data-category-id", data[i].category.id);
+      figure.setAttribute("data-id", data[i].id);
+      img.setAttribute("src", data[i].imageUrl);
+      img.setAttribute("alt", data[i].title);
+      img.setAttribute("crossorigin", "anonymous");
+      figcaption.innerHTML = "éditer";
+      trashZone.classList.add("trash-zone");
+      trashIcon.classList.add("trash-icon");
+      trashIcon.setAttribute("src", "./assets/icons/trash.svg");
+      trashIcon.setAttribute("data-id", data[i].id);
 
-  trashZone.append(trashIcon);
-  figure.append(img, figcaption, trashZone);
-  editGalleryGrid.append(figure);
+      trashZone.append(trashIcon);
+      figure.append(img, figcaption, trashZone);
+      editGalleryGrid.append(figure);
+
+      trashIcons.push(trashIcon); //On push chaque trashIcone dans le tableau trashIcons de manière à pouvoir utiliser chaque icone à l'exterieur de la boucle
+    }
+  } catch (error) {
+    console.error("Warning : " + error);
+  }
 }
-
+getWorksInModal();
 // MODALES
 
-// for (let button of triggerButtons) {
-//   button.addEventListener("click", function () {
-//     if (header.classList.contains("background-responsive")) {
-//       header.classList.remove("background-responsive");
-//       headerNav.style.display = "none";
-//       h1Responsive.style.color = "#B1663C";
-//     }
-//     for (let container of modalContainer) {
-//       container.classList.remove("active-modal");
-//       if (
-//         container.getAttribute("data-modal") ===
-//         button.getAttribute("data-modal")
-//       ) {
-//         container.classList.add("active-modal");
-//       }
-//     }
-//   });
-// }
+for (let button of triggerButtons) {
+  button.addEventListener("click", function () {
+    if (header.classList.contains("background-responsive")) {
+      header.classList.remove("background-responsive");
+      headerNav.style.display = "none";
+      h1Responsive.style.color = "#B1663C";
+    }
+    for (let container of modalContainer) {
+      container.classList.remove("active-modal");
+      if (
+        container.getAttribute("data-modal") ===
+        button.getAttribute("data-modal")
+      ) {
+        container.classList.add("active-modal");
+      }
+    }
+  });
+}
 
 //  Modale publication
 publishChanges.addEventListener("click", function () {
-  alert("youhouu");
+  if (confirm("Voulez vous mettre à jour les changements")) {
+    console.log("Les changements ont été mis à jour");
+  }
 });
 
 //  Modale déconnexion
 logout.addEventListener("click", function () {
   logout.style.display = "none";
   login.style.display = "block";
-  localStorage.removeItem("token");
+  sessionStorage.removeItem("token");
   for (let element of hiddenElements) {
     element.classList.add("hidden");
   }
@@ -149,33 +165,18 @@ submitTextPresentation.addEventListener("click", function () {
   );
 });
 
-// Modales gestion de travaux
-let modalTrigger = document.querySelectorAll(".modal-trigger")
+// MODALES GESTION DE TRAVAUX
 
-for (let trigger of modalTrigger){
-trigger.addEventListener("click", function(){
-  if ( document.querySelector(".edit-works-modal").classList.contains("active-modal")) {
-      document.querySelector(".edit-works-modal").classList.remove("active-modal");
-  } else{
-    document.querySelector(".edit-works-modal").classList.add("active-modal");
+// modale pour ajouter un travail
+addWorkButton.addEventListener("click", async function () {
+  deleteWorksModal.classList.add("modal-hidden");
+  addWorksModal.classList.remove("modal-hidden");
+  for (let overlay of overlayModal) {
+    overlay.classList.remove("modal-trigger");
   }
- 
-})
-}
-
-addWorkButton.addEventListener("click", function(){
-  console.log("yessss");
-  document.querySelector(".delete-works-modal").classList.add("modal-hidden")
-  document.querySelector(".add-works-modal").classList.remove("modal-hidden")
-})
-
-document.querySelector(".back").addEventListener("click", function () {
-  document.querySelector(".add-works-modal").classList.add("modal-hidden")
-  document.querySelector(".delete-works-modal").classList.remove("modal-hidden")
 });
 
-// modale ajouter un travail
-addWorkButton.addEventListener("click", async function () {
+async function getCategoryOnSelect() {
   try {
     let response = await fetch("http://localhost:5678/api/categories");
     let data = await response.json();
@@ -190,12 +191,18 @@ addWorkButton.addEventListener("click", async function () {
   } catch (error) {
     console.error(error);
   }
+}
 
-  addWorkButton.style.display = "block";
+getCategoryOnSelect();
+
+// Retourner sur l'ancienne modale
+backButton.addEventListener("click", function () {
+  addWorksModal.classList.add("modal-hidden");
+  deleteWorksModal.classList.remove("modal-hidden");
+  for (let overlay of overlayModal) {
+    overlay.classList.add("modal-trigger");
+  }
 });
-
-let modalInputs = document.querySelectorAll(".add-modal input");
-let modalSelects = document.querySelectorAll(".add-modal select");
 
 // Changer le boutton de confirmation lorsque les champs sont remplis
 function updateConfirmButton() {
@@ -222,6 +229,12 @@ for (let option of modalSelects) {
 confirmAddWorkButton.addEventListener("click", async function () {
   if (confirmAddWorkButton.classList.contains("completed")) {
     let postApi = "http://localhost:5678/api/works";
+    
+    let formData = new FormData();
+    formData.append("title", titleInput.value);
+    formData.append("imageUrl", imgInput.value);
+    formData.append("categoryId", select.value);
+
     let fetchInit = {
       method: "POST",
       headers: {
@@ -229,11 +242,7 @@ confirmAddWorkButton.addEventListener("click", async function () {
         Authorization: `Bearer ${userToken}`,
         "Content-Type": "multipart/form-data",
       },
-      body: JSON.stringify({
-        image: imgInput.value,
-        title: titleInput.value,
-        category: option.value,
-      }),
+      body: formDatae,
     };
     try {
       let response = await fetch(postApi, fetchInit);
@@ -243,7 +252,7 @@ confirmAddWorkButton.addEventListener("click", async function () {
         let img = document.createElement("img");
         let figcaption = document.createElement("figcaption");
 
-        figure.setAttribute("data-category-id", option.value);
+        figure.setAttribute("data-category-id", select.value);
         img.setAttribute("src", imgInput.value);
         img.setAttribute("alt", titleInput.value);
 
@@ -253,7 +262,7 @@ confirmAddWorkButton.addEventListener("click", async function () {
         figure.append(figcaption);
 
         addWorkButton.style.display = "none";
-        mainModal.classList.add("active-modal");
+        deleteWorksModal.classList.add("active-modal");
       }
     } catch (error) {
       console.error(error);
@@ -262,7 +271,6 @@ confirmAddWorkButton.addEventListener("click", async function () {
     console.log("Veuillez remplir tous les champs");
   }
 });
-
 
 // Supprimer un travail
 async function deleteWork(workId) {
@@ -287,26 +295,30 @@ async function deleteWork(workId) {
   }
 }
 
-// Pour un travail
+// pour un travail
 for (let trash of trashIcons) {
   trash.addEventListener("click", function () {
-    let workId = trash.getAttribute("data-works-id");
+    console.log("test");
+    let workId = trash.getAttribute("data-id");
     deleteWork(workId);
   });
 }
 
-// Pour tous les travaux
+// pour tous les travaux
 deletAllWorksButton.addEventListener("click", async function () {
-  try {
-    for (let i in data) {
-      let workId = data[i].id;
-      deleteWork(workId);
+  if (confirm("Êtes-vous sûr de vouloir supprimer tout les travaux ?")) {
+    try {
+      for (let i in data) {
+        let workId = data[i].id;
+
+        deleteWork(workId);
+      }
+      if (!response.ok) {
+        throw new Error("Erreur lors de la suppression des éléments");
+      }
+      console.log("Les éléments ont été supprimé avec succès");
+    } catch (error) {
+      console.error(error);
     }
-    if (!response.ok) {
-      throw new Error("Erreur lors de la suppression des éléments");
-    }
-    console.log("Les éléments ont été supprimé avec succès");
-  } catch (error) {
-    console.error(error);
   }
 });

@@ -17,20 +17,20 @@ let worksApi = "http://localhost:5678/api/works";
 async function getWorks() {
   try {
     const response = await fetch(worksApi);
-    dataWorks = await response.json();
-    // localStorage.setItem("dataWorks", JSON.stringify(dataWorks)) //Création d'un item dataWorks permettant d'eviter de relancer l'appel fetch pour l'affichage des travaux en GET
+    data = await response.json();
+    // localStorage.setItem("data", JSON.stringify(data)) //Création d'un item data permettant d'eviter de relancer l'appel fetch pour l'affichage des travaux en GET
 
-    for (let i in dataWorks) {
+    for (let i in data) {
       let figure = document.createElement("figure");
       let img = document.createElement("img");
       let figcaption = document.createElement("figcaption");
 
-      figure.setAttribute("data-category-id", dataWorks[i].category.id);
-      figure.setAttribute("data-id", dataWorks[i].id);
-      img.setAttribute("src", dataWorks[i].imageUrl);
-      img.setAttribute("alt", dataWorks[i].title);
+      figure.setAttribute("data-category-id", data[i].category.id);
+      figure.setAttribute("data-id", data[i].id);
+      img.setAttribute("src", data[i].imageUrl);
+      img.setAttribute("alt", data[i].title);
       img.setAttribute("crossorigin", "anonymous");
-      figcaption.innerHTML = dataWorks[i].title;
+      figcaption.innerHTML = data[i].title;
 
       figure.append(img, figcaption);
       galleryGrid.append(figure);

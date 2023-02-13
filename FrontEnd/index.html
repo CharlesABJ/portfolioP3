@@ -75,7 +75,7 @@
         <section id="portfolio">
 
             <h2><span class="title">Mes Projets</span>
-                <p class="modal-trigger hidden edit-works" data-modal="edit-works"><img class="edit-icon"
+                <p data-modal="edit-works" class="modal-trigger hidden edit-works"><img class="edit-icon"
                         src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
                 </p>
             </h2>
@@ -128,7 +128,7 @@
         <div class="overlay modal-trigger"></div>
         <div class="modal">
             <div class="leave-trigger-zone">
-                <i class="fa-solid fa-xmark modal-trigger"></i>
+               <img class="modal-trigger" src="./assets/icons/croce.png">
             </div>
             <h3>Modifier le portrait</h3>
             <form method="POST" class="upload-edit-portrait">
@@ -151,7 +151,7 @@
         <div class="overlay modal-trigger"></div>
         <div class="modal">
             <div class="leave-trigger-zone">
-                <i class="fa-solid fa-xmark modal-trigger"></i>
+               <img class="modal-trigger" src="./assets/icons/croce.png">
             </div>
             <h3>Modifier la présentation</h3>
             <textarea name="presentation" id="presentation" cols="45" rows="10"></textarea>
@@ -163,14 +163,14 @@
 
 
     <!-- modales travaux -->
-    <div data-modal="edit-works" class="modal-container edit-works-modal">
+    <div data-modal="edit-works" class="modal-container">
         <div class="overlay modal-trigger"></div>
 
         <!-- Ajouter des travaux -->
         <div class="modal add-works-modal modal-hidden">
             <div class="leave-trigger-zone">
-                <i class="fa-solid fa-arrow-left back"></i>
-                <i class="fa-solid fa-xmark modal-trigger"></i>
+                <i class="fa-solid fa-arrow-left back-button"></i>
+                <img class="modal-trigger" src="./assets/icons/croce.png">
             </div>
             <form method="POST" class="upload-edit-gallery">
                 <div class="upload-image-zone">
@@ -190,13 +190,13 @@
                 </select>
             </form>
             <hr>
-            <button type="submit" class="btn-submit-1 confirm-add-work-button">Valider</button>
+            <button class="btn-submit-1 confirm-add-work-button">Valider</button>
         </div>
 
         <!-- supprimer des travaux -->
         <div class="modal delete-works-modal">
             <div class="leave-trigger-zone">
-                <i class="modal-trigger fa-solid fa-xmark"></i>
+                <img class="modal-trigger" src="./assets/icons/croce.png">
             </div>
             <h3>Galerie photo</h3>
             <div class="edit-gallery-grid">

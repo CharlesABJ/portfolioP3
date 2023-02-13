@@ -465,10 +465,15 @@ main {
     display: flex;
     width: 100%;
     justify-content: right;
+    align-items: center;
     font-size: 14px;
     padding: 10px 15px;
 }
 
+.modal-container .modal .leave-trigger-zone img{
+    width: 20px;
+    margin: 0;
+}
 
 .modal-container .modal h3 {
     font-weight: 800;
@@ -478,9 +483,9 @@ main {
 
 
 /* Portrait */
-.modal-container .modal form .portrait {
+/* .modal-container .modal form .portrait {
 }
-
+ */
 
 /* Présentation */
 .modal-container .modal textarea {
