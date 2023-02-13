@@ -229,20 +229,20 @@ for (let option of modalSelects) {
 confirmAddWorkButton.addEventListener("click", async function () {
   if (confirmAddWorkButton.classList.contains("completed")) {
     let postApi = "http://localhost:5678/api/works";
-    
+
     let formData = new FormData();
     formData.append("title", titleInput.value);
-    formData.append("imageUrl", imgInput.value);
-    formData.append("categoryId", select.value);
+    formData.append("image", imgInput.files[0]);
+    formData.append("category", select.value);
 
     let fetchInit = {
       method: "POST",
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${userToken}`,
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
       },
-      body: formDatae,
+      body: formData,
     };
     try {
       let response = await fetch(postApi, fetchInit);
