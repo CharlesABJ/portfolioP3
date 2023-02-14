@@ -11,7 +11,8 @@ let triggerButtons = document.querySelectorAll(".modal-trigger");
 let deleteWorksModal = document.querySelector(".delete-works-modal");
 let addWorksModal = document.querySelector(".add-works-modal");
 let overlayModal = document.querySelectorAll(".overlay");
-let MAX_FILE_SIZE = 4 * 1024 * 1024;
+let allowedExtensions = [".jpe?g", ".png"];
+let maxFileSize = 4 * 1024 * 1024; //4Mo
 // modale portrait
 const inputPortrait = document.getElementById("portrait");
 const imgPortrait = document.querySelector(".portrait");
@@ -92,16 +93,24 @@ logout.addEventListener("click", function () {
 // Affichage des images
 for (let inputImage of inputImages) {
   inputImage.addEventListener("change", function () {
+    if (!inputImage.files[0]) return
+    // if (!allowedExtensions.some()){}
+    let file = inputImage.files[0]; 
+    if (file.src){
+      alert(`Veuillez mettre une image "jpg" ou "png"`)
+      return;
+    }
+    if (file.size > maxFileSize) {
+      alert("Image trop volumineuse !");
+      return;
+    }
     let reader = new FileReader();
     reader.onload = function () {
       for (let image of previewImages) {
-        if (image.size >= MAX_FILE_SIZE) {
-          image.src = reader.result;
-        } else {
-          console.log("nooo");
-        }
+        image.src = reader.result;
       }
     };
+
     document.querySelectorAll(".hidden-to-preview").forEach((e) => {
       e.style.opacity = "0";
     });

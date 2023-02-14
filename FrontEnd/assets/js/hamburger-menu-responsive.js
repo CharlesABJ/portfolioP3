@@ -13,9 +13,8 @@ function toggleNav() {
 
 bubbleNav.addEventListener("click", toggleNav);
 
-  for (let element of navElements) {
-    element.addEventListener("click", function () {
-      header.classList.remove("background-responsive");
-    });
-  }
-
+for (let element of navElements) {
+  element.addEventListener("click", function () {
+    header.classList.remove("background-responsive");
+  });
+}

@@ -418,7 +418,7 @@ main {
     position: fixed;
     top: -10px;
     width: 100vw;
-    height: 100vh;
+    height: 110vh;
     max-width: 1140px;
     min-width: 320px;
     margin: 0 auto;
@@ -499,6 +499,7 @@ main {
 
 .modal-container .modal form label {
     margin: 10px;
+    z-index: 5;
 }
 
 
