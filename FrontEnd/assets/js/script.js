@@ -49,7 +49,7 @@ for (let element of elementsFilter) {
     }
     element.classList.add("active");
     for (let figure of figures) {
-      figure.style.display = figure.getAttribute("data-category-id") === element.getAttribute("data-category-id") ? "block" : element === all ? "block" : "none";
+      figure.style.display = figure.getAttribute("data-category-id") === element.getAttribute ("data-category-id") || element === all ? "block" : "none";
     }
   });
 }

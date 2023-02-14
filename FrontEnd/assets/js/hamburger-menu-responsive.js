@@ -9,22 +9,13 @@ let navElements = document.querySelectorAll("header nav ul li a");
 
 function toggleNav() {
   header.classList.toggle("background-responsive");
-  headerNav.style.display = header.classList.contains("background-responsive")
-    ? "flex"
-    : "none";
-  h1Responsive.style.color = header.classList.contains("background-responsive")
-    ? "white"
-    : "#B1663C";
 }
 
 bubbleNav.addEventListener("click", toggleNav);
 
-if (window.innerWidth < 605) {
   for (let element of navElements) {
     element.addEventListener("click", function () {
       header.classList.remove("background-responsive");
-      headerNav.style.display = "none";
-      h1Responsive.style.color = "#B1663C";
     });
   }
-} 
+

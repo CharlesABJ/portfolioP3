@@ -11,7 +11,7 @@ let triggerButtons = document.querySelectorAll(".modal-trigger");
 let deleteWorksModal = document.querySelector(".delete-works-modal");
 let addWorksModal = document.querySelector(".add-works-modal");
 let overlayModal = document.querySelectorAll(".overlay");
-
+let MAX_FILE_SIZE = 4 * 1024 * 1024;
 // modale portrait
 const inputPortrait = document.getElementById("portrait");
 const imgPortrait = document.querySelector(".portrait");
@@ -50,43 +50,6 @@ if (userToken) {
   login.style.display = "none";
 }
 
-// Appel de l'API
-const worksModalApi = "http://localhost:5678/api/works";
-async function getWorksInModal() {
-  try {
-    response = await fetch(worksModalApi);
-    data = await response.json();
-
-    for (let i in data) {
-      let figure = document.createElement("figure");
-      let img = document.createElement("img");
-      let figcaption = document.createElement("figcaption");
-      let trashZone = document.createElement("div");
-      let trashIcon = document.createElement("img");
-
-      figure.setAttribute("data-category-id", data[i].category.id);
-      figure.setAttribute("data-id", data[i].id);
-      img.setAttribute("src", data[i].imageUrl);
-      img.setAttribute("alt", data[i].title);
-      img.setAttribute("crossorigin", "anonymous");
-      figcaption.innerHTML = "éditer";
-      trashZone.classList.add("trash-zone");
-      trashIcon.classList.add("trash-icon");
-      trashIcon.setAttribute("src", "./assets/icons/trash.svg");
-      trashIcon.setAttribute("data-id", data[i].id);
-
-      trashZone.append(trashIcon);
-      figure.append(img, figcaption, trashZone);
-      editGalleryGrid.append(figure);
-
-      trashIcons.push(trashIcon); //On push chaque trashIcone dans le tableau trashIcons de manière à pouvoir utiliser chaque icone à l'exterieur de la boucle
-    }
-    initDeleteWorks();
-  } catch (error) {
-    console.error("Warning : " + error);
-  }
-}
-getWorksInModal();
 // MODALES
 
 for (let button of triggerButtons) {
@@ -132,9 +95,12 @@ for (let inputImage of inputImages) {
     let reader = new FileReader();
     reader.onload = function () {
       for (let image of previewImages) {
-        if (image.size <= 4*1024){
-        image.src = reader.result;}else{console.log("nooo");}
-      } 
+        if (image.size >= MAX_FILE_SIZE) {
+          image.src = reader.result;
+        } else {
+          console.log("nooo");
+        }
+      }
     };
     document.querySelectorAll(".hidden-to-preview").forEach((e) => {
       e.style.opacity = "0";
@@ -148,8 +114,9 @@ for (let inputImage of inputImages) {
 }
 
 //  Modale portrait
-if(inputPortrait.value !== ""){
-  submitPortrait.classList.add("modal-trigger")}
+if (inputPortrait.value !== "") {
+  submitPortrait.classList.add("modal-trigger");
+}
 submitPortrait.addEventListener("click", function () {
   let reader = new FileReader();
   reader.onload = function () {
@@ -164,10 +131,10 @@ submitPortrait.addEventListener("click", function () {
   });
   for (let image of previewImages) {
     image.src = "";
-    image.style.display="none"
+    image.style.display = "none";
   }
 });
- 
+
 //  Modale présentation
 submitTextPresentation.addEventListener("click", function () {
   if (inputModalPresentation.value.trim() !== "") {
@@ -273,9 +240,6 @@ confirmAddWorkButton.addEventListener("click", async function () {
 
         galleryGrid.append(figure);
         figure.append(figcaption);
-
-        addWorkButton.style.display = "none";
-        deleteWorksModal.classList.add("active-modal");
       }
     } catch (error) {
       console.error(error);
@@ -334,3 +298,41 @@ function initDeleteWorks() {
     }
   });
 }
+
+// Appel de l'API
+const worksModalApi = "http://localhost:5678/api/works";
+async function getWorksInModal() {
+  try {
+    response = await fetch(worksModalApi);
+    data = await response.json();
+
+    for (let i in data) {
+      let figure = document.createElement("figure");
+      let img = document.createElement("img");
+      let figcaption = document.createElement("figcaption");
+      let trashZone = document.createElement("div");
+      let trashIcon = document.createElement("img");
+
+      figure.setAttribute("data-category-id", data[i].category.id);
+      figure.setAttribute("data-id", data[i].id);
+      img.setAttribute("src", data[i].imageUrl);
+      img.setAttribute("alt", data[i].title);
+      img.setAttribute("crossorigin", "anonymous");
+      figcaption.innerHTML = "éditer";
+      trashZone.classList.add("trash-zone");
+      trashIcon.classList.add("trash-icon");
+      trashIcon.setAttribute("src", "./assets/icons/trash.svg");
+      trashIcon.setAttribute("data-id", data[i].id);
+
+      trashZone.append(trashIcon);
+      figure.append(img, figcaption, trashZone);
+      editGalleryGrid.append(figure);
+
+      trashIcons.push(trashIcon); //On push chaque trashIcone dans le tableau trashIcons de manière à pouvoir utiliser chaque icone à l'exterieur de la boucle
+    }
+    initDeleteWorks();
+  } catch (error) {
+    console.error("Warning : " + error);
+  }
+}
+getWorksInModal();

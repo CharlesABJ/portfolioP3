@@ -856,6 +856,17 @@ footer nav a:hover {
         color: #1D6154;
     }
 
+    header.background-responsive h1 a, header.background-responsive nav a{
+        color: #ffffff;
+    }
+
+    header.background-responsive .header-nav{
+        display: flex;
+    }
+
+
+
+
     #introduction {
         margin-bottom: 0;
     }
