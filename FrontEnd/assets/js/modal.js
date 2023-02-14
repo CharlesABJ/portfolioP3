@@ -11,7 +11,7 @@ let triggerButtons = document.querySelectorAll(".modal-trigger");
 let deleteWorksModal = document.querySelector(".delete-works-modal");
 let addWorksModal = document.querySelector(".add-works-modal");
 let overlayModal = document.querySelectorAll(".overlay");
-let allowedExtensions = [".jpe?g", ".png"];
+let allowedExtensions = ["jpg", ".jpeg", ".png"];
 let maxFileSize = 4 * 1024 * 1024; //4Mo
 // modale portrait
 const inputPortrait = document.getElementById("portrait");
@@ -93,13 +93,13 @@ logout.addEventListener("click", function () {
 // Affichage des images
 for (let inputImage of inputImages) {
   inputImage.addEventListener("change", function () {
-    if (!inputImage.files[0]) return
-    // if (!allowedExtensions.some()){}
-    let file = inputImage.files[0]; 
-    if (file.src){
-      alert(`Veuillez mettre une image "jpg" ou "png"`)
+    if (!inputImage.files[0]) return; 
+    let file = inputImage.files[0];
+    if (!allowedExtensions.some(e => file.name.toLowerCase().endsWith(e))) {
+      alert(`Veuillez mettre une image "jpg" ou "png"`);
       return;
     }
+   
     if (file.size > maxFileSize) {
       alert("Image trop volumineuse !");
       return;
@@ -123,10 +123,10 @@ for (let inputImage of inputImages) {
 }
 
 //  Modale portrait
-if (inputPortrait.value !== "") {
-  submitPortrait.classList.add("modal-trigger");
-}
 submitPortrait.addEventListener("click", function () {
+   if (!inputPortrait.files[0]) {
+ submitPortrait.classList.remove("modal-trigger"); return
+}
   let reader = new FileReader();
   reader.onload = function () {
     newPortrait.src = reader.result;

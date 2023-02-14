@@ -423,6 +423,7 @@ main {
     min-width: 320px;
     margin: 0 auto;
     display: none;
+    z-index: 1;
 }
 
 .active-modal {
@@ -507,6 +508,7 @@ main {
 /* Présentation */
 .modal-container .modal textarea {
     resize: none;
+    max-width: 80%;
     padding: 10px;
     border: #288574 solid 2px;
     border-radius: 3px;
@@ -799,6 +801,33 @@ footer nav a:hover {
     #contact {
         width: 80%;
     }
+
+}
+
+
+@media screen and (max-width: 677px) {
+    .modal-container .modal h3 {
+    font-size: 14px;
+}
+
+.upload-image-zone label {
+    position: absolute;
+    opacity: 0;
+}
+
+.upload-image-zone p {
+    font-size: 8px;
+}
+
+.modal-container .modal button {
+    padding: 10px 31px;
+    margin: 2px;
+    font-size: 10px;
+}
+
+.modal-container .add-works-modal form{
+    font-size: 10px;
+}
 
 }
 
