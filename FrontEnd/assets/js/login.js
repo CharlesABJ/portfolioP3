@@ -19,7 +19,6 @@ for (let eye of eyes) {
 }
 
 // Appel de l'API en POST lors de la validation du formulaire pour assurer la connection de l'utilisateur
-
 form.addEventListener("submit", async (submitButton) => {
   submitButton.preventDefault();
 
