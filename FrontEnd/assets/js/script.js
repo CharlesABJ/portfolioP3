@@ -15,7 +15,6 @@ async function getWorks() {
   try {
     const response = await fetch(worksApi);
     data = await response.json();
-    // localStorage.setItem("data", JSON.stringify(data)) //Création d'un item data permettant d'eviter de relancer l'appel fetch pour l'affichage des travaux en GET
 
     for (let i in data) {
       let figure = document.createElement("figure");
