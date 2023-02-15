@@ -692,7 +692,6 @@ main {
 
 .modal-container .add-works-modal button.completed {
     background: #1D6154;
-    padding: 10px 100px;
 }
 
 .modal-container .add-works-modal button.completed:hover {
