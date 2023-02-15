@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sophie Bluel - Architecte d'intérieur</title>
+    <link rel="icon" href="./assets/icons/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,23 +42,23 @@
 
     <main>
 
-        <section id="introduction">
+        <div id="introduction">
 
             <figure>
                 <img class="img-portrait portrait" src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
-                <img class="img-portrait new-portrait">
+                <img class="img-portrait new-portrait" src="./assets/icons/logo.png" alt="Sophie Bluel">
                 <figcaption>
-                    <p class="modal-trigger hidden" data-modal="edit-portrait"><img class="edit-icon"
+                    <span class="modal-trigger hidden" data-modal="edit-portrait"><img class="edit-icon"
                             src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
-                    </p>
+                    </span>
                 </figcaption>
             </figure>
 
             <article>
                 <h2>
-                    <p class="modal-trigger hidden" data-modal="edit-presentation"><img class="edit-icon"
+                    <span class="modal-trigger hidden" data-modal="edit-presentation"><img class="edit-icon"
                             src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
-                    </p><span class="title">Designer d'espace</span>
+                    </span><span class="title">Designer d'espace</span>
                 </h2>
                 <p class="old-text-presentation">Je raconte votre histoire, je valorise vos idées. Je vous accompagne de
                     la conception à la livraison
@@ -70,14 +71,14 @@
                 <p class="new-text-presentation"></p>
             </article>
 
-        </section>
+        </div>
 
         <section id="portfolio">
 
             <h2><span class="title">Mes Projets</span>
-                <p data-modal="edit-works" class="modal-trigger hidden edit-works"><img class="edit-icon"
+                <span data-modal="edit-works" class="modal-trigger hidden edit-works"><img class="edit-icon"
                         src="./assets/icons/icon-edit-black.svg" alt="icone edition"><span>modifier</span>
-                </p>
+                </span>
             </h2>
             <ul class="filters">
                 <li class="elements-filter all active">Tous</li>
@@ -128,16 +129,16 @@
         <div class="overlay modal-trigger"></div>
         <div class="modal">
             <div class="leave-trigger-zone">
-                <img class="modal-trigger" src="./assets/icons/croce.png">
+                <img class="modal-trigger" src="./assets/icons/croce.png" alt="déclencheur">
             </div>
             <h3>Modifier le portrait</h3>
             <form method="POST" class="upload-edit-portrait">
                 <div class="upload-image-zone">
-                    <img class="hidden-to-preview" src="./assets/icons/picture.svg">
+                    <img class="hidden-to-preview" src="./assets/icons/picture.svg" alt="icone photo">
                     <label class="hidden-to-preview special" for="portrait">+ Ajouter photo</label>
                     <input type="file" name="portrait" id="portrait" class="image-input">
                     <p class="hidden-to-preview">jpg, png : 4mo max</p>
-                    <img class="preview-image portrait">
+                    <img class="preview-image portrait" src="./assets/icons/logo.png" alt="Sophie Bluel">
                 </div>
             </form>
             <hr>
@@ -151,7 +152,7 @@
         <div class="overlay modal-trigger"></div>
         <div class="modal">
             <div class="leave-trigger-zone">
-                <img class="modal-trigger" src="./assets/icons/croce.png">
+                <img class="modal-trigger" src="./assets/icons/croce.png" alt="croix">
             </div>
             <h3>Modifier la présentation</h3>
             <textarea name="presentation" id="presentation" cols="45" rows="10"></textarea>
@@ -170,17 +171,17 @@
         <div class="modal add-works-modal modal-hidden">
             <div class="leave-trigger-zone">
                 <i class="fa-solid fa-arrow-left back-button"></i>
-                <img class="modal-trigger" src="./assets/icons/croce.png">
+                <img class="modal-trigger" src="./assets/icons/croce.png" alt="croix">
             </div>
             <form method="POST" class="upload-edit-gallery">
                 <div class="upload-image-zone">
-                    <img class="hidden-to-preview" src="./assets/icons/picture.svg">
+                    <img class="hidden-to-preview" src="./assets/icons/picture.svg" alt="icone photo">
                     <label class="hidden-to-preview special" for="file-input">+ Ajouter photo</label>
                     <input type="file" id="file-input" class="image-input" name="fileInput">
                     <p class="hidden-to-preview">jpg, png : 4mo max</p>
-                    <img class="preview-image">
+                    <img class="preview-image" src="./assets/icons/logo.png" alt="photo d'un travail">
                 </div>
-                <label for="title">Titre</label>
+                <label for="title-input">Titre</label>
                 <input type="text" name="title" id="title-input">
                 <label for="categories">Catégorie</label>
 
@@ -196,7 +197,7 @@
         <!-- supprimer des travaux -->
         <div class="modal delete-works-modal">
             <div class="leave-trigger-zone">
-                <img class="modal-trigger" src="./assets/icons/croce.png">
+                <img class="modal-trigger" src="./assets/icons/croce.png" alt="déclencheur">
             </div>
             <h3>Galerie photo</h3>
             <div class="edit-gallery-grid">

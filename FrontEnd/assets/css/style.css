@@ -211,7 +211,7 @@ main {
 }
 
 
-#introduction figure .img-portrait{
+#introduction figure .img-portrait {
     height: 100%;
     width: 100%;
     max-width: 475px;
@@ -219,7 +219,7 @@ main {
     display: none;
 }
 
-#introduction figure .portrait{
+#introduction figure .portrait {
     display: block;
 }
 
@@ -481,7 +481,7 @@ main {
     padding: 10px 15px;
 }
 
-.modal-container .modal .leave-trigger-zone img{
+.modal-container .modal .leave-trigger-zone img {
     width: 20px;
     margin: 0;
 }
@@ -705,7 +705,7 @@ main {
     background: #288574;
 }
 
-.modal-hidden{
+.modal-hidden {
     display: none !important;
 }
 
@@ -762,7 +762,7 @@ footer nav a:hover {
     display: none !important;
 }
 
-.image-input-value{
+.image-input-value {
     display: none;
 }
 
@@ -807,27 +807,27 @@ footer nav a:hover {
 
 @media screen and (max-width: 677px) {
     .modal-container .modal h3 {
-    font-size: 14px;
-}
+        font-size: 14px;
+    }
 
-.upload-image-zone label {
-    position: absolute;
-    opacity: 0;
-}
+    .upload-image-zone label {
+        position: absolute;
+        opacity: 0 !important;
+    }
 
-.upload-image-zone p {
-    font-size: 8px;
-}
+    .upload-image-zone p {
+        font-size: 8px;
+    }
 
-.modal-container .modal button {
-    padding: 10px 31px;
-    margin: 2px;
-    font-size: 10px;
-}
+    .modal-container .modal button {
+        padding: 10px 31px;
+        margin: 2px;
+        font-size: 10px;
+    }
 
-.modal-container .add-works-modal form{
-    font-size: 10px;
-}
+    .modal-container .add-works-modal form {
+        font-size: 10px;
+    }
 
 }
 
@@ -886,11 +886,12 @@ footer nav a:hover {
         color: #1D6154;
     }
 
-    header.background-responsive h1 a, header.background-responsive nav a{
+    header.background-responsive h1 a,
+    header.background-responsive nav a {
         color: #ffffff;
     }
 
-    header.background-responsive .header-nav{
+    header.background-responsive .header-nav {
         display: flex;
     }
 

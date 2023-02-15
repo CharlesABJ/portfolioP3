@@ -93,13 +93,13 @@ logout.addEventListener("click", function () {
 // Affichage des images
 for (let inputImage of inputImages) {
   inputImage.addEventListener("change", function () {
-    if (!inputImage.files[0]) return; 
     let file = inputImage.files[0];
-    if (!allowedExtensions.some(e => file.name.toLowerCase().endsWith(e))) {
+
+    if (!allowedExtensions.some((e) => file.name.toLowerCase().endsWith(e))) {
       alert(`Veuillez mettre une image "jpg" ou "png"`);
       return;
     }
-   
+
     if (file.size > maxFileSize) {
       alert("Image trop volumineuse !");
       return;
@@ -124,9 +124,6 @@ for (let inputImage of inputImages) {
 
 //  Modale portrait
 submitPortrait.addEventListener("click", function () {
-   if (!inputPortrait.files[0]) {
- submitPortrait.classList.remove("modal-trigger"); return
-}
   let reader = new FileReader();
   reader.onload = function () {
     newPortrait.src = reader.result;
