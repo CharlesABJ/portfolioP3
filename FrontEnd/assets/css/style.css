@@ -195,6 +195,7 @@ main {
     padding: 0 2rem;
 }
 
+
 /* ====== Introduction ====== */
 #introduction {
     display: flex;
@@ -210,7 +211,6 @@ main {
     align-self: start;
 }
 
-
 #introduction figure .img-portrait {
     height: 100%;
     width: 100%;
@@ -222,7 +222,6 @@ main {
 #introduction figure .portrait {
     display: block;
 }
-
 
 #introduction article {
     width: 404px;
@@ -239,7 +238,6 @@ main {
     display: flex;
     flex-direction: column;
 }
-
 
 #introduction article p {
     margin: 0 0 20px;
@@ -297,7 +295,6 @@ main {
     transition: 0.3s all;
 }
 
-
 #portfolio .filters .active {
     background: #1D6154;
     color: #ffffff;
@@ -329,7 +326,7 @@ main {
 
 #portfolio .gallery .gallery-grid figure:hover {
     width: 100%;
-    transform: scale(1.02);
+    transform: scale(1.01);
     transition: 0.3s;
 }
 
@@ -471,7 +468,6 @@ main {
 }
 
 
-
 .modal-container .modal .leave-trigger-zone {
     display: flex;
     width: 100%;
@@ -493,6 +489,51 @@ main {
 }
 
 
+.modal-container .modal .upload-image-zone {
+    background-color: #E8F1F6;
+    width: 100%;
+    height: max-content;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.modal-container .modal .upload-image-zone img {
+    width: 70px;
+}
+
+.modal-container .modal .upload-image-zone input {
+    display: none;
+}
+
+.modal-container .modal .upload-image-zone .preview-image {
+    position: absolute;
+    object-fit: contain;
+    height: 175px;
+    width: 50%;
+    display: none;
+}
+
+.modal-container .modal .upload-image-zone label {
+    background-color: #CBD6DC;
+    color: #306685;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.modal-container .modal .upload-image-zone .preview-image {
+    height: 100%;
+    object-fit: cover;
+}
+
+
 /* Portrait */
 .modal-container .modal form {
     width: 67%;
@@ -502,8 +543,6 @@ main {
     margin: 10px;
     z-index: 5;
 }
-
-
 
 /* Présentation */
 .modal-container .modal textarea {
@@ -528,11 +567,14 @@ main {
 
 .modal-container .modal .edit-gallery-grid figure {
     width: 100%;
+    height: 80%;
     position: relative;
 }
 
-.modal-container .modal .edit-gallery-grid figure img {
+.modal-container .modal .edit-gallery-grid figure>img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .modal-container .modal .edit-gallery-grid figure .trash-zone {
@@ -558,7 +600,6 @@ main {
     width: 11px;
     transition: 0.3s all;
 }
-
 
 .modal-container .modal .edit-gallery-grid figure figcaption {
     padding: 3px 0 5px;
@@ -620,53 +661,6 @@ main {
     padding: 10px 15px;
 }
 
-.upload-image-zone {
-    background-color: #E8F1F6;
-    width: 100%;
-    height: max-content;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 10px 0;
-    position: relative;
-}
-
-.upload-image-zone img {
-    width: 70px;
-}
-
-.upload-image-zone input {
-    display: none;
-}
-
-
-.upload-image-zone .preview-image {
-    position: absolute;
-    object-fit: contain;
-    height: 175px;
-    width: 50%;
-    display: none;
-}
-
-.upload-image-zone label {
-    background-color: #CBD6DC;
-    color: #306685;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-
-.preview-image {
-
-    height: 100%;
-    object-fit: cover;
-}
-
 .modal-container .add-works-modal form label {
     font-weight: bold;
     margin: 10px 0;
@@ -705,8 +699,8 @@ main {
     background: #288574;
 }
 
-.modal-hidden {
-    display: none !important;
+.modal-container .modal-hidden {
+    display: none;
 }
 
 /* >==================== MODALE OFF ====================> */
@@ -762,9 +756,6 @@ footer nav a:hover {
     display: none !important;
 }
 
-.image-input-value {
-    display: none;
-}
 
 /* ----------------------RESPONSIVE-ON<--------------------------- */
 @media screen and (max-width: 991px) {
@@ -783,6 +774,14 @@ footer nav a:hover {
         margin: 0 15px;
     }
 
+    #portfolio {
+        margin-top: 40px;
+    }
+
+    #portfolio .gallery .gallery-grid figure img {
+        max-height: 300px;
+    }
+
     .modal-trigger span {
         display: none;
     }
@@ -796,6 +795,10 @@ footer nav a:hover {
 
     #portfolio .filters li {
         width: 47%;
+    }
+
+    #portfolio .gallery .gallery-grid figure img {
+        max-height: 200px;
     }
 
     #contact {
@@ -834,10 +837,6 @@ footer nav a:hover {
 
 @media screen and (max-width: 605px) {
 
-    .edition-mode {
-        z-index: 2;
-    }
-
     header {
         margin-bottom: 30px;
         align-items: baseline;
@@ -855,21 +854,18 @@ footer nav a:hover {
         z-index: 1;
     }
 
-
-
-
     header .logo .bubble-nav {
         display: block;
     }
 
-    header nav {
+    header .header-nav {
         width: 100%;
         padding-top: 50px;
         text-align: center;
         display: none;
     }
 
-    header nav ul {
+    header .header-nav ul {
         flex-direction: column;
         width: 100%;
         height: calc(100vh - 65px);
@@ -877,17 +873,17 @@ footer nav a:hover {
 
     }
 
-    header nav ul li a {
+    header .header-nav ul li a {
         font-size: 20px;
         color: #ffffff;
     }
 
-    header nav ul li a:hover {
+    header .header-nav ul li a:hover {
         color: #1D6154;
     }
 
     header.background-responsive h1 a,
-    header.background-responsive nav a {
+    header.background-responsive .header-nav a {
         color: #ffffff;
     }
 
@@ -896,11 +892,19 @@ footer nav a:hover {
     }
 
 
-
-
     #introduction {
         margin-bottom: 0;
     }
+
+    #introduction article h2,
+    #contact h2 {
+        font-size: 25px;
+    }
+
+    #introduction article p {
+        font-size: 12px;
+    }
+
 
     #portfolio {
         margin: 0;
@@ -910,25 +914,19 @@ footer nav a:hover {
         width: 45%;
         font-size: 10px;
         overflow: hidden;
+    }
 
+    #portfolio .gallery .gallery-grid figure img {
+        max-height: 100px;
     }
 
     #portfolio .gallery .gallery-grid figure figcaption {
         font-size: 10px;
     }
 
-    #introduction article h2,
-    #contact h2 {
-        font-size: 25px;
-    }
-
     #portfolio h2 {
         font-size: 25px;
         margin-bottom: 20px;
-    }
-
-    #introduction article p {
-        font-size: 12px;
     }
 
 
