@@ -157,7 +157,6 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 0 2rem;
-
 }
 
 
@@ -169,7 +168,7 @@ main h2 {
 }
 
 main .error-connect {
-    color: rgb(255, 30, 0);
+    color: #ff1e00;
     font-weight: bold;
     padding: 40px 0 30px;
 }
@@ -205,9 +204,6 @@ main form .password-zone {
 
 main form .password-zone .eyes{
     cursor: pointer;
-}
-
-main form .password-zone .eye-closed {
     position: absolute;
     top: 50%;
     right: 7%;
@@ -216,14 +212,10 @@ main form .password-zone .eye-closed {
 }
 
 main form .password-zone .eye-open {
-    position: absolute;
-    top: 50%;
-    right: 7.5%;
-    transform: translate(-50%, -50%);
-    color: #1D6154;
+    right: 7.3%;
 }
 
-.hidden {
+main form .password-zone .hidden {
     display: none;
 }
 
@@ -242,7 +234,7 @@ main form button {
 
 main form a {
     color: #000000;
-    transition: 0.s all;
+    transition: 0.3s all;
 }
 
 main form a:hover {
