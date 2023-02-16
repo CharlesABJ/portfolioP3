@@ -1,3 +1,5 @@
+// import { getWorks } from "./script";
+
 // Variables login, logout & mode edition
 const userToken = sessionStorage.getItem("token");
 const login = document.querySelector(".login");
@@ -30,6 +32,7 @@ const backButton = document.querySelector(".back-button");
 const deletAllWorksButton = document.querySelector(".delete-all-works-button");
 const modalInputs = document.querySelectorAll(".add-works-modal input");
 const modalSelects = document.querySelectorAll(".add-works-modal select");
+const formAddWorks = document.querySelector(".upload-edit-gallery");
 const imgInput = document.getElementById("file-input");
 const titleInput = document.getElementById("title-input");
 const select = document.querySelector("select");
@@ -143,7 +146,9 @@ submitPortrait.addEventListener("click", function () {
 submitTextPresentation.addEventListener("click", function () {
   if (inputModalPresentation.value.trim() !== "") {
     oldTextPresentation.remove();
-  }  else {return}
+  } else {
+    return;
+  }
   newTextPresentation.innerHTML = inputModalPresentation.value.replace(
     /\n/g,
     "<br/>"
@@ -205,7 +210,9 @@ async function deleteWork(workId) {
       fetchInit
     );
     if (response.ok) {
+      await getWorksInModal();
       console.log("L'élément a été supprimé avec succès");
+      // getWorks()
     } else throw new Error("Erreur lors de la suppression de l'élément");
   } catch (error) {
     console.error(error);
@@ -217,7 +224,6 @@ function initDeleteWorks() {
   for (let trash of trashIcons) {
     trash.addEventListener("click", function () {
       const workId = trash.getAttribute("data-id");
-      console.log("curieux");
       deleteWork(workId);
     });
   }
@@ -241,13 +247,13 @@ function initDeleteWorks() {
   });
 }
 
-
 // Accéder à la modale servant à ajouter un travail
 addWorkButton.addEventListener("click", async function () {
   deleteWorksModal.classList.add("modal-hidden");
   addWorksModal.classList.remove("modal-hidden");
 });
 
+// Ajouter dynamiquemet les catégories dans les options de select
 async function getCategoryOnSelect() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
@@ -272,7 +278,7 @@ backButton.addEventListener("click", function () {
   deleteWorksModal.classList.remove("modal-hidden");
 });
 
-// Changer le boutton de confirmation lorsque les champs sont remplis
+// Changer la couleur du boutton de confirmation lorsque les champs sont remplis
 function updateConfirmButton() {
   if (
     titleInput.value.trim() !== "" &&
@@ -294,7 +300,8 @@ for (let option of modalSelects) {
 }
 
 // Création d'un projet lorsqu'on clique sur le bouton de validation
-confirmAddWorkButton.addEventListener("click", async function () {
+formAddWorks.addEventListener("submit", async function (event) {
+  event.preventDefault();
   if (confirmAddWorkButton.classList.contains("completed")) {
     const postApi = "http://localhost:5678/api/works";
 
@@ -308,7 +315,6 @@ confirmAddWorkButton.addEventListener("click", async function () {
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${userToken}`,
-        // "Content-Type": "multipart/form-data",
       },
       body: formData,
     };
@@ -327,11 +333,15 @@ confirmAddWorkButton.addEventListener("click", async function () {
 
         galleryGrid.append(figure);
         figure.append(figcaption);
+
+        removePreviewImage();
+        getWorksInModal();
+      // getWorks()
       }
     } catch (error) {
       console.error(error);
     }
   } else {
-    console.log("Veuillez remplir tous les champs");
+    alert("Veuillez remplir tous les champs");
   }
 });

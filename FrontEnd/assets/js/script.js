@@ -11,6 +11,7 @@ let all = document.querySelector(".all");
 // Appel des travaux via l'API en GET
 let worksApi = "http://localhost:5678/api/works";
 
+// export 
 async function getWorks() {
   try {
     const response = await fetch(worksApi);
