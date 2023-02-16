@@ -70,7 +70,6 @@ for (let button of triggerButtons) {
   });
 }
 
-
 //  Modale déconnexion
 logout.addEventListener("click", function () {
   logout.style.display = "none";
@@ -82,7 +81,7 @@ logout.addEventListener("click", function () {
   location.href = "index.html";
 });
 
-// Affichage des images
+// Prévisualiser l'image dans la modale
 for (let inputImage of inputImages) {
   inputImage.addEventListener("change", function () {
     const file = inputImage.files[0];
@@ -96,7 +95,10 @@ for (let inputImage of inputImages) {
       alert("Image trop volumineuse !");
       return;
     }
-    const reader = new FileReader();
+
+    let reader = new FileReader();
+    reader.readAsDataURL(inputImage.files[0]);
+
     reader.onload = function () {
       for (let image of previewImages) {
         image.src = reader.result;
@@ -107,23 +109,14 @@ for (let inputImage of inputImages) {
       e.style.opacity = "0";
     });
 
-    reader.readAsDataURL(inputImage.files[0]);
     for (let image of previewImages) {
       image.style.display = "block";
     }
   });
 }
 
-//  Modale portrait
-submitPortrait.addEventListener("click", function () {
-  const reader = new FileReader();
-  reader.onload = function () {
-    newPortrait.src = reader.result;
-  };
-
-  reader.readAsDataURL(inputPortrait.files[0]);
-  imgPortrait.style.display = "none";
-  newPortrait.style.display = "block";
+//  Retirer l'image uploadée de la modale
+function removePreviewImage() {
   document.querySelectorAll(".hidden-to-preview").forEach((e) => {
     e.style.opacity = "1";
   });
@@ -131,12 +124,25 @@ submitPortrait.addEventListener("click", function () {
     image.src = "";
     image.style.display = "none";
   }
+}
+
+//  Remplacer le portrait par l'image uploadée
+submitPortrait.addEventListener("click", function () {
+  removePreviewImage();
+  const reader = new FileReader();
+  reader.readAsDataURL(inputPortrait.files[0]);
+  reader.onload = function () {
+    newPortrait.src = reader.result;
+  };
+
+  imgPortrait.style.display = "none";
+  newPortrait.style.display = "block";
 });
 
 //  Modale présentation
 submitTextPresentation.addEventListener("click", function () {
   if (inputModalPresentation.value.trim() !== "") {
-    oldTextPresentation.style.display = "none";
+    oldTextPresentation.remove();
   }
   newTextPresentation.innerHTML = inputModalPresentation.value.replace(
     /\n/g,
@@ -145,56 +151,6 @@ submitTextPresentation.addEventListener("click", function () {
 });
 
 // MODALES GESTION DE TRAVAUX
-
-// Supprimer un travail
-async function deleteWork(workId) {
-  try {
-    const fetchInit = {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${userToken}`,
-      },
-    };
-
-    const response = await fetch(
-      `http://localhost:5678/api/works/${workId}`,
-      fetchInit
-    );
-    if (!response.ok) {
-      throw new Error("Erreur lors de la suppression de l'élément");
-    }
-    console.log("L'élément a été supprimé avec succès");
-  } catch (error) {
-    console.error(error);
-  }
-}
-function initDeleteWorks() {
-  // pour un travail
-  for (let trash of trashIcons) {
-    trash.addEventListener("click", function () {
-      const workId = trash.getAttribute("data-id");
-      deleteWork(workId);
-    });
-  }
-
-  // pour tous les travaux
-  deletAllWorksButton.addEventListener("click", async function () {
-    if (confirm("Êtes-vous sûr de vouloir supprimer tout les travaux ?")) {
-      try {
-        for (let i in data) {
-          const workId = data[i].id;
-
-          deleteWork(workId);
-        }
-        if (!response.ok) {
-          throw new Error("Erreur lors de la suppression des éléments");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  });
-}
 
 // Appel de l'API
 const worksModalApi = "http://localhost:5678/api/works";
@@ -233,6 +189,58 @@ async function getWorksInModal() {
   }
 }
 getWorksInModal();
+
+// Supprimer des travaux
+async function deleteWork(workId) {
+  try {
+    const fetchInit = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+
+    const response = await fetch(
+      `http://localhost:5678/api/works/${workId}`,
+      fetchInit
+    );
+    if (response.ok) {
+      console.log("L'élément a été supprimé avec succès");
+    } else throw new Error("Erreur lors de la suppression de l'élément");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function initDeleteWorks() {
+  // pour un travail
+  for (let trash of trashIcons) {
+    trash.addEventListener("click", function () {
+      const workId = trash.getAttribute("data-id");
+      console.log("curieux");
+      deleteWork(workId);
+    });
+  }
+
+  // pour tous les travaux
+  deletAllWorksButton.addEventListener("click", async function () {
+    if (confirm("Êtes-vous sûr de vouloir supprimer tout les travaux ?")) {
+      try {
+        for (let i in data) {
+          const workId = data[i].id;
+
+          deleteWork(workId);
+        }
+        if (!response.ok) {
+          throw new Error("Erreur lors de la suppression des éléments");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+}
+
 
 // Accéder à la modale servant à ajouter un travail
 addWorkButton.addEventListener("click", async function () {
