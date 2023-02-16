@@ -143,7 +143,7 @@ submitPortrait.addEventListener("click", function () {
 submitTextPresentation.addEventListener("click", function () {
   if (inputModalPresentation.value.trim() !== "") {
     oldTextPresentation.remove();
-  }
+  }  else {return}
   newTextPresentation.innerHTML = inputModalPresentation.value.replace(
     /\n/g,
     "<br/>"
