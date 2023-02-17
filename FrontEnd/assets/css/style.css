@@ -242,7 +242,7 @@ main {
 #introduction article p {
     margin: 0 0 20px;
     display: flex;
-    flex-wrap: wrap;
+    word-break: break-all;
 }
 
 
@@ -660,6 +660,10 @@ main {
     padding: 10px 15px;
 }
 
+.modal-container .add-works-modal .leave-trigger-zone i{
+   cursor: pointer;
+}
+
 .modal-container .add-works-modal form label {
     font-weight: bold;
     margin: 10px 0;
@@ -678,6 +682,11 @@ main {
     outline-color: #8EAFA6;
     padding: 12px;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    appearance: none;
+    background: url("../icons/arrow.png");
+    background-repeat: no-repeat;
+    background-position: right 12px top 50%;
+
 }
 
 .modal-container .add-works-modal form hr {

@@ -1,4 +1,4 @@
-// import { getWorks } from "./script";
+import { getWorks } from "./script.js";
 
 // Variables login, logout & mode edition
 const userToken = sessionStorage.getItem("token");
@@ -160,6 +160,8 @@ submitTextPresentation.addEventListener("click", function () {
 // Appel de l'API
 const worksModalApi = "http://localhost:5678/api/works";
 async function getWorksInModal() {
+  let response;
+  let data;
   try {
     response = await fetch(worksModalApi);
     data = await response.json();
@@ -210,9 +212,9 @@ async function deleteWork(workId) {
       fetchInit
     );
     if (response.ok) {
-      await getWorksInModal();
+      getWorksInModal();
+      getWorks()
       console.log("L'élément a été supprimé avec succès");
-      // getWorks()
     } else throw new Error("Erreur lors de la suppression de l'élément");
   } catch (error) {
     console.error(error);
@@ -222,7 +224,7 @@ async function deleteWork(workId) {
 function initDeleteWorks() {
   // pour un travail
   for (let trash of trashIcons) {
-    trash.addEventListener("click", function () {
+    trash.addEventListener("click", function (e) {
       const workId = trash.getAttribute("data-id");
       deleteWork(workId);
     });
@@ -272,11 +274,13 @@ async function getCategoryOnSelect() {
 }
 getCategoryOnSelect();
 
-// Retourner sur l'ancienne modale
-backButton.addEventListener("click", function () {
+// Retourner sur la modale modale servant à supprimer des travaux
+function backToDeleteModal() {
   addWorksModal.classList.add("modal-hidden");
   deleteWorksModal.classList.remove("modal-hidden");
-});
+}
+
+backButton.addEventListener("click", backToDeleteModal)
 
 // Changer la couleur du boutton de confirmation lorsque les champs sont remplis
 function updateConfirmButton() {
@@ -334,9 +338,8 @@ formAddWorks.addEventListener("submit", async function (event) {
         galleryGrid.append(figure);
         figure.append(figcaption);
 
-        removePreviewImage();
-        getWorksInModal();
-      // getWorks()
+        getWorksInModal()
+        getWorks()
       }
     } catch (error) {
       console.error(error);
