@@ -12,10 +12,9 @@ let all = document.querySelector(".all");
 let worksApi = "http://localhost:5678/api/works";
 
 export async function getWorks() {
-  let data
   try {
     const response = await fetch(worksApi);
-    data = await response.json();
+    const data = await response.json();
 
     for (let i in data) {
       let figure = document.createElement("figure");

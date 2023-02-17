@@ -26,6 +26,7 @@ const newTextPresentation = document.querySelector(".new-text-presentation");
 const submitTextPresentation = document.querySelector(".submit-textarea");
 
 // modale gestion de travaux
+const galleryGrid = document.querySelector(".gallery-grid");
 const editGalleryGrid = document.querySelector(".edit-gallery-grid");
 const trashIcons = [];
 const backButton = document.querySelector(".back-button");
@@ -44,7 +45,7 @@ const previewImages = document.querySelectorAll(".preview-image");
 
 //=======================================================================
 
-// identification du token
+// identification du token pour afficher le mode édition
 if (userToken) {
   for (let element of hiddenElements) {
     element.classList.remove("hidden");
@@ -53,7 +54,7 @@ if (userToken) {
 }
 
 // MODALES
-
+// Faire apparaître et disparaître les modales grâce aux boutons déclencheurs
 for (let button of triggerButtons) {
   button.addEventListener("click", function () {
     if (header.classList.contains("background-responsive")) {
@@ -73,7 +74,7 @@ for (let button of triggerButtons) {
   });
 }
 
-//  Modale déconnexion
+//  Modale de déconnexion
 logout.addEventListener("click", function () {
   logout.style.display = "none";
   login.style.display = "block";
@@ -84,7 +85,7 @@ logout.addEventListener("click", function () {
   location.href = "index.html";
 });
 
-// Prévisualiser l'image dans la modale
+// Prévisualiser l'image uploadée dans la modale
 for (let inputImage of inputImages) {
   inputImage.addEventListener("change", function () {
     const file = inputImage.files[0];
@@ -118,7 +119,7 @@ for (let inputImage of inputImages) {
   });
 }
 
-//  Retirer l'image uploadée de la modale
+//  Retirer l'image uploadée dans la modale
 function removePreviewImage() {
   document.querySelectorAll(".hidden-to-preview").forEach((e) => {
     e.style.opacity = "1";
@@ -138,16 +139,16 @@ submitPortrait.addEventListener("click", function () {
     newPortrait.src = reader.result;
   };
 
-  imgPortrait.style.display = "none";
+  imgPortrait.remove();
   newPortrait.style.display = "block";
 });
 
 //  Modale présentation
 submitTextPresentation.addEventListener("click", function () {
-  if (inputModalPresentation.value.trim() !== "") {
-    oldTextPresentation.remove();
-  } else {
+  if (inputModalPresentation.value.trim() == "") {
     return;
+  } else {
+    oldTextPresentation.remove();
   }
   newTextPresentation.innerHTML = inputModalPresentation.value.replace(
     /\n/g,
@@ -156,16 +157,12 @@ submitTextPresentation.addEventListener("click", function () {
 });
 
 // MODALES GESTION DE TRAVAUX
-
 // Appel de l'API
 const worksModalApi = "http://localhost:5678/api/works";
+const response = await fetch(worksModalApi);
+const data = await response.json();
 async function getWorksInModal() {
-  let response;
-  let data;
   try {
-    response = await fetch(worksModalApi);
-    data = await response.json();
-
     for (let i in data) {
       const figure = document.createElement("figure");
       const img = document.createElement("img");
@@ -212,8 +209,6 @@ async function deleteWork(workId) {
       fetchInit
     );
     if (response.ok) {
-      getWorksInModal();
-      getWorks()
       console.log("L'élément a été supprimé avec succès");
     } else throw new Error("Erreur lors de la suppression de l'élément");
   } catch (error) {
@@ -224,7 +219,7 @@ async function deleteWork(workId) {
 function initDeleteWorks() {
   // pour un travail
   for (let trash of trashIcons) {
-    trash.addEventListener("click", function (e) {
+    trash.addEventListener("click", function () {
       const workId = trash.getAttribute("data-id");
       deleteWork(workId);
     });
@@ -236,7 +231,6 @@ function initDeleteWorks() {
       try {
         for (let i in data) {
           const workId = data[i].id;
-
           deleteWork(workId);
         }
         if (!response.ok) {
@@ -254,6 +248,13 @@ addWorkButton.addEventListener("click", async function () {
   deleteWorksModal.classList.add("modal-hidden");
   addWorksModal.classList.remove("modal-hidden");
 });
+
+// Retourner sur la modale modale servant à supprimer des travaux
+function backToDeleteWorksModal() {
+  addWorksModal.classList.add("modal-hidden");
+  deleteWorksModal.classList.remove("modal-hidden");
+}
+backButton.addEventListener("click", backToDeleteWorksModal);
 
 // Ajouter dynamiquemet les catégories dans les options de select
 async function getCategoryOnSelect() {
@@ -273,14 +274,6 @@ async function getCategoryOnSelect() {
   }
 }
 getCategoryOnSelect();
-
-// Retourner sur la modale modale servant à supprimer des travaux
-function backToDeleteModal() {
-  addWorksModal.classList.add("modal-hidden");
-  deleteWorksModal.classList.remove("modal-hidden");
-}
-
-backButton.addEventListener("click", backToDeleteModal)
 
 // Changer la couleur du boutton de confirmation lorsque les champs sont remplis
 function updateConfirmButton() {
@@ -329,17 +322,24 @@ formAddWorks.addEventListener("submit", async function (event) {
         const img = document.createElement("img");
         const figcaption = document.createElement("figcaption");
 
-        figure.setAttribute("data-category-id", select.value);
-        img.setAttribute("src", imgInput.value);
-        img.setAttribute("alt", titleInput.value);
+        const reader = new FileReader();
+        reader.readAsDataURL(imgInput.files[0]);
+        reader.onload = function () {
+          img.src = reader.result;
+        };
 
+        figure.setAttribute("data-category-id", select.value);
+        img.setAttribute("alt", titleInput.value);
         figcaption.innerHTML = titleInput.value;
 
         galleryGrid.append(figure);
-        figure.append(figcaption);
+        figure.append(img, figcaption);
 
-        getWorksInModal()
-        getWorks()
+        removePreviewImage();
+        console.log(`${titleInput.value} a bien été ajouté aux travaux`);
+        titleInput.value = "";
+        select.value = "no-value";
+        backToDeleteWorksModal();
       }
     } catch (error) {
       console.error(error);
