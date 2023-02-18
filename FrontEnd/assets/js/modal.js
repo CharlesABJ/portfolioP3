@@ -209,6 +209,12 @@ async function deleteWork(workId) {
       fetchInit
     );
     if (response.ok) {
+      let figures = document.querySelectorAll("figure")
+      for (let figure of figures){
+        if (figure.getAttribute("data-id")=== workId){
+          figure.remove()
+        }
+      }
       console.log("L'élément a été supprimé avec succès");
     } else throw new Error("Erreur lors de la suppression de l'élément");
   } catch (error) {
