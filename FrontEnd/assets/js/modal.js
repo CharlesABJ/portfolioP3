@@ -355,7 +355,7 @@ formAddWorks.addEventListener("submit", async function (event) {
         console.log(`${titleInput.value} a bien été ajouté aux travaux`);
         titleInput.value = "";
         select.value = "no-value";
-
+        editGalleryGrid.innerHTML =""
         getWorksInModal()
       } 
     } catch (error) {
