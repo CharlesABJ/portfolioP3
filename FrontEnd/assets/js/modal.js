@@ -256,7 +256,7 @@ function backToDeleteWorksModal() {
 }
 backButton.addEventListener("click", backToDeleteWorksModal);
 
-// Ajouter dynamiquemet les catégories dans les options de select
+// Ajouter dynamiquement les catégories dans les options de select
 async function getCategoryOnSelect() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
@@ -326,6 +326,7 @@ formAddWorks.addEventListener("submit", async function (event) {
         reader.readAsDataURL(imgInput.files[0]);
         reader.onload = function () {
           img.src = reader.result;
+          cloneImg.src = reader.result;
         };
 
         figure.setAttribute("data-category-id", select.value);
@@ -334,6 +335,14 @@ formAddWorks.addEventListener("submit", async function (event) {
 
         galleryGrid.append(figure);
         figure.append(img, figcaption);
+
+        const cloneFigure = figure.cloneNode()
+        const cloneImg = img.cloneNode()
+        const cloneFigcaption = figcaption.cloneNode()
+        cloneFigcaption.innerHTML = titleInput.value;
+
+        editGalleryGrid.append(cloneFigure)
+        cloneFigure.append(cloneImg, cloneFigcaption);
 
         removePreviewImage();
         console.log(`${titleInput.value} a bien été ajouté aux travaux`);

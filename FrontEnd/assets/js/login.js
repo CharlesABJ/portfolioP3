@@ -1,11 +1,11 @@
 // Variables formulaire login
-let form = document.querySelector("form");
-let emailInput = document.getElementById("mail");
-let passwordInput = document.getElementById("password");
-let errorConnect = document.querySelector(".error-connect");
-let eyeClosed = document.querySelector(".eye-closed");
-let eyeOpen = document.querySelector(".eye-open");
-let eyes = document.querySelectorAll(".eyes");
+const form = document.querySelector("form");
+const emailInput = document.getElementById("mail");
+const passwordInput = document.getElementById("password");
+const errorConnect = document.querySelector(".error-connect");
+const eyeClosed = document.querySelector(".eye-closed");
+const eyeOpen = document.querySelector(".eye-open");
+const eyes = document.querySelectorAll(".eyes");
 
 //=======================================================================
 
@@ -22,8 +22,8 @@ for (let eye of eyes) {
 form.addEventListener("submit", async (submitButton) => {
   submitButton.preventDefault();
 
-  let loginApi = "http://localhost:5678/api/users/login";
-  let fetchInit = {
+  const loginApi = "http://localhost:5678/api/users/login";
+  const fetchInit = {
     method: "POST",
     headers: {
       accept: "application/json",

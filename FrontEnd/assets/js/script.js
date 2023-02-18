@@ -1,15 +1,15 @@
 // Variables travaux
-let galleryGrid = document.querySelector(".gallery-grid");
-let figures = [];
+const galleryGrid = document.querySelector(".gallery-grid");
+const figures = [];
 
 // Variables filtres
-let elementsFilter = document.querySelectorAll(".elements-filter");
-let all = document.querySelector(".all");
+const elementsFilter = document.querySelectorAll(".elements-filter");
+const all = document.querySelector(".all");
 
 //=======================================================================
 
 // Appel des travaux via l'API en GET
-let worksApi = "http://localhost:5678/api/works";
+const worksApi = "http://localhost:5678/api/works";
 
 export async function getWorks() {
   try {
@@ -17,9 +17,9 @@ export async function getWorks() {
     const data = await response.json();
 
     for (let i in data) {
-      let figure = document.createElement("figure");
-      let img = document.createElement("img");
-      let figcaption = document.createElement("figcaption");
+      const figure = document.createElement("figure");
+      const img = document.createElement("img");
+      const figcaption = document.createElement("figcaption");
 
       figure.setAttribute("data-category-id", data[i].category.id);
       figure.setAttribute("data-id", data[i].id);
