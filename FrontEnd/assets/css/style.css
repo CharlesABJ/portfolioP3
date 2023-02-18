@@ -213,8 +213,8 @@ main {
 
 #introduction figure .img-portrait {
     height: 100%;
-    width: 100%;
-    max-width: 475px;
+    width: 474px;
+    max-width: 100%;
     object-fit: cover;
     display: none;
 }
@@ -572,8 +572,8 @@ main {
 }
 
 .modal-container .modal .edit-gallery-grid figure>img {
-    width: 100%;
-    height: 100%;
+    width: 76px;
+    height: 102px;
     object-fit: cover;
 }
 
@@ -603,6 +603,7 @@ main {
 
 .modal-container .modal .edit-gallery-grid figure figcaption {
     padding: 3px 0 5px;
+    word-break: break-all;
     cursor: pointer;
 }
 

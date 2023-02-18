@@ -1,4 +1,4 @@
-import { getWorks } from "./script.js";
+const figuresWorks = document.querySelectorAll("figure.works");
 
 // Variables login, logout & mode edition
 const userToken = sessionStorage.getItem("token");
@@ -26,7 +26,7 @@ const newTextPresentation = document.querySelector(".new-text-presentation");
 const submitTextPresentation = document.querySelector(".submit-textarea");
 
 // modale gestion de travaux
-const galleryGrid = document.querySelector(".gallery-grid");
+// const galleryGrid = document.querySelector(".gallery-grid");
 const editGalleryGrid = document.querySelector(".edit-gallery-grid");
 const trashIcons = [];
 const backButton = document.querySelector(".back-button");
@@ -37,7 +37,6 @@ const formAddWorks = document.querySelector(".upload-edit-gallery");
 const imgInput = document.getElementById("file-input");
 const titleInput = document.getElementById("title-input");
 const select = document.querySelector("select");
-const option = document.querySelectorAll("option");
 const addWorkButton = document.querySelector(".add-work-button");
 const confirmAddWorkButton = document.querySelector(".confirm-add-work-button");
 const inputImages = document.querySelectorAll(".image-input");
@@ -158,10 +157,12 @@ submitTextPresentation.addEventListener("click", function () {
 
 // MODALES GESTION DE TRAVAUX
 // Appel de l'API
+let data 
+let response
 const worksModalApi = "http://localhost:5678/api/works";
-const response = await fetch(worksModalApi);
-const data = await response.json();
 async function getWorksInModal() {
+ response = await fetch(worksModalApi);
+ data = await response.json();
   try {
     for (let i in data) {
       const figure = document.createElement("figure");
@@ -172,6 +173,7 @@ async function getWorksInModal() {
 
       figure.setAttribute("data-category-id", data[i].category.id);
       figure.setAttribute("data-id", data[i].id);
+      figure.setAttribute("class", "works");
       img.setAttribute("src", data[i].imageUrl);
       img.setAttribute("alt", data[i].title);
       img.setAttribute("crossorigin", "anonymous");
@@ -209,13 +211,15 @@ async function deleteWork(workId) {
       fetchInit
     );
     if (response.ok) {
-      let figures = document.querySelectorAll("figure")
-      for (let figure of figures){
-        if (figure.getAttribute("data-id")=== workId){
-          figure.remove()
+      const figures = document.querySelectorAll("figure");
+      for (let figure of figures) {
+        if (figure.getAttribute("data-id") === workId) {
+          figure.remove();
+          console.log(
+            `${figure.querySelector("img").alt} a été supprimé avec succès`
+          );
         }
       }
-      console.log("L'élément a été supprimé avec succès");
     } else throw new Error("Erreur lors de la suppression de l'élément");
   } catch (error) {
     console.error(error);
@@ -332,30 +336,28 @@ formAddWorks.addEventListener("submit", async function (event) {
         reader.readAsDataURL(imgInput.files[0]);
         reader.onload = function () {
           img.src = reader.result;
-          cloneImg.src = reader.result;
+          // cloneImg.src = reader.result;
         };
 
         figure.setAttribute("data-category-id", select.value);
+        figure.setAttribute("class", "works");
         img.setAttribute("alt", titleInput.value);
         figcaption.innerHTML = titleInput.value;
 
         galleryGrid.append(figure);
         figure.append(img, figcaption);
 
-        const cloneFigure = figure.cloneNode()
-        const cloneImg = img.cloneNode()
-        const cloneFigcaption = figcaption.cloneNode()
-        cloneFigcaption.innerHTML = titleInput.value;
-
-        editGalleryGrid.append(cloneFigure)
-        cloneFigure.append(cloneImg, cloneFigcaption);
-
+        for (let work of figuresWorks) {
+          work.remove();
+        }
         removePreviewImage();
+        backToDeleteWorksModal();
         console.log(`${titleInput.value} a bien été ajouté aux travaux`);
         titleInput.value = "";
         select.value = "no-value";
-        backToDeleteWorksModal();
-      }
+
+        getWorksInModal()
+      } 
     } catch (error) {
       console.error(error);
     }
