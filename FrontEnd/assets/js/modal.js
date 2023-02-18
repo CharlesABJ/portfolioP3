@@ -157,12 +157,12 @@ submitTextPresentation.addEventListener("click", function () {
 
 // MODALES GESTION DE TRAVAUX
 // Appel de l'API
-let data 
-let response
+// let data;
+// let response;
 const worksModalApi = "http://localhost:5678/api/works";
 async function getWorksInModal() {
- response = await fetch(worksModalApi);
- data = await response.json();
+  response = await fetch(worksModalApi);
+  data = await response.json();
   try {
     for (let i in data) {
       const figure = document.createElement("figure");
@@ -237,12 +237,15 @@ function initDeleteWorks() {
 
   // pour tous les travaux
   deletAllWorksButton.addEventListener("click", async function () {
-    if (confirm("Êtes-vous sûr de vouloir supprimer tout les travaux ?")) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer tous les travaux ?")) {
       try {
         for (let i in data) {
           const workId = data[i].id;
           deleteWork(workId);
         }
+        galleryGrid.innerHTML = "";
+        editGalleryGrid.innerHTML = "";
+        console.log("Tous les travaux ont été supprimés");
         if (!response.ok) {
           throw new Error("Erreur lors de la suppression des éléments");
         }
@@ -336,7 +339,6 @@ formAddWorks.addEventListener("submit", async function (event) {
         reader.readAsDataURL(imgInput.files[0]);
         reader.onload = function () {
           img.src = reader.result;
-          // cloneImg.src = reader.result;
         };
 
         figure.setAttribute("data-category-id", select.value);
@@ -355,9 +357,9 @@ formAddWorks.addEventListener("submit", async function (event) {
         console.log(`${titleInput.value} a bien été ajouté aux travaux`);
         titleInput.value = "";
         select.value = "no-value";
-        editGalleryGrid.innerHTML =""
-        getWorksInModal()
-      } 
+        editGalleryGrid.innerHTML = "";
+        getWorksInModal();
+      }
     } catch (error) {
       console.error(error);
     }

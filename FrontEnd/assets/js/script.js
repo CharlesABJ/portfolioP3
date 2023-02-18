@@ -37,11 +37,6 @@ async function getWorks() {
   } catch (error) {
     console.error("Warning : " + error);
   }
-
-
-  
-  
-
 }
 
 getWorks();
