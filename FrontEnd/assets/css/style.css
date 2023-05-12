@@ -100,7 +100,7 @@ header .logo .bubble-nav {
     font-size: 16px;
     background: #B1663C;
     color: #ffffff;
-    padding: 8px 9.5px;
+    padding: 9px 11.5px;
     border-radius: 50%;
     border: #ffffff solid 1px;
     cursor: pointer;
@@ -848,6 +848,7 @@ footer nav a:hover {
     }
 
     header.background-responsive h1 a,
+    header.background-responsive h1 span,
     header.background-responsive .header-nav a {
         color: #ffffff;
     }
