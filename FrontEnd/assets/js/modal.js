@@ -159,7 +159,7 @@ submitTextPresentation.addEventListener("click", function () {
 // Appel de l'API
 // let data;
 // let response;
-const worksModalApi = "http://localhost:5678/api/works";
+const worksModalApi = "https://sophie-bluel.herokuapp.com/api/works";
 async function getWorksInModal() {
   response = await fetch(worksModalApi);
   data = await response.json();
@@ -207,7 +207,7 @@ async function deleteWork(workId) {
     };
 
     const response = await fetch(
-      `http://localhost:5678/api/works/${workId}`,
+      `https://sophie-bluel.herokuapp.com/api/works/${workId}`,
       fetchInit
     );
     if (response.ok) {
@@ -272,7 +272,9 @@ backButton.addEventListener("click", backToDeleteWorksModal);
 // Ajouter dynamiquement les catégories dans les options de select
 async function getCategoryOnSelect() {
   try {
-    const response = await fetch("http://localhost:5678/api/categories");
+    const response = await fetch(
+      "https://sophie-bluel.herokuapp.com/api/categories"
+    );
     const data = await response.json();
     for (let i in data) {
       const option = document.createElement("option");
@@ -313,7 +315,7 @@ for (let option of modalSelects) {
 formAddWorks.addEventListener("submit", async function (event) {
   event.preventDefault();
   if (confirmAddWorkButton.classList.contains("completed")) {
-    const postApi = "http://localhost:5678/api/works";
+    const postApi = "https://sophie-bluel.herokuapp.com/api/works";
 
     const formData = new FormData();
     formData.append("title", titleInput.value);

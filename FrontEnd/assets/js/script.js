@@ -9,7 +9,7 @@ const all = document.querySelector(".all");
 //=======================================================================
 
 // Appel des travaux via l'API en GET
-const worksApi = "http://localhost:5678/api/works";
+const worksApi = "https://sophie-bluel.herokuapp.com/api/works";
 
 async function getWorks() {
   try {
@@ -49,7 +49,11 @@ for (let element of elementsFilter) {
     }
     element.classList.add("active");
     for (let figure of figures) {
-      figure.style.display = figure.getAttribute("data-category-id") === element.getAttribute ("data-category-id") || element === all ? "block" : "none";
+      figure.style.display =
+        figure.getAttribute("data-category-id") ===
+          element.getAttribute("data-category-id") || element === all
+          ? "block"
+          : "none";
     }
   });
 }

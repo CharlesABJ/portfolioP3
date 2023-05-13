@@ -14,7 +14,6 @@ body {
     margin: 0 auto;
     font-family: 'Work Sans';
     font-size: 14px;
-    padding: 0 0 2rem;
 }
 
 
@@ -76,6 +75,7 @@ header .logo {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: relative;
     z-index: 0;
 }
@@ -84,14 +84,14 @@ header .logo h1 a {
     display: flex;
     flex-direction: column;
     font-family: 'Syne';
-    font-size: 22px;
+    font-size: 2.5vw;
     font-weight: 800;
     color: #B1663C
 }
 
 header .logo h1 span {
     font-family: 'Work Sans';
-    font-size: 10px;
+    font-size: 1vw;
     letter-spacing: 0.1em;
     color: #814a2a;
 }
@@ -100,7 +100,7 @@ header .logo .bubble-nav {
     font-size: 16px;
     background: #B1663C;
     color: #ffffff;
-    padding: 9px 11.5px;
+    padding: 9px 11px;
     border-radius: 50%;
     border: #ffffff solid 1px;
     cursor: pointer;
@@ -127,16 +127,25 @@ header nav ul li {
 header nav ul li a {
     text-decoration: none;
     color: #000000;
+    transition: 0.3s all;
 }
 
 header nav ul li a:hover {
     color: #B1663C;
+    transition: 0.3s all;
 }
 
 
-header nav ul li a i {
-    font-size: 20px;
+header nav ul li i {
+    font-size: 25px;
 }
+
+
+header nav ul li i:hover {
+    color: #B1663C;
+    transition: 0.3s all;
+}
+
 
 
 /* ----------------------HEADER-OFF>--------------------------- */
@@ -194,7 +203,7 @@ main {
 #introduction article p {
     margin: 0 0 20px;
     display: flex;
-    word-break: break-all;
+    text-align: justify;
 }
 
 
@@ -215,7 +224,7 @@ main {
     text-align: center;
     font-family: 'Syne';
     font-weight: 700;
-    font-size: 30px;
+    font-size: 4.5vw;
     color: #1D6154;
     margin: 0 15px 0 0;
 }
@@ -305,7 +314,7 @@ main {
     margin-bottom: 12px;
     font-family: 'Syne';
     font-weight: 700;
-    font-size: 30px;
+    font-size: 4.5vw;
     color: #1D6154
 }
 
@@ -321,12 +330,12 @@ main {
 }
 
 #contact label {
-    margin: 2em 0 1em 0;
+    margin: 2em 0 7px 0;
     font-weight: bold;
 }
 
 #contact input {
-    height: 50px;
+    height: 45px;
     font-size: 1.2em;
     padding: 0 10px;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -674,7 +683,7 @@ main {
 
 /* ----------------------FOOTER-ON<--------------------------- */
 footer {
-    padding: 0 2rem;
+    padding: 0 2rem 5px;
 }
 
 footer nav {
@@ -725,11 +734,37 @@ footer nav a:hover {
 
 /* ----------------------RESPONSIVE-ON<--------------------------- */
 @media screen and (max-width: 991px) {
+    header .logo h1 span {
+        font-size: 1.5vw;
+    }
+
+    #introduction figure {
+        width: 80%;
+        max-height: 250px;
+    }
+
+    #introduction figure .img-portrait {
+        width: 100%;
+    }
+
+    #introduction article {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.6vw;
+
+    }
+
     #introduction article h2 {
         flex-direction: row-reverse;
-        margin: 50px 0 20px;
+        margin: 20px 0 0px;
         align-items: center;
         justify-content: center;
+    }
+
+    #introduction article h2 .title {
+        font-size: 4.5vw;
     }
 
     #introduction article h2 .modal-trigger {
@@ -751,11 +786,14 @@ footer nav a:hover {
     .modal-trigger span {
         display: none;
     }
+
+    #contact {
+        width: 70%;
+    }
 }
 
 @media screen and (max-width: 739px) {
     #portfolio .filters {
-        width: 80%;
         margin: 0 auto 35px;
     }
 
@@ -768,7 +806,7 @@ footer nav a:hover {
     }
 
     #contact {
-        width: 80%;
+        width: 95%;
     }
 
 }
@@ -819,6 +857,11 @@ footer nav a:hover {
         z-index: 1;
     }
 
+    header .logo h1 a {
+        font-size: 4.5vw;
+
+    }
+
     header .logo .bubble-nav {
         display: block;
     }
@@ -833,7 +876,7 @@ footer nav a:hover {
     header .header-nav ul {
         flex-direction: column;
         width: 100%;
-        height: calc(100vh - 65px);
+        height: calc(90vh - 65px);
         justify-content: space-around;
 
     }
@@ -843,13 +886,15 @@ footer nav a:hover {
         color: #ffffff;
     }
 
-    header .header-nav ul li a:hover {
+    header .header-nav ul li a:hover,
+    header .header-nav ul li i:hover {
         color: #1D6154;
     }
 
     header.background-responsive h1 a,
     header.background-responsive h1 span,
-    header.background-responsive .header-nav a {
+    header.background-responsive .header-nav li a,
+    header.background-responsive .header-nav li i {
         color: #ffffff;
     }
 
@@ -862,24 +907,24 @@ footer nav a:hover {
         margin-bottom: 0;
     }
 
-    #introduction article h2,
-    #contact h2 {
-        font-size: 25px;
+    #introduction article h2 {
+        margin: 0;
     }
 
     #introduction article p {
-        font-size: 12px;
+        font-size: 2vw;
     }
 
 
     #portfolio {
         margin: 0;
+
     }
 
     #portfolio .filters li {
         width: 45%;
-        font-size: 10px;
-        overflow: hidden;
+        font-size: 8px;
+        height: 30px;
     }
 
     #portfolio .gallery .gallery-grid figure img {

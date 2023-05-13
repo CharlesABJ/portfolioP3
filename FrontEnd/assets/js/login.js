@@ -22,7 +22,7 @@ for (let eye of eyes) {
 form.addEventListener("submit", async (submitButton) => {
   submitButton.preventDefault();
 
-  const loginApi = "http://localhost:5678/api/users/login";
+  const loginApi = "https://sophie-bluel.herokuapp.com/api/users/login";
   const fetchInit = {
     method: "POST",
     headers: {
