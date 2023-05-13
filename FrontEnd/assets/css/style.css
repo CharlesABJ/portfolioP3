@@ -683,7 +683,7 @@ main {
 
 /* ----------------------FOOTER-ON<--------------------------- */
 footer {
-    padding: 0 2rem 5px;
+    padding: 0 2rem 10px;
 }
 
 footer nav {
@@ -779,6 +779,15 @@ footer nav a:hover {
         margin-top: 40px;
     }
 
+
+    #portfolio .gallery .gallery-grid {
+        grid-gap: 30px;
+        grid-template-columns: 1fr 1fr;
+        margin: 0px 20px 60px;
+        padding: 50px;
+        width: 100%;
+    }
+
     #portfolio .gallery .gallery-grid figure img {
         max-height: 300px;
     }
@@ -799,6 +808,14 @@ footer nav a:hover {
 
     #portfolio .filters li {
         width: 47%;
+    }
+
+    #portfolio .gallery .gallery-grid {
+        grid-gap: 20px;
+        background: #fff;
+        grid-template-columns: 1fr;
+        margin: 20px;
+        padding: 0;
     }
 
     #portfolio .gallery .gallery-grid figure img {
@@ -925,10 +942,6 @@ footer nav a:hover {
         width: 45%;
         font-size: 8px;
         height: 30px;
-    }
-
-    #portfolio .gallery .gallery-grid figure img {
-        max-height: 100px;
     }
 
     #portfolio .gallery .gallery-grid figure figcaption {
