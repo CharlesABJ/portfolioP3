@@ -168,7 +168,7 @@ main {
 
 #introduction figure {
     margin: 0 25px;
-    height: 355px;
+    height: 100%;
     align-self: start;
 }
 
@@ -738,10 +738,6 @@ footer nav a:hover {
         font-size: 1.5vw;
     }
 
-    #introduction figure {
-        width: 80%;
-        max-height: 250px;
-    }
 
     #introduction figure .img-portrait {
         width: 100%;
@@ -802,6 +798,10 @@ footer nav a:hover {
 }
 
 @media screen and (max-width: 739px) {
+    #introduction figure {
+        width: 80%;
+    }
+
     #portfolio .filters {
         margin: 0 auto 35px;
     }
